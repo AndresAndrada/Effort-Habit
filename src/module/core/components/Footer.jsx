@@ -2,31 +2,36 @@ import LOGO from '../../../assets/svg/negativo.svg'
 import { RiInstagramFill } from "react-icons/ri";
 import { FaXTwitter } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
+import { useUiStore } from '../../../stores'
+
 
 export default function Footer() {
+  const { DarkMode } = useUiStore();
+
   return (
     <footer>
-      <footer className="footer p-10 bg-primary text-base-content justify-around text-center">
+      <footer className={`footer p-10 ${DarkMode ? "bg-primary" : "bg-secondary"} text-base-content justify-around text-center`}>
         <aside>
+          <h1 className={`text-[20px] font-normal ${DarkMode ? "text-secondary" : "text-primary"} text-center`}>Effort&Habit</h1>
           <img src={LOGO} alt="Logo" className="w-48" />
         </aside>
         <nav className="flex flex-col items-center">
-          <h6 className="text-[20px] font-black text-secondary text-center">
+          <h6 className={`text-[20px] font-black ${DarkMode ? "text-secondary" : "text-primary"} text-center`}>
             Sobre nosotros
           </h6>
-          <p className=" w-44 text-secondary">
+          <p className={`w-52 ${DarkMode ? "text-secondary" : "text-primary"}`}>
             {' '}
-            Lorem ipsum dolor sit amet consectetur. .
+            Somos un grupo de Profesores de Educación Física que nos dedicamos a mejorar la calidad de vida de las personas. Nuestro objetivo es fomentar un estilo de vida saludable y activo a través de la actividad física.
           </p>
         </nav>
         <nav className="flex flex-col items-center">
-          <h6 className="text-[20px] font-black text-secondary">
+          <h6 className={`text-[20px] font-black ${DarkMode ? "text-secondary" : "text-primary"} text-center`}>
             Mantente Contectado
           </h6>
           <div className="grid gap-4 mt-2">
             <a
-              href="https://www.instagram.com/grupomate.ar/?hl=es-la"
-              className="flex gap-3 text-secondary"
+              href="https://www.instagram.com/pf._entrenamiento/?hl=es-la"
+              className={`flex gap-3 ${DarkMode ? "text-secondary" : "text-primary"}`}
               target="_blank"
               rel="noreferrer"
             >
@@ -34,31 +39,31 @@ export default function Footer() {
             </a>
             <a
               href="https://twitter.com/?lang=en"
-              className="flex gap-3 text-secondary"
+              className={`flex gap-3 ${DarkMode ? "text-secondary" : "text-primary"}`}
               target="_blank"
               rel="noreferrer"
             >
               <FaXTwitter className="text-2xl" /> X
             </a>
             <a
-              href="/"
-              className="flex gap-3 text-secondary"
+              href="mailto:andradaandrespf@gmail.com"
+              className={`flex gap-3 ${DarkMode ? "text-secondary" : "text-primary"}`}
               target="_blank"
               rel="noreferrer"
             >
-              <SiGmail className="text-2xl" /> Gmail
+              <SiGmail className="text-2xl" /> andradaandrespf@gmail.com
             </a>
           </div>
         </nav>
         <nav className="flex flex-col items-center w-44 gap-y-3">
-          <h6 className="text-[20px] font-black text-secondary">Contactanos</h6>
-          <p className="text-secondary">
+          <h6 className={`text-[20px] font-black ${DarkMode ? "text-secondary" : "text-primary"}`}>Contactanos</h6>
+          <p className={`${DarkMode ? "text-secondary" : "text-primary"} text-center`}>
             Por favor contáctenos si tiene alguna idea o solicitud específica.
           </p>
           <p className="text-secondary">ejemplo@ejemplo.com</p>
         </nav>
       </footer>
-      <div className=" text-center text-secondary bg-primary pb-2">
+      <div className={`text-center ${DarkMode ? "bg-primary text-secondary" : "bg-secondary text-primary"} pb-2`}>
         Copyright © nombre. All Rights Reserved
       </div>
     </footer>

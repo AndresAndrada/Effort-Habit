@@ -2,13 +2,12 @@ import * as React from 'react'
 import { lazy } from 'react'
 import { Loader } from '../module/core/Loader'
 import { Route, Routes as RouterRoutes } from 'react-router-dom'
-import Navbar from '../module/core/components/Navbar'
 import { SignIn } from '../screens/SignIn'
-// import { useEffect } from 'react'
-// import { useUserStore } from '../stores'
+import { Layout } from '../module/core/ui/Layout'
 
 const Home = lazy(() => import('../screens/Home'))
-
+const DetailUser = lazy(() => import('../screens/DetailUser'))
+const Users = lazy(() => import('../screens/Users'))
 
 export default function NavigatorRouter() {
   return (
@@ -18,11 +17,12 @@ export default function NavigatorRouter() {
       </div>
     }>
       <RouterRoutes>
-        <Route>
-          <Route path={'/'} element={<Navbar />} />
-          <Route path={'/sign-in'} element={<SignIn />} />
+        <Route element={<Layout />}>
           <Route path={'/'} element={<Home />} />
+          <Route path={'/profile'} element={<DetailUser />} />
+          <Route path={'/users'} element={<Users />} />
         </Route>
+        <Route path={'/sign-in'} element={<SignIn />} />
       </RouterRoutes>
     </React.Suspense>
   )

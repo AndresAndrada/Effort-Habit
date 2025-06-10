@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware';
 // import { persist } from "zustand/middlewxare";
 
 export const useUiStore = create(persist((set) => ({
-    Ui: true, // DATA_PERFIL_Type
+    DarkMode: true, // DATA_PERFIL_Type
 
-    setUi: (values) => set({ Ui: values }),
+    setDarkMode: (values) => set({ DarkMode: values }),
 })));

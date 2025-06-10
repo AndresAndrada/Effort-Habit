@@ -6,8 +6,6 @@ function useLogIn() {
 
   const logIn = async () => {
     try {
-      console.log('ENTREE LOGIN');
-
       // const { data } = await axios.post('/user/login', { email, password })
       // console.log(data, 'DATAAAAAAAAAAAA');
       // if (data?.objectId !== undefined) {

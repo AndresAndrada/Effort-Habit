@@ -1,3 +1,4 @@
+import FormLogin from "../module/auth/components/FormLogin"
 import { GoBackLink } from "../module/core/ui/GoBackLink"
 
 const elementoAzar = () => {
@@ -22,7 +23,7 @@ export const SignIn = () => {
             <div className="absolute top-6 left-6">
                 <GoBackLink color={'color-black'} label={'Back'} />
             </div>
-            {/* <FormLogin /> */}
+            <FormLogin />
         </header>
     )
 }

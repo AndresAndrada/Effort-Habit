@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware';
 // import { persist } from "zustand/middlewxare";
 
 export const useUserStore = create(persist((set) => ({
-    Authenticated: false, // Estado inicial
+    Authenticated: true, // Estado inicial
     DataPerfilUser: [], // DATA_PERFIL_USER
     User: {}, // DATA_USER
     Details: {},

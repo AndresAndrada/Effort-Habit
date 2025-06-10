@@ -41,7 +41,7 @@ export default {
           DEFAULT: '#142d4c',
           foreground: 'hsl(var(--secondary-foreground))',
         },
-        tercicario: {
+        tertiary: {
           DEFAULT: '#385170',
           foreground: 'hsl(var(--secondary-foreground))',
         },
