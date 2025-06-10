@@ -5,7 +5,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export function Layout() {
-    const { Authenticated } = useUserStore();
+    // const { Authenticated } = useUserStore();
+    const Authenticated = true
     const navigate = useNavigate();
 
     useEffect(() => {
