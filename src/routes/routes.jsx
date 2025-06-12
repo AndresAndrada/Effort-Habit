@@ -5,9 +5,9 @@ import { Route, Routes as RouterRoutes } from 'react-router-dom'
 import { SignIn } from '../screens/SignIn'
 import { Layout } from '../module/core/ui/Layout'
 
-const Home = lazy(() => import('../screens/Home'))
 const DetailUser = lazy(() => import('../screens/DetailUser'))
 const Users = lazy(() => import('../screens/Users'))
+const Home = lazy(() => import('../screens/Home'))
 
 export default function NavigatorRouter() {
   return (
