@@ -74,6 +74,31 @@ export const AddCompany = yup.object().shape({
         ),
 })
 
+export const EditUser = yup.object().shape({
+    username: yup
+        .string()
+        .min(5, 'Debe contener más de 5 caracteres')
+        .max(65, 'Máximo de 65 caracteres')
+        .required('Ingrese nombre completo'),
+
+    email: yup
+        .string()
+        .max(255)
+        .required('Ingrese el correo')
+        .matches(
+            /^[^@]+@[^@]+\.[^@]+$/,
+            "El correo debe contener '@' antes del '.'"
+        ),
+
+    password: yup
+        .string()
+        .required('Ingrese su contraseña')
+        .matches(
+            passwordRules,
+            'Debe contener 8 catacteres, una mayuscula, una minuscula, un número y una caracter especial.'
+        ),
+})
+
 export const DashBoardeScheme = yup.object().shape({
     fullName: yup
         .string()

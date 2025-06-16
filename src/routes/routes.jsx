@@ -5,6 +5,7 @@ import { Route, Routes as RouterRoutes } from 'react-router-dom'
 import { SignIn } from '../screens/SignIn'
 import { Layout } from '../module/core/ui/Layout'
 
+const DetailUserAdmin = lazy(() => import('../screens/DetailUserAdmin'))
 const DetailUser = lazy(() => import('../screens/DetailUser'))
 const Users = lazy(() => import('../screens/Users'))
 const Home = lazy(() => import('../screens/Home'))
@@ -19,7 +20,8 @@ export default function NavigatorRouter() {
       <RouterRoutes>
         <Route element={<Layout />}>
           <Route path={'/'} element={<Home />} />
-          <Route path={'/profile'} element={<DetailUser />} />
+          <Route path={'/profile'} element={<DetailUserAdmin />} />
+          <Route path={'/detail-user/:id'} element={<DetailUser />} />
           <Route path={'/users'} element={<Users />} />
         </Route>
         <Route path={'/sign-in'} element={<SignIn />} />

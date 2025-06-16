@@ -1,0 +1,4 @@
+/* Transición suave para cambios de fondo y color */
+.transition-bg {
+  transition: background-color 0.5s cubic-bezier(0.4,0,0.2,1), color 1s cubic-bezier(0.4,0,0.2,1);
+}

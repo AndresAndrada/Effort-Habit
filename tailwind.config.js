@@ -34,7 +34,7 @@ export default {
         hover_secondary: 'hsl(var(--hover-secondary))',
         customColor: '#00796B',
         primary: {
-          DEFAULT: '#ececec',
+          DEFAULT: '#dbd8e3',
           foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
@@ -80,15 +80,15 @@ export default {
         banner_pet:
           'url(https://res.cloudinary.com/dge3tzzsh/image/upload/v1714507838/gravitad_general/022-assets/shop/banner-shop_oqc3yd.webp)',
         login1:
-          'url(https://res.cloudinary.com/dge3tzzsh/image/upload/v1714055167/gravitad_general/022-assets/login-5_u6eet8.png)',
+          'url(https://res.cloudinary.com/de7fyvmdp/image/upload/v1749934273/samples/entrenamiento-funcional-Suelosport_febrba.jpg)',
         login2:
-          'url(https://res.cloudinary.com/dge3tzzsh/image/upload/v1713988071/gravitad_general/022-assets/login-2_qlfaqt.png)',
+          'url(https://res.cloudinary.com/de7fyvmdp/image/upload/v1749934273/samples/entrenamiento-funcional-Suelosport_febrba.jpg)',
         login3:
-          'url(https://res.cloudinary.com/dge3tzzsh/image/upload/v1713988071/gravitad_general/022-assets/login-3_unzik4.png)',
+          'url(https://res.cloudinary.com/de7fyvmdp/image/upload/v1749934273/samples/entrenamiento-funcional-Suelosport_febrba.jpg)',
         login4:
-          'url(https://res.cloudinary.com/dge3tzzsh/image/upload/v1714055167/gravitad_general/022-assets/login-4_m5qjxr.png)',
+          'url(https://res.cloudinary.com/de7fyvmdp/image/upload/v1749934273/samples/entrenamiento-funcional-Suelosport_febrba.jpg)',
         register:
-          'url(https://res.cloudinary.com/dge3tzzsh/image/upload/v1713988071/gravitad_general/022-assets/register_wauvhk.png)',
+          'url(https://res.cloudinary.com/de7fyvmdp/image/upload/v1749934273/samples/entrenamiento-funcional-Suelosport_febrba.jpg)',
       },
       backgroundPosition: {
         banner_sm: 'left 30% top 10%',

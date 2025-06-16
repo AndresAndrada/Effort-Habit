@@ -6,9 +6,11 @@ import showPasswordIcon from '../../../assets/svg/showPassword.svg'
 import hidePasswordIcon from '../../../assets/svg/showPassword.svg'
 import { useNavigate } from 'react-router-dom'
 import useLogin from '../hooks/useLogin'
+import { useUserStore } from '../../../stores'
 
 export default function FormLogin() {
   const [showPassword, setShowPassword] = useState(false)
+  const { setAuthenticated } = useUserStore();
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const { logIn } = useLogin()
@@ -17,36 +19,37 @@ export default function FormLogin() {
       email: '',
       password: '',
     },
-    validationSchema: LoginScheme,
+    // validationSchema: LoginScheme,
     onSubmit: async (values, { resetForm }) => {
       console.log(JSON.stringify(values), 'VALUES')
+      setAuthenticated(true);
       // resetForm()
-      try {
-        setLoading(true)
-        const res = await logIn(values)
-        if (res?.ok) {
-          navigate('/')
-          resetForm()
-          toast.success('¡Bienvenido!', {
-            duration: 2000,
-            position: 'top-center',
-          })
-        } else {
-          setLoading(false)
-          toast.error('Email o contraseña incorrecto, vuleve a intentarlo', {
-            duration: 4000,
-            position: 'top-center',
-          })
-        }
-      } catch (error) {
-        setLoading(false)
-        console.log(error)
-        toast.error('Algo salio mal, vuelve a intentarlo', {
-          duration: 3000,
-          position: 'top-center',
-        })
-      }
-      return
+      // try {
+      //   setLoading(true)
+      //   const res = await logIn(values)
+      //   if (res?.ok) {
+      navigate('/')
+      //     resetForm()
+      //     toast.success('¡Bienvenido!', {
+      //       duration: 2000,
+      //       position: 'top-center',
+      //     })
+      //   } else {
+      //     setLoading(false)
+      //     toast.error('Email o contraseña incorrecto, vuleve a intentarlo', {
+      //       duration: 4000,
+      //       position: 'top-center',
+      //     })
+      //   }
+      // } catch (error) {
+      //   setLoading(false)
+      //   console.log(error)
+      //   toast.error('Algo salio mal, vuelve a intentarlo', {
+      //     duration: 3000,
+      //     position: 'top-center',
+      //   })
+      // }
+      // return
     },
   })
   return (
@@ -142,36 +145,22 @@ export default function FormLogin() {
           </div>
         </div>
         <div className="w-full">
-          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
           <button
             className={
               formik.dirty && formik.isValid
                 ? 'flex w-full p-[0.5rem 1rem] h-10 justify-center items-center gap-2 rounded-[0.625rem] bg-teal-700 text-white hover:bg-emerald-800'
                 : 'flex w-full p-[0.5rem 1rem] h-10 justify-center items-center gap-2 rounded-[0.625rem] bg-gray-500 text-white'
             }
-            disabled={!(formik.dirty && formik.isValid && formik.values)}
+          // disabled={!(formik.dirty && formik.isValid && formik.values)}
           >
             {loading
               ? <span className="loading loading-spinner loading-sm"></span>
               : 'Iniciar'}
           </button>
-          <div className="flex justify-center items-start gap-2 pt-2">
-            <h6 className="text-primary text-center font-productsans text-xs font-normal">
-              {' '}
-              No tienes cuenta?
-            </h6>
-            {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-            <h6
-              className="text-secondary text-center font-productsans text-xs font-semibold cursor-pointer"
-              onClick={() => navigate('/sign-up')}
-            >
-              Crear cuenta
-            </h6>
-          </div>
         </div>
       </form>
       <div className="flex justify-center items-start gap-2">
-        <h6 className="text-primary text-center font-productsans text-xs font-normal cursor-pointer">
+        <h6 className="text-secondary text-center font-productsans text-xs font-normal cursor-pointer">
           {' '}
           ¿Olvidaste tu contraseña?
         </h6>
