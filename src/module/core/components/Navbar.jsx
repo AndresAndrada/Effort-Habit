@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import useLogout from '../../auth/hooks/useLogout';
 import useLogIn from '../../auth/hooks/useLogin';
 import { useUiStore, useUserStore } from '../../../stores'
-import SiderBar from './SiderBar';
+import SideBar from './SideBar';
 // import { useEffect } from 'react'
 // import { getLocalStorage } from '@/modules/auth/utils/getLocalStorage'
 
@@ -37,20 +37,20 @@ export default function Navbar() {
   // }, [])
 
   return (
-    <div className={`navbar ${DarkMode ? "bg-primary" : "bg-secondary"} drop-shadow-md`}>
+    <div className={`navbar ${DarkMode ? "bg-primary" : "bg-secondary"} drop-shadow-md transition-bg`}>
       {/* Sidebar solo visible en móvil */}
       <div className="flex-none">
-        <SiderBar />
+        <SideBar />
       </div>
       {/* Logo y nombre */}
       <div className="flex-1">
-        <a className={`btn btn-ghost text-2xl md:text-3xl ${DarkMode ? "text-black" : "text-stone-300"}`} onClick={() => navigate('/')}>Effort&Habit</a>
+        <a className={`btn btn-ghost text-2xl md:text-3xl ${DarkMode ? "text-black" : "text-stone-300"} transition-bg`} onClick={() => navigate('/')}>Effort&Habit</a>
       </div>
       {/* Menú horizontal solo visible en desktop */}
       <div className="flex-none hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li className={`${DarkMode ? "text-black" : "text-stone-300"}`}><a className='text-xl'>Link</a></li>
-          <li className={`${DarkMode ? "text-black" : "text-stone-300"}`}><a className='text-xl'>Contacto</a></li>
+          <li className={`${DarkMode ? "text-black" : "text-stone-300"} transition-bg`}><a className='text-xl'>Link</a></li>
+          <li className={`${DarkMode ? "text-black" : "text-stone-300"} transition-bg`}><a className='text-xl'>Contacto</a></li>
         </ul>
       </div>
       {/* Iconos y usuario siempre visibles */}

@@ -1,8 +1,7 @@
-import create from 'zustand';
-import { persist } from 'zustand/middleware';
-// import { persist } from "zustand/middlewxare";
+import { create } from 'zustand';
+// import { persist } from 'zustand/middleware';
 
-export const useTypeStore = create(persist((set) => ({
+export const useTypeStore = create((set) => ({
     DataPerfilType: [], // DATA_PERFIL_Type
     Type: [], // DATA_Type
     Details: {},
@@ -10,4 +9,4 @@ export const useTypeStore = create(persist((set) => ({
     setType: (values) => set({ Type: values }),
     setDataPerfilType: (values) => set({ DataPerfilType: values }),
     setDetails: (values) => set({ Details: values }),
-})));
+}));
