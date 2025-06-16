@@ -33,7 +33,7 @@ export default function Users() {
   // const handleDelete = (id) => setUsers(users.filter(u => u.id !== id));
 
   return (
-    <div className={`${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
+    <div className={`${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg mt-12`}>
       <div className={`flex flex-col items-center p-4 min-h-screen max-w-7xl mx-auto ${DarkMode ? "bg-primary" : "bg-secondary"} pt-8 transition-bg`}>
         <h1 className={`text-3xl font-bold mb-6 w-full ${DarkMode ? "text-secondary" : "text-primary"} transition-bg`}>Usuarios</h1>
         <div className={`w-full flex flex-col items-center ${DarkMode ? "bg-secondary" : "bg-tertiary"} rounded-2xl shadow-4xl p-6`}>
@@ -60,7 +60,7 @@ export default function Users() {
                     <tr className={`${DarkMode ? "hover:bg-tertiary text-secondary" : "hover:bg-secondary text-slate-900"}`} key={user.id}>
                       <th>
                         <label>
-                          <input type="checkbox" className="checkbox border-2 border-black" />
+                          <input type="checkbox" className="checkbox border-2 border-primary" />
                         </label>
                       </th>
                       <td className='cursor-pointer' onClick={() => navigate(`/detail-user/${user.id}`)}>
@@ -73,23 +73,23 @@ export default function Users() {
                             </div>
                           </div>
                           <div>
-                            <div className="font-bold">Hart Hagerty</div>
-                            <div className="text-sm opacity-50">United States</div>
+                            <div className="text-primary font-bold">Hart Hagerty</div>
+                            <div className="text-primary text-sm opacity-50">United States</div>
                           </div>
                         </div>
                       </td>
-                      <td>
+                      <td className="text-primary">
                         Zemlak, Daniel and Leannon
                         <br />
-                        <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                        <span className="text-primary badge badge-ghost badge-sm">Desktop Support Technician</span>
                       </td>
-                      <td>Purple</td>
+                      <td className="text-primary">Purple</td>
                       <th className=''>
-                        <button className="btn btn-ghost btn-xs">Activar</button>
-                        <button className="btn btn-ghost btn-xs"
+                        <button className="text-primary btn btn-ghost btn-xs">Activar</button>
+                        <button className="text-primary btn btn-ghost btn-xs"
                           onClick={() => document.getElementById('my_modal_1').showModal()}
                         >Editar</button>
-                        <button className="btn btn-ghost btn-xs">Eliminar</button>
+                        <button className="text-primary btn btn-ghost btn-xs">Eliminar</button>
                       </th>
                     </tr>
                   </>

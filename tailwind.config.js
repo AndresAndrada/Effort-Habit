@@ -34,7 +34,7 @@ export default {
         hover_secondary: 'hsl(var(--hover-secondary))',
         customColor: '#00796B',
         primary: {
-          DEFAULT: '#dbd8e3',
+          DEFAULT: '#e0ffcd',
           foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
@@ -43,6 +43,10 @@ export default {
         },
         tertiary: {
           DEFAULT: '#385170',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        useHover: {
+          DEFAULT: "#3a4750",
           foreground: 'hsl(var(--secondary-foreground))',
         },
         complementary: 'hsl(var(--complementary))',

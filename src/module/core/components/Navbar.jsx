@@ -6,13 +6,15 @@ import useLogout from '../../auth/hooks/useLogout';
 import useLogIn from '../../auth/hooks/useLogin';
 import { useUiStore, useUserStore } from '../../../stores'
 import SideBar from './SideBar';
-// import { useEffect } from 'react'
+import { useEffect, useState, useRef } from 'react'
 // import { getLocalStorage } from '@/modules/auth/utils/getLocalStorage'
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const { Authenticated } = useUserStore();
   const { DarkMode, setDarkMode } = useUiStore();
-  const navigate = useNavigate();
+  const [showNavbar, setShowNavbar] = useState(true);
+  const lastScrollY = useRef(0);
   const { logout } = useLogout();
   const { logIn } = useLogIn();
 
@@ -21,6 +23,19 @@ export default function Navbar() {
       ? navigate('/sign-in')
       : logout()
   }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY < lastScrollY.current) {
+        setShowNavbar(true); // Scroll arriba
+      } else if (window.scrollY > lastScrollY.current) {
+        setShowNavbar(false); // Scroll abajo
+      }
+      lastScrollY.current = window.scrollY;
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // const { itemsInCart, setItemsInCart } =
   //   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -37,7 +52,7 @@ export default function Navbar() {
   // }, [])
 
   return (
-    <div className={`navbar ${DarkMode ? "bg-primary" : "bg-secondary"} drop-shadow-md transition-bg`}>
+    <div className={`navbar fixed top-0 left-0 right-0 z-50 transition-bg ${showNavbar ? 'translate-y-0' : '-translate-y-full'} ${DarkMode ? "bg-primary" : "bg-secondary"} drop-shadow-md`}>
       {/* Sidebar solo visible en móvil */}
       <div className="flex-none">
         <SideBar />
