@@ -1,11 +1,14 @@
+import { useUiStore } from "../stores";
+
 export default function DetailUserAdmin() {
+  const { DarkMode } = useUiStore();
   const user = {
     avatar: "",
     name: "John Doe",
     email: "martin@gmail.com"
   }
   return (
-    <div className="h-[80vh] p-4">
+    <div className={`${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg mt-16 pt-12 h-screen`}>
       <div className="flex flex-col items-center justify-center">
         {/* Contenido principal: datos del usuario */}
         <div className="max-w-md w-full bg-base-200 rounded-xl shadow-md p-8 flex flex-col items-center">
