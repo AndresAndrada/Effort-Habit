@@ -34,7 +34,7 @@ export default {
         hover_secondary: 'hsl(var(--hover-secondary))',
         customColor: '#00796B',
         primary: {
-          DEFAULT: '#e0ffcd',
+          DEFAULT: '#ececec',
           foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
