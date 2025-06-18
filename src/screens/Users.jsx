@@ -2,30 +2,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ModalEdit } from '../module/core/ui/ModalEdit';
 import { useUiStore } from '../stores';
+import { users } from '../utils/users';
 
 export default function Users() {
   const navigate = useNavigate();
   const { DarkMode } = useUiStore();
-  const [users,] = useState([
-    {
-      id: 1,
-      avatar: '',
-      name: 'John Doe',
-      email: 'martin@gmail.com',
-      phone: '123456789',
-      address: 'Calle Falsa 123',
-      active: true
-    },
-    {
-      id: 2,
-      avatar: '',
-      name: 'Jane Smith',
-      email: 'jane@gmail.com',
-      phone: '987654321',
-      address: 'Avenida Siempre Viva 742',
-      active: false
-    }
-  ]);
+
 
   // Handlers de ejemplo
   // const handleEdit = (id) => alert(`Editar usuario ${id}`);

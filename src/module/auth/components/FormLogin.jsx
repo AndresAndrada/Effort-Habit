@@ -13,7 +13,7 @@ export default function FormLogin() {
   const { setAuthenticated } = useUserStore();
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-  const { logIn } = useLogin()
+  // const { logIn } = useLogin()
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -29,7 +29,7 @@ export default function FormLogin() {
       //   const res = await logIn(values)
       //   if (res?.ok) {
       navigate('/')
-      //     resetForm()
+      resetForm()
       //     toast.success('¡Bienvenido!', {
       //       duration: 2000,
       //       position: 'top-center',
