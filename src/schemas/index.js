@@ -143,7 +143,7 @@ export const DashBoardeScheme = yup.object().shape({
     keyPublic: yup.string().required('Ingrese nombre completo'),
 })
 
-export const CreateProduct = yup.object().shape({
+export const CreateExercise = yup.object().shape({
     name_product: yup
         .string()
         .max(65, 'Máximo de 65 caracteres')

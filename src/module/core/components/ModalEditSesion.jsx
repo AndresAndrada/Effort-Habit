@@ -6,7 +6,7 @@ import showPasswordIcon from '../../../assets/svg/showPassword.svg'
 import hidePasswordIcon from '../../../assets/svg/showPassword.svg'
 import { useUiStore } from '../../../stores';
 
-export const ModalEditSesion = ({ setModalEditSesion }) => {
+export const ModalEditSesion = ({ setOptionScreens }) => {
   const { DarkMode } = useUiStore();
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
@@ -22,7 +22,7 @@ export const ModalEditSesion = ({ setModalEditSesion }) => {
       setTimeout(() => setLoading(true), 1000);
       resetForm()
       setLoading(false);
-      setModalEditSesion(false)
+      setOptionScreens(false)
     },
   })
   return (
@@ -35,7 +35,7 @@ export const ModalEditSesion = ({ setModalEditSesion }) => {
           <div className="flex justify-end items-center">
             <button
               onClick={() => {
-                setModalEditSesion(false);
+                setOptionScreens(false);
                 // setOrdenDelete(null);
               }}
               className="text-gray-600 text-2xl"

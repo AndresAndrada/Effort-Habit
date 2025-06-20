@@ -7,6 +7,7 @@ import useLogIn from '../../auth/hooks/useLogin';
 import { useUiStore, useUserStore } from '../../../stores'
 import SideBar from './SideBar';
 import { useEffect, useState, useRef } from 'react'
+import { Link } from 'react-router-dom';
 // import { getLocalStorage } from '@/modules/auth/utils/getLocalStorage'
 
 export default function Navbar() {
@@ -64,8 +65,8 @@ export default function Navbar() {
       {/* Menú horizontal solo visible en desktop */}
       <div className="flex-none hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li className={`${DarkMode ? "text-black" : "text-stone-300"} transition-bg`}><a className='text-xl'>Link</a></li>
-          <li className={`${DarkMode ? "text-black" : "text-stone-300"} transition-bg`}><a className='text-xl'>Contacto</a></li>
+          <li className={`${DarkMode ? "text-black" : "text-stone-300"} transition-bg`}><a className='text-xl'><Link to={"/dashBoard"}>Panel de control</Link></a></li>
+          <li className={`${DarkMode ? "text-black" : "text-stone-300"} transition-bg`}><a className='text-xl'><Link></Link>Contacto</a></li>
         </ul>
       </div>
       {/* Iconos y usuario siempre visibles */}
