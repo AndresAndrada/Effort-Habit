@@ -1,8 +1,8 @@
 import { useFormik } from 'formik'
-import { EditUser } from '../../../schemas'
+import { EditUser } from '../../../../schemas'
 import toast, { Toaster } from 'react-hot-toast';
-import showPasswordIcon from '../../../assets/svg/showPassword.svg'
-import hidePasswordIcon from '../../../assets/svg/hidePassword.svg'
+import showPasswordIcon from '../../../../assets/svg/showPassword.svg'
+import hidePasswordIcon from '../../../../assets/svg/hidePassword.svg'
 import { useState } from 'react';
 
 export const ModalEdit = () => {
