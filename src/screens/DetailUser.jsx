@@ -54,14 +54,14 @@ export default function DetailUser() {
         </div>
       </div>
       <div className="flex justify-center gap-4 flex-wrap w-full h-full overflow-y-auto">
-        {sesion.map((s, index) => (
-          <div key={s.id ?? index} className={`max-w-md w-full min-h-64 bg-base-200 rounded-xl shadow-4xl p-8 mb-4 flex flex-col items-center cursor-pointer hover:bg-gray-600 transition-colors ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg`}>
-            <h2 className="text-xl font-bold mb-4 text-primary">{s.name_sesion}</h2>
-            <p className="text-base-content mb-2"><span className="font-semibold">Tipo de ejercicio:</span> {s.type_exercise}</p>
+        {sesion?.map((s, index) => (
+          <div key={s?.id ?? index} className={`max-w-md w-full min-h-64 bg-base-200 rounded-xl shadow-4xl p-8 mb-4 flex flex-col items-center cursor-pointer hover:bg-gray-600 transition-colors ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg`}>
+            <h2 className="text-xl font-bold mb-4 text-primary">{s?.name_sesion}</h2>
+            <p className="text-base-content mb-2"><span className="font-semibold">Tipo de ejercicio:</span> {s?.type_exercise}</p>
             <ul className="list-disc list-inside mb-4">
-              {s.exercises.map((exercise, index) => (
-                <li key={exercise.id ?? index} className="text-base-content">
-                  {exercise.name} - {exercise.repetitions} repeticiones, {exercise.series} series
+              {s?.exercises?.map((exercise, index) => (
+                <li key={exercise?.id ?? index} className="text-base-content">
+                  {exercise?.name} - {exercise?.repetitions} repeticiones, {exercise?.series} series
                 </li>
               ))}
             </ul>

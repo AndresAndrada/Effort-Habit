@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useUiStore } from "../../../stores";
+import { siderBar } from "../../../utils/sidebar";
 
 export default function SideBar() {
   const navigate = useNavigate();
   const { DarkMode } = useUiStore();
   const closeDrawer = (option) => {
-    option === "inicio" ? navigate("/") :
+    option === "main" ? navigate("/") :
       option === "perfil" ? navigate("/profile") :
-        option === "usuarios" ? navigate("/users") : null;
+        option === "exercise" ? navigate("/dashBoard") :
+          option === "user" ? navigate("/users") : null;
     document.getElementById('my-drawer').checked = false
   }
   return (
@@ -24,9 +26,9 @@ export default function SideBar() {
         <div className="drawer-side">
           <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
           <ul className={`menu bg-base-200 text-base-content min-h-full max-w-60 sm:w-80 p-4 ${DarkMode ? "bg-primary text-secondary" : "bg-secondary text-primary"} transition-bg`}>
-            <li><a onClick={() => closeDrawer("inicio")}>Inicio</a></li>
-            <li><a onClick={() => closeDrawer("perfil")}>Perfil</a></li>
-            <li><a onClick={() => closeDrawer("usuarios")}>Usuarios</a></li>
+            {siderBar.map((e, index) => <>
+              <li key={index}><a onClick={() => closeDrawer(e.label)}>{e?.title}</a></li>
+            </>)}
           </ul>
         </div>
       </div>
