@@ -6,6 +6,8 @@ import { Acordion } from '../module/core/ui/Acordion'
 import { ModeEditionExercise } from '../module/exercise/component/ModeEditionExercise'
 import SearchBar from '../module/core/components/SearchBar'
 import { useEffect } from 'react'
+import { FaRegEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 export default function Exercise() {
   const { DarkMode } = useUiStore();
@@ -20,7 +22,7 @@ export default function Exercise() {
 
   return (
     <div className={`flex items-start px-6 py-12 mt-12 w-full ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
-      <div className="max-w-md w-full flex flex-col items-center justify-center bg-secondary rounded-xl">
+      <div className={`max-w-md w-full flex flex-col items-center justify-center ${DarkMode ? "bg-secondary shadow-xl" : "bg-tertiary"} transition-bg rounded-xl`}>
         <Acordion>
           <input type="radio" name="my-accordion-3" defaultChecked />
           <div className="collapse-title font-semibold text-primary">Ejercicio</div>
@@ -106,6 +108,10 @@ export default function Exercise() {
                             </th>
                             <th>
                               {exercise.video}
+                            </th>
+                            <th className='flex gap-2'>
+                              <button className={`btn ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}><FaRegEdit color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>
+                              <button className={`btn ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}><MdDelete color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>
                             </th>
                           </tr>
                         </>

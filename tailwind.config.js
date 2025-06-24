@@ -78,7 +78,7 @@ export default {
       },
       backgroundImage: {
         banner:
-          'url(https://res.cloudinary.com/de7fyvmdp/image/upload/v1727357561/mate_hawtls.jpg)',
+          'url(https://res.cloudinary.com/de7fyvmdp/image/upload/v1749934273/samples/entrenamiento-funcional-Suelosport_febrba.jpg)',
         banner_person:
           'url(https://res.cloudinary.com/dge3tzzsh/image/upload/v1714141543/gravitad_general/022-assets/banner-recetas_g8xavu.png)',
         banner_pet:

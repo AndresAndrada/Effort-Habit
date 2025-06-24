@@ -14,7 +14,7 @@ const Home = lazy(() => import('../screens/Home'))
 export default function NavigatorRouter() {
   return (
     <React.Suspense fallback={
-      <div className="h-screen w-full grid place-content-center">
+      <div className="h-screen w-screen grid place-content-center">
         <Loader className="h-[4rem] w-[4rem]" />
       </div>
     }>

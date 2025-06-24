@@ -1,7 +1,7 @@
 export const siderBar = [{
     title: "Inicio", label: "main"
 }, {
-    title: "Perfil", label: "perfil"
+    title: "Perfil", label: "profile"
 }, {
     title: "Usuario", label: "user"
 }, {

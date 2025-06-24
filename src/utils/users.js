@@ -24,7 +24,7 @@ export const users = [
         email: 'martin@gmail.com',
         phone: '123456789',
         address: 'Calle Falsa 123',
-        active: true
+        active: false
     }, {
         id: 1,
         avatar: '',
@@ -32,7 +32,7 @@ export const users = [
         email: 'martin@gmail.com',
         phone: '123456789',
         address: 'Calle Falsa 123',
-        active: true
+        active: false
     }, {
         id: 1,
         avatar: '',
