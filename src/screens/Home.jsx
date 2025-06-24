@@ -4,20 +4,22 @@ import img from "../assets/svg/login.svg";
 export default function Home() {
   const { DarkMode } = useUiStore();
   return (
-    <main className={`min-h-screen flex flex-col items-center justify-center px-4 mt-12 pb-4 ${DarkMode ? "bg-primary" : "bg-secondary"} pt-8 transition-bg`}>
-      <section className={`max-w-2xl w-full text-center space-y-6}`}>
-        <h1 className={`text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-primary-content ${DarkMode ? "text-black" : "text-stone-300"} transition-bg`}>
-          ¡Bienvenido a Effort&Habit!
-        </h1>
-        <p className={`text-lg md:text-xl text-base-content mb-6 ${DarkMode ? "text-slate-600" : "text-stone-500"} transition-bg`}>
-          Somos un grupo de Profesores de Educación Física dedicados a mejorar la calidad de vida de las personas. Nuestro objetivo es fomentar un estilo de vida saludable y activo a través de la actividad física.
-        </p>
-        <div className="flex flex-col md:flex-row gap-4 justify-center">
-          <a href="#servicios" className={`btn btn-outline ${DarkMode ? "bg-secondary" : "bg-tertiary"} btn-lg transition-bg`}>Ver servicios</a>
-          <a href="#contacto" className={`btn btn-outline ${DarkMode ? "bg-secondary" : "bg-tertiary"} btn-lg transition-bg`}>Contáctanos</a>
+    <main className={`min-h-screen flex flex-col items-center justify-center pb-4 ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
+      <section className={`w-full flex flex-col items-center justify-center text-center space-y-6 bg-banner h-screen overflow-hidden bg-cover bg-[position:center]`}>
+        <div className="max-w-[45rem] w-[90%] min-h-[22rem] md:max-h-[22rem] h-[70%] flex flex-col justify-center items-center shadow-4xl bg-white/70 dark:bg-black/40 backdrop-blur-md rounded-2xl p-8">
+          <h1 className={`text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-primary-content ${DarkMode ? "text-stone-400" : "text-stone-300"} transition-bg`}>
+            ¡Bienvenido a Effort&Habit!
+          </h1>
+          <p className={`text-base md:text-xl text-base-content mb-6 ${DarkMode ? "text-primary" : "text-primary"} transition-bg`}>
+            Somos un grupo de Profesores de Educación Física dedicados a mejorar la calidad de vida de las personas. Nuestro objetivo es fomentar un estilo de vida saludable y activo a través de la actividad física.
+          </p>
+          <div className="flex gap-4 justify-center">
+            <a href="#servicios" className={`btn btn-outline bg-secondary btn-md transition-bg`}>Ver servicios</a>
+            <a href="#contacto" className={`btn btn-outline bg-secondary btn-md transition-bg`}>Contáctanos</a>
+          </div>
         </div>
       </section>
-      <section id="servicios" className="mt-16 w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section id="servicios" className="mt-16 w-[90%] max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className={`${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl p-6 shadow-4xl flex flex-col items-center`}>
           <img src="/src/assets/svg/mint.svg" alt="Entrenamiento personalizado" className="w-16 h-16 mb-4" />
           <h2 className="text-stone-300 transition-bg text-xl font-bold mb-2 text-center">Entrenamiento Personalizado</h2>

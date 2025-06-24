@@ -8,8 +8,8 @@ export default function DetailUserAdmin() {
     email: "martin@gmail.com"
   }
   return (
-    <div className={`${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg mt-16 pt-12 h-screen`}>
-      <div className="flex flex-col items-center justify-center">
+    <div className={`${DarkMode ? "bg-primary" : "bg-secondary"} flex items-start justify-center transition-bg mt-16 pt-8 w-full h-screen`}>
+      <div className="flex flex-col w-[90%] sm:w-full items-center justify-center">
         {/* Contenido principal: datos del usuario */}
         <div className="max-w-md w-full bg-base-200 rounded-xl shadow-md p-8 flex flex-col items-center">
           <img
