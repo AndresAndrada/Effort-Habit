@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
+import "@radix-ui/themes/styles.css";
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://backend-ecommerce-cba.onrender.com';
