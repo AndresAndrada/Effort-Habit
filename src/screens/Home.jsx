@@ -6,7 +6,7 @@ export default function Home() {
   const { DarkMode } = useUiStore();
   return (
     <main className={`min-h-screen flex flex-col items-center justify-center pb-8 ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
-      <section className={`w-full flex items-center justify-center text-center space-y-6 h-screen overflow-hidden bg-cover bg-[position:center] linear-gradient(to right, rgba(0,0,2.95,0), rgba(0,0,0.9,0), rgba(0,0,0.7,0), transparent)`}>
+      <section className={`w-full flex items-center justify-center text-center space-y-6 h-screen`}>
         <div className={`md:flex-1 w-full md:w-50% h-full bg-banner overflow-hidden bg-cover bg-[position:center] md:overflow-visible md:bg-none md:bg-[position:unset] md:bg-black flex justify-center items-center px-4 pt-12`}>
           <div className="md:flex-1 max-w-[40rem] md:max-h-[30rem] h-[85%] flex flex-col justify-center items-center shadow-4xl bg-white/70 dark:bg-black/40 backdrop-blur-md rounded-2xl p-4">
             <h1 className={`text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-primary-content ${DarkMode ? "text-stone-400" : "text-stone-300"} transition-bg`}>
@@ -43,7 +43,7 @@ export default function Home() {
           <p className="text-stone-300 transition-bg">Complementa tu entrenamiento con consejos de alimentación saludable.</p>
         </div>
       </section>
-      <section id="contacto" className={`mt-20 w-full max-w-xl ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl p-8 shadow-4xl flex flex-col items-center`}>
+      <section id="contacto" className={`mt-20 w-[90%] max-w-4xl ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl p-8 shadow-4xl flex flex-col items-center`}>
         <h2 className="text-2xl font-bold mb-4">Contáctanos</h2>
         <p className="text-slate-300 transition-bg pb-3">¿Tienes dudas o quieres comenzar? ¡Escríbenos!</p>
         <ButtonPrimary href={"#servicios"}>Enviar correo</ButtonPrimary>

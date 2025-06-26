@@ -21,15 +21,15 @@ export default function Exercise() {
   }, [search])
 
   return (
-    <div className={`flex min-h-screen items-start px-6 py-12 mt-12 w-full ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
-      <div className={`max-w-md w-full flex flex-col items-center justify-center ${DarkMode ? "bg-secondary shadow-xl" : "bg-tertiary"} transition-bg rounded-xl`}>
+    <div className={`flex flex-col min-h-screen items-start px-6 py-12 mt-12 w-full ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
+      <div className={`hidden max-w-md w-full md:flex flex-col items-center justify-center ${DarkMode ? "bg-secondary shadow-xl" : "bg-tertiary"} transition-bg rounded-xl`}>
         <Acordion>
           <input type="radio" name="my-accordion-3" defaultChecked />
           <div className="collapse-title font-semibold text-primary">Ejercicio</div>
           <div className="collapse-content text-sm flex flex-col gap-2">
-            <Link className={`${DarkMode ? "hover:bg-tertiary" : "hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("todos")}>Todos los ejericios</Link>
-            <Link className={`${DarkMode ? "hover:bg-tertiary" : "hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("add")}>Agregar</Link>
-            <Link className={`${DarkMode ? "hover:bg-tertiary" : "hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}> Modificar</Link>
+            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("todos")}>Todos los ejericios</Link>
+            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("add")}>Agregar</Link>
+            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}> Modificar</Link>
           </div>
         </Acordion>
         {/* <div className={`max-w-md w-full ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl p-8 shadow-4xl flex flex-col items-center`}>
@@ -52,8 +52,8 @@ export default function Exercise() {
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title font-semibold text-primary">Estadisticas</div>
           <div className="collapse-content text-sm flex flex-col gap-2">
-            <Link className={`${DarkMode ? "hover:bg-tertiary" : "hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}>Fuerza</Link>
-            <Link className={`${DarkMode ? "hover:bg-tertiary" : "hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}>Flexibilidad</Link>
+            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}>Fuerza</Link>
+            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}>Flexibilidad</Link>
           </div>
         </Acordion>
         {/* </div> */}
@@ -62,15 +62,17 @@ export default function Exercise() {
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title font-semibold text-primary">Configuraciones</div>
           <div className="collapse-content text-sm flex flex-col gap-2">
-            <Link className={`${DarkMode ? "hover:bg-tertiary" : "hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}>Borrar sesión</Link>
-            <Link className={`${DarkMode ? "hover:bg-tertiary" : "hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}>Editar</Link>
+            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}>Borrar sesión</Link>
+            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}>Editar</Link>
           </div>
           {/* </div> */}
         </Acordion>
         {/* </div> */}
       </div >
       <div className='flex flex-col w-full px-4 justify-center items-center gap-8'>
-        <SearchBar setSearch={setSearch} />
+        <div className='w-full'>
+          <SearchBar setSearch={setSearch} />
+        </div>
         {optionScreens === "todos" && <div className="flex justify-center gap-4 flex-wrap w-full h-full overflow-y-auto">
           {exercises.map((s) => (
             <>
