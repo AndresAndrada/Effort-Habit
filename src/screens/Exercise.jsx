@@ -68,16 +68,6 @@ export default function Exercise() {
           {/* </div> */}
         </Acordion>
         {/* </div> */}
-        <Acordion>
-          {/* <div className="collapse collapse-arrow join-item"> */}
-          <input type="radio" name="my-accordion-3" />
-          <div className="collapse-title font-semibold text-primary">Configuraciones</div>
-          <div className="collapse-content text-sm flex flex-col gap-2">
-            <Link className={`${DarkMode ? "hover:bg-tertiary" : "hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}>Borrar sesión</Link>
-            <Link className={`${DarkMode ? "hover:bg-tertiary" : "hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}>Editar</Link>
-          </div>
-          {/* </div> */}
-        </Acordion>
       </div >
       <div className='flex flex-col w-full px-4 justify-center items-center gap-8'>
         <SearchBar setSearch={setSearch} />
