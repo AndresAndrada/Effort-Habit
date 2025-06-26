@@ -18,7 +18,7 @@ export const users = [
         address: 'Calle Falsa 123',
         active: true
     }, {
-        id: 1,
+        id: 2,
         avatar: '',
         name: 'John Doe',
         email: 'martin@gmail.com',
@@ -26,7 +26,7 @@ export const users = [
         address: 'Calle Falsa 123',
         active: false
     }, {
-        id: 1,
+        id: 3,
         avatar: '',
         name: 'John Doe',
         email: 'martin@gmail.com',
@@ -34,7 +34,7 @@ export const users = [
         address: 'Calle Falsa 123',
         active: false
     }, {
-        id: 1,
+        id: 4,
         avatar: '',
         name: 'John Doe',
         email: 'martin@gmail.com',

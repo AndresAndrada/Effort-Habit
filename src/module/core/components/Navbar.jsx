@@ -65,8 +65,8 @@ export default function Navbar() {
       {/* Menú horizontal solo visible en desktop */}
       <div className="flex-none hidden sm:flex lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li className={`${DarkMode ? "text-stone-300" : "text-stone-300"} transition-bg`}><a className='text-xl'><Link to={"/dashBoard"}>Panel de control</Link></a></li>
-          <li className={`${DarkMode ? "text-stone-300" : "text-stone-300"} transition-bg`}><a className='text-xl'><Link></Link>Contacto</a></li>
+          <li className={`${DarkMode ? "text-stone-300" : "text-stone-300"} transition-bg`}><Link to={"/dashBoard"} className='text-xl'>Panel de control</Link></li>
+          <li className={`${DarkMode ? "text-stone-300" : "text-stone-300"} transition-bg`}><Link className='text-xl'>Contacto</Link></li>
         </ul>
       </div>
       {/* Iconos y usuario siempre visibles */}

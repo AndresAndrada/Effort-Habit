@@ -21,7 +21,7 @@ export default function Exercise() {
   }, [search])
 
   return (
-    <div className={`flex items-start px-6 py-12 mt-12 w-full ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
+    <div className={`flex min-h-screen items-start px-6 py-12 mt-12 w-full ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
       <div className={`max-w-md w-full flex flex-col items-center justify-center ${DarkMode ? "bg-secondary shadow-xl" : "bg-tertiary"} transition-bg rounded-xl`}>
         <Acordion>
           <input type="radio" name="my-accordion-3" defaultChecked />

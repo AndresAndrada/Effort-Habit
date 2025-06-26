@@ -11,7 +11,7 @@ export default function DetailUser() {
   const [modalEditSesión, setModalEditSesion] = useState(false)
 
   return (
-    <div className={`flex items-start h-[80vh] px-6 pt-12 mt-12 w-full ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
+    <div className={`flex items-start min-h-screen px-6 pt-12 mt-12 w-full ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
       <div className="w-[30rem] flex flex-col items-center justify-center gap-4">
         {/* Contenido principal: datos del usuario */}
         <div className={`max-w-md w-full ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl p-8 shadow-4xl flex flex-col items-center`}>
