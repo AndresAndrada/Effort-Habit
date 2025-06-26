@@ -1,6 +1,6 @@
 import { useUiStore } from "../stores";
 import img from "../assets/svg/login.svg";
-import { ButtonPrimary } from "../module/core/ui/button/buttonPrimary";
+import { ButtonPrimary } from "../module/core/ui/button/ButtonPrimary";
 
 export default function Home() {
   const { DarkMode } = useUiStore();
