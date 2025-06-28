@@ -86,18 +86,18 @@ export default function Navbar() {
               <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
             </div>
           </div>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+          <ul tabIndex={0} className={`menu menu-sm dropdown-content ${DarkMode ? "bg-primary" : "bg-secondary"} rounded-box z-1 mt-3 w-52 p-2 shadow`}>
             {Authenticated
               ? <>
                 <li>
-                  <a className="justify-between" onClick={() => navigate('/profile')}>
+                  <a className={`justify-between ${DarkMode ? "text-secondary" : "text-primary"}`} onClick={() => navigate('/profile')}>
                     Perfil
                   </a>
                 </li>
-                <li><a>Settings</a></li>
-                <li onClick={handlerSision}><a>Logout</a></li>
+                <li><a className={`justify-between ${DarkMode ? "text-secondary" : "text-primary"}`}>Settings</a></li>
+                <li onClick={handlerSision}><a className={`justify-between ${DarkMode ? "text-secondary" : "text-primary"}`}>Logout</a></li>
               </>
-              : <li onClick={() => logIn()}><a>Login</a></li>
+              : <li onClick={() => logIn()}><a className={`justify-between ${DarkMode ? "text-secondary" : "text-primary"}`}>Login</a></li>
             }
           </ul>
         </div>
