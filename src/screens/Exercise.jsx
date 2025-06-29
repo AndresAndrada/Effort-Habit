@@ -8,6 +8,7 @@ import SearchBar from '../module/core/components/SearchBar'
 import { useEffect } from 'react'
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { MenuExercise } from '../module/core/components/MenuExercise'
 
 export default function Exercise() {
   const { DarkMode } = useUiStore();
@@ -20,9 +21,29 @@ export default function Exercise() {
     }
   }, [search])
 
+  const items = [
+    {
+      title: "Ejercicios",
+      items1: "Todos",
+      items2: "Agregar",
+      items3: "Modificar",
+    },
+    {
+      title: "Estadisticas",
+      items1: "Fuerza",
+      items2: "Resistencia",
+      items3: "Flexibilidad",
+    },
+    {
+      title: "Configuración",
+      items1: "Agregar",
+      items2: "Agregar",
+    }
+  ]
+
   return (
     <div className={`flex flex-col md:flex-row min-h-screen items-start md:px-6 py-12 mt-12 w-full ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
-      <div className={`hidden max-w-md w-full md:flex flex-col items-center justify-center ${DarkMode ? "bg-secondary shadow-xl" : "bg-tertiary"} transition-bg rounded-xl`}>
+      <div className={`hidden md:flex max-w-md w-full md:flex flex-col items-center justify-center ${DarkMode ? "bg-secondary shadow-xl" : "bg-tertiary"} transition-bg rounded-xl`}>
         <Acordion>
           <input type="radio" name="my-accordion-3" defaultChecked />
           <div className="collapse-title font-semibold text-primary">Ejercicio</div>
@@ -57,26 +78,20 @@ export default function Exercise() {
       </div >
       <div className='flex flex-col  w-full px-4 justify-center items-center gap-8'>
         <div className='w-full flex justify-between items-center gap-2'>
-          <details className="dropdown">
-            <summary className="btn"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-5 w-5 stroke-current">
-              <path stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg></summary>
-            <ul className={`menu z-[1] dropdown-content ${DarkMode ? "bg-secondary border-primary" : "bg-tertiary border-secondary"} rounded-box z-1 w-52 p-2 shadow-sm border`}>
-              <di className="max-h-72 overflow-y-scroll">
-                <li><p className={`font-bold text-primary`}>Ejercicio</p></li>
-                <li className='pl-2' onClick={() => setOptionScreens("todos")}><p className="text-primary">Todos</p></li>
-                <li className='pl-2' onClick={() => setOptionScreens("add")}><p className="text-primary">Agregar</p></li>
-                <li className='pl-2' onClick={() => setOptionScreens("upDate")}><p className="text-primary">Modificar</p></li>
-                <li><p className={`font-bold text-primary`}>Estadisticas</p></li>
-                <li className='pl-2' onClick={() => setOptionScreens("strong")}><p className="text-primary">Fuerza</p></li>
-                <li className='pl-2' onClick={() => setOptionScreens("resistance")}><p className="text-primary">Resistencia</p></li>
-                <li className='pl-2' onClick={() => setOptionScreens("flexibility")}><p className="text-primary">Flexibilidad</p></li>
-                <li><p className={`font-bold text-primary`}>Configuraciones</p></li>
-                <li className='pl-2' onClick={() => setOptionScreens("todos")}><p className="text-primary">Todos</p></li>
-                <li className='pl-2' onClick={() => setOptionScreens("todos")}><p className="text-primary">Agregar</p></li>
-              </di>
-            </ul>
-          </details>
+          <MenuExercise items={items}>
+            <li><p className={`font-bold text-primary`}>Ejercicio</p></li>
+            <li className='pl-2' onClick={() => setOptionScreens("todos")}><p className="text-primary">Todos</p></li>
+            <li className='pl-2' onClick={() => setOptionScreens("add")}><p className="text-primary">Agregar</p></li>
+            <li className='pl-2' onClick={() => setOptionScreens("upDate")}><p className="text-primary">Modificar</p></li>
+            <li><p className={`font-bold text-primary`}>Estadisticas</p></li>
+            <li className='pl-2' onClick={() => setOptionScreens("strong")}><p className="text-primary">Fuerza</p></li>
+            <li className='pl-2' onClick={() => setOptionScreens("resistance")}><p className="text-primary">Resistencia</p></li>
+            <li className='pl-2' onClick={() => setOptionScreens("flexibility")}><p className="text-primary">Flexibilidad</p></li>
+            <li><p className={`font-bold text-primary`}>Configuraciones</p></li>
+            <li className='pl-2' onClick={() => setOptionScreens("todos")}><p className="text-primary">Todos</p></li>
+            <li className='pl-2' onClick={() => setOptionScreens("todos")}><p className="text-primary">Agregar</p></li>
+          </MenuExercise>
+
           <SearchBar setSearch={setSearch} placeholder={"Buscar ejercicio"} />
         </div>
         {optionScreens === "todos" && <div className="flex justify-center gap-4 flex-wrap w-full h-full overflow-y-auto">
@@ -99,7 +114,7 @@ export default function Exercise() {
                   </thead>
                   <tbody>
                     {s.exercises.map((exercise) => (
-                      <tr key={exercise.id} className={`${DarkMode ? "hover:bg-tertiary" : "hover:bg-secondary"} cursor-pointer`}>
+                      <tr key={exercise.id} className={`${DarkMode ? "hover:bg-tertiary" : "hover:bg-secondary"} text-stone-300 cursor-pointer`}>
                         <th>
                           {exercise.name_exercise}
                         </th>
@@ -116,8 +131,8 @@ export default function Exercise() {
                           {exercise.video}
                         </th>
                         <th className='flex gap-2'>
-                          <button className={`btn ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}><FaRegEdit color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>
-                          <button className={`btn ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}><MdDelete color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>
+                          <button className={`btn ${DarkMode ? "bg-primary hover:bg-tertiary" : "bg-secondary hover:bg-primary"} transition-bg`}><FaRegEdit color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>
+                          <button className={`btn ${DarkMode ? "bg-primary hover:bg-tertiary" : "bg-secondary hover:bg-primary"} transition-bg`}><MdDelete color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>
                         </th>
                       </tr>
                     ))}

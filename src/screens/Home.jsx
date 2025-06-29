@@ -49,7 +49,7 @@ export default function Home() {
         </div>
       </section>
       <section id="contacto" className={`mt-20 w-[90%] max-w-xl ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl p-8 shadow-4xl flex flex-col items-center`}>
-        <h2 className="text-2xl font-bold mb-4">Contáctanos</h2>
+        <h2 className="text-stone-300 text-2xl font-bold mb-4">Contáctanos</h2>
         <p className="text-slate-300 transition-bg pb-3">¿Tienes dudas o quieres comenzar? ¡Escríbenos!</p>
         <ButtonPrimary href={"#servicios"}>Enviar correo</ButtonPrimary>
       </section>
