@@ -11,35 +11,17 @@ import { MdDelete } from "react-icons/md";
 import { MenuExercise } from '../module/core/components/MenuExercise'
 
 export default function Exercise() {
-  const { DarkMode } = useUiStore();
+  const { DarkMode, MenuOptionExercise, setMenuOptionExercise } = useUiStore();
   const [search, setSearch] = useState("todos");
-  const [optionScreens, setOptionScreens] = useState("todos");
+  // const [optionScreens, setOptionScreens] = useState("todos");
+  console.log(MenuOptionExercise, 'MenuOptionExerciseeeeeeeee');
+
 
   useEffect(() => {
     if (search !== "todos") {
       exercises.map(e => e.exercises.filter(e => search === e.name_exercise));
     }
   }, [search])
-
-  const items = [
-    {
-      title: "Ejercicios",
-      items1: "Todos",
-      items2: "Agregar",
-      items3: "Modificar",
-    },
-    {
-      title: "Estadisticas",
-      items1: "Fuerza",
-      items2: "Resistencia",
-      items3: "Flexibilidad",
-    },
-    {
-      title: "Configuración",
-      items1: "Agregar",
-      items2: "Agregar",
-    }
-  ]
 
   return (
     <div className={`flex flex-col md:flex-row min-h-screen items-start md:px-6 py-12 mt-12 w-full ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
@@ -48,9 +30,9 @@ export default function Exercise() {
           <input type="radio" name="my-accordion-3" defaultChecked />
           <div className="collapse-title font-semibold text-primary">Ejercicio</div>
           <div className="collapse-content text-sm flex flex-col gap-2">
-            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("todos")}>Todos</Link>
-            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("add")}>Agregar</Link>
-            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}> Modificar</Link>
+            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("todos")}>Todos</Link>
+            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("add")}>Agregar</Link>
+            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("upDate")}> Modificar</Link>
           </div>
         </Acordion>
         {/* </div> */}
@@ -59,8 +41,8 @@ export default function Exercise() {
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title font-semibold text-primary">Estadisticas</div>
           <div className="collapse-content text-sm flex flex-col gap-2">
-            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}>Fuerza</Link>
-            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}>Flexibilidad</Link>
+            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("upDate")}>Fuerza</Link>
+            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("upDate")}>Flexibilidad</Link>
           </div>
         </Acordion>
         {/* </div> */}
@@ -69,32 +51,31 @@ export default function Exercise() {
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title font-semibold text-primary">Configuraciones</div>
           <div className="collapse-content text-sm flex flex-col gap-2">
-            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}>Borrar sesión</Link>
-            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setOptionScreens("upDate")}>Editar</Link>
+            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("upDate")}>Borrar sesión</Link>
+            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("upDate")}>Editar</Link>
           </div>
           {/* </div> */}
         </Acordion>
         {/* </div> */}
       </div >
-      <div className='flex flex-col  w-full px-4 justify-center items-center gap-8'>
+      <div className='flex flex-col w-full px-4 justify-center items-center gap-8'>
         <div className='w-full flex justify-between items-center gap-2'>
-          <MenuExercise items={items}>
+          <MenuExercise>
             <li><p className={`font-bold text-primary`}>Ejercicio</p></li>
-            <li className='pl-2' onClick={() => setOptionScreens("todos")}><p className="text-primary">Todos</p></li>
-            <li className='pl-2' onClick={() => setOptionScreens("add")}><p className="text-primary">Agregar</p></li>
-            <li className='pl-2' onClick={() => setOptionScreens("upDate")}><p className="text-primary">Modificar</p></li>
+            <li className='pl-2' onClick={() => setMenuOptionExercise("todos")}><p className="text-primary">Todos</p></li>
+            <li className='pl-2' onClick={() => setMenuOptionExercise("add")}><p className="text-primary">Agregar</p></li>
+            <li className='pl-2' onClick={() => setMenuOptionExercise("upDate")}><p className="text-primary">Modificar</p></li>
             <li><p className={`font-bold text-primary`}>Estadisticas</p></li>
-            <li className='pl-2' onClick={() => setOptionScreens("strong")}><p className="text-primary">Fuerza</p></li>
-            <li className='pl-2' onClick={() => setOptionScreens("resistance")}><p className="text-primary">Resistencia</p></li>
-            <li className='pl-2' onClick={() => setOptionScreens("flexibility")}><p className="text-primary">Flexibilidad</p></li>
+            <li className='pl-2' onClick={() => setMenuOptionExercise("strong")}><p className="text-primary">Fuerza</p></li>
+            <li className='pl-2' onClick={() => setMenuOptionExercise("resistance")}><p className="text-primary">Resistencia</p></li>
+            <li className='pl-2' onClick={() => setMenuOptionExercise("flexibility")}><p className="text-primary">Flexibilidad</p></li>
             <li><p className={`font-bold text-primary`}>Configuraciones</p></li>
-            <li className='pl-2' onClick={() => setOptionScreens("todos")}><p className="text-primary">Todos</p></li>
-            <li className='pl-2' onClick={() => setOptionScreens("todos")}><p className="text-primary">Agregar</p></li>
+            <li className='pl-2' onClick={() => setMenuOptionExercise("todos")}><p className="text-primary">Todos</p></li>
+            <li className='pl-2' onClick={() => setMenuOptionExercise("todos")}><p className="text-primary">Agregar</p></li>
           </MenuExercise>
-
           <SearchBar setSearch={setSearch} placeholder={"Buscar ejercicio"} />
         </div>
-        {optionScreens === "todos" && <div className="flex justify-center gap-4 flex-wrap w-full h-full overflow-y-auto">
+        {MenuOptionExercise === "todos" && <div className="flex justify-center gap-4 flex-wrap w-full h-full overflow-y-auto">
           {exercises.map((s) => (
             <Acordion key={s.id}>
               <input type="radio" name="my-accordion-4" />
@@ -142,11 +123,11 @@ export default function Exercise() {
             </Acordion >
           ))}
         </div>}
-        {optionScreens === 'add' && (
+        {MenuOptionExercise === 'add' && (
           <ModeEditionExercise />
         )}
-        {optionScreens === 'upDate' && (
-          <ModeEditionExercise setOptionScreens={setOptionScreens} />
+        {MenuOptionExercise === 'upDate' && (
+          <ModeEditionExercise />
         )}
       </div>
     </div >
