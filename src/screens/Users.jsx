@@ -37,7 +37,7 @@ export default function Users() {
               {/* row 1 */}
               {users?.map((user) => {
                 return (
-                  <tr className={`${DarkMode ? "hover:bg-tertiary text-secondary" : "hover:bg-secondary text-slate-900"} border-b border-white border-b-0 px-8`} key={user.id}>
+                  <tr className={`${DarkMode ? "hover:bg-tertiary text-secondary" : "hover:bg-secondary text-slate-900"} border-white border-b-0 px-8`} key={user.id}>
                     <th>
                       <label>
                         <input type="checkbox" className="checkbox size-4 border-2 border-primary" />

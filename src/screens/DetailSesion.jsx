@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
 import { Title } from "../module/core/ui/title/Title";
 import { useUiStore } from "../stores"
 import { sesion } from "../utils/exercise"
+import { shortenString } from "../utils/shortenString";
 
 export default function SesionDetalle() {
   const { DarkMode } = useUiStore();
@@ -30,22 +32,39 @@ export default function SesionDetalle() {
       {/* Tabla solo visible en md o mayor */}
       <table className={`hidden md:table table-auto w-full mb-8 rounded-xl overflow-hidden ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg shadow-4xl`}>
         <thead>
-          <tr className={`${DarkMode ? "bg-tertiary" : "bg-tertiary text-primary"}`}>
-            {/* <th className=" text-primary">Ejercicio</th> */}
-            <th className="text-primary">Repeticiones</th>
-            <th className="text-primary">Series</th>
-            <th className="text-primary">Imagen</th>
-            <th className="text-primary">Video</th>
+          <tr className="border-b-2 !border-primary">
+            <th className="text-primary">Tipo de ejercicio</th>
+            <th className="text-primary text-center">Ejercicios</th>
           </tr>
         </thead>
         <tbody>
-          {sesion1.exercises.map(ej => (
-            <tr key={ej.id} className={`${DarkMode ? "hover:bg-tertiary" : "hover:bg-secondary"}`}>
-              <td className="text-primary">{ej.name}</td>
-              <td className="text-primary">{ej.repetitions}</td>
-              <td className="text-primary">{ej.series}</td>
-              <td className="text-primary">{ej.img_exercise || "-"}</td>
-              <td className="text-primary">{ej.video_exercise || "-"}</td>
+          {sesion1.exercises.map(exercise => (
+            <tr key={exercise.id} className={`${DarkMode ? "hover:bg-tertiary" : "hover:bg-secondary"} border-b-2 !border-primary`}>
+              <td className="text-primary align-top">{exercise.type_exercise}</td>
+              <td className="text-primary p-0" colSpan={5}>
+                <table className="w-full bg-transparent">
+                  <thead>
+                    <tr className="border-b-2 !border-primary">
+                      <th className="font-bold text-left text-primary">Nombre</th>
+                      <th className="font-bold text-left text-primary">Series</th>
+                      <th className="font-bold text-left text-primary">Rep.</th>
+                      <th className="font-bold text-left text-primary">Imagen</th>
+                      <th className="font-bold text-left text-primary">Video</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {exercise?.items_exercise?.map(item => (
+                      <tr key={item.id} className="text-primary text-[0.65rem] !border-b-0">
+                        <td className="text-left">{shortenString(item.name_exercise, 9)}</td>
+                        <td className="text-left">{item.series}</td>
+                        <td className="text-left">{item.repetitions}</td>
+                        <td className="text-left">{!item.img_exercise ? <Link className="p-1 bg-blue-500 rounded-full">ver img</Link> : "No img"}</td>
+                        <td className="text-left">{!item.video_exercise ? <Link className="p-1 bg-blue-500 rounded-full">ver video</Link> : "No img"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -55,13 +74,13 @@ export default function SesionDetalle() {
       <div className="block md:hidden w-full px-8">
         <h3 className="text-lg font-semibold text-primary mb-2">Ejercicios</h3>
         <ul>
-          {sesion1.exercises.map(ej => (
-            <li key={ej.id} className="mb-4 p-3 rounded-lg shadow bg-white/10">
-              <p className="text-primary font-bold">{ej.name}</p>
-              <p className="text-primary">Repeticiones: {ej.repetitions}</p>
-              <p className="text-primary">Series: {ej.series}</p>
-              <p className="text-primary">Imagen: {ej.img_exercise || "-"}</p>
-              <p className="text-primary">Video: {ej.video_exercise || "-"}</p>
+          {sesion1.exercises.map(items => (
+            <li key={items.id} className="mb-4 p-3 rounded-lg shadow bg-white/10">
+              <p className="text-primary font-bold">{items.name}</p>
+              <p className="text-primary">Repeticiones: {items.repetitions}</p>
+              <p className="text-primary">Series: {items.series}</p>
+              <p className="text-primary">Imagen: {items.img_exercise || "-"}</p>
+              <p className="text-primary">Video: {items.video_exercise || "-"}</p>
             </li>
           ))}
         </ul>
