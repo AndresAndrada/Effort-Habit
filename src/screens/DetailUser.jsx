@@ -6,8 +6,10 @@ import { FiPlusCircle } from "react-icons/fi";
 import { user } from "../utils/users";
 import { ModalEditSesion } from "../module/core/components/ModalEditSesion";
 import { Acordion } from "../module/core/ui/Acordion";
+import { useNavigate } from 'react-router-dom'
 
 export default function DetailUser() {
+  const navigate = useNavigate();
   const { DarkMode } = useUiStore();
   const [modalEditSesión, setModalEditSesion] = useState(false);
 
@@ -25,6 +27,7 @@ export default function DetailUser() {
           <p className="mb-1 text-primary"><span className="font-semibold">Email:</span> {user?.email || 'No especificado'}</p>
           <p className="mb-1 text-primary"><span className="font-semibold">Teléfono:</span> {user?.phone || 'No especificado'}</p>
           <p className="mb-1 text-primary"><span className="font-semibold">Dirección:</span> {user?.address || 'No especificada'}</p>
+          <p className="mb-1 text-primary"><span className="font-semibold">Estado:</span> {user?.status || 'No especificada'}</p>
         </div>
         <div className={`join join-vertical ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl w-full shadow-4xl`}>
           <Acordion>
@@ -54,12 +57,12 @@ export default function DetailUser() {
         </div>
       </div>
       <div className="flex justify-center flex-wrap w-full h-full overflow-y-auto md:gap-4">
-        {sesion?.map((s, index) => (
-          <div key={s?.id ?? index} className={`max-w-md w-full min-h-64 bg-base-200 rounded-xl shadow-4xl p-8 mb-4 flex flex-col items-center cursor-pointer hover:bg-gray-600 transition-colors ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg`}>
-            <h2 className="text-xl font-bold mb-4 text-primary">{s?.name_sesion}</h2>
-            <p className="text-base-content mb-2"><span className="font-semibold">Tipo de ejercicio:</span> {s?.type_exercise}</p>
+        {sesion?.map((sesion, index) => (
+          <div key={sesion?.id ?? index} onClick={() => navigate(`/detail-sesion/${sesion.id}`)} className={`max-w-md w-full min-h-64 bg-base-200 rounded-xl shadow-4xl p-8 mb-4 flex flex-col items-center cursor-pointer hover:bg-gray-600 transition-colors ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg`}>
+            <h2 className="text-xl font-bold mb-4 text-primary">{sesion?.name_sesion}</h2>
+            <p className="text-base-content mb-2"><span className="font-semibold">Tipo de ejercicio:</span> {sesion?.type_exercise}</p>
             <ul className="list-disc list-inside mb-4">
-              {s?.exercises?.map((exercise, index) => (
+              {sesion?.exercises?.map((exercise, index) => (
                 <li key={exercise?.id ?? index} className="text-base-content">
                   {exercise?.name} - {exercise?.repetitions} repeticiones, {exercise?.series} series
                 </li>

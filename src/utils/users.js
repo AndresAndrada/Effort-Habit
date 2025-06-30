@@ -5,7 +5,7 @@ export const user = {
     email: 'martin@gmail.com',
     phone: '123456789',
     address: 'Calle Falsa 123',
-    active: true
+    status: true
 }
 
 export const users = [
@@ -16,7 +16,7 @@ export const users = [
         email: 'martin@gmail.com',
         phone: '123456789',
         address: 'Calle Falsa 123',
-        active: true
+        status: true
     }, {
         id: 2,
         avatar: '',
@@ -24,7 +24,7 @@ export const users = [
         email: 'martin@gmail.com',
         phone: '123456789',
         address: 'Calle Falsa 123',
-        active: false
+        status: false
     }, {
         id: 3,
         avatar: '',
@@ -32,7 +32,7 @@ export const users = [
         email: 'martin@gmail.com',
         phone: '123456789',
         address: 'Calle Falsa 123',
-        active: false
+        status: false
     }, {
         id: 4,
         avatar: '',
@@ -40,6 +40,6 @@ export const users = [
         email: 'martin@gmail.com',
         phone: '123456789',
         address: 'Calle Falsa 123',
-        active: true
+        status: true
     }
 ]

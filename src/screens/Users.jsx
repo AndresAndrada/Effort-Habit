@@ -10,7 +10,7 @@ export default function Users() {
 
   // Handlers de ejemplo
   // const handleEdit = (id) => alert(`Editar usuario ${id}`);
-  // const handleActivate = (id) => setUsers(users.map(u => u.id === id ? { ...u, active: !u.active } : u));
+  // const handleActivate = (id) => setUsers(users.map(u => u.id === id ? { ...u, status: !u.status } : u));
   // const handleDelete = (id) => setUsers(users.filter(u => u.id !== id));
 
   return (
@@ -63,9 +63,9 @@ export default function Users() {
                       <br />
                       <span className="text-primary badge badge-ghost badge-sm">Desktop Support Technician</span>
                     </td>
-                    <td className="text-primary">{user?.active ? "Activo" : "Inactivo"}</td>
+                    <td className="text-primary">{user?.status ? "Activo" : "Inactivo"}</td>
                     <th className=''>
-                      <button className="text-primary btn btn-ghost btn-xs">{user?.active ? "Desactivar" : "Activar"}</button>
+                      <button className="text-primary btn btn-ghost btn-xs">{user?.status ? "Desactivar" : "Activar"}</button>
                       <button className="text-primary btn btn-ghost btn-xs"
                         onClick={() => document.getElementById('my_modal_1').showModal()}
                       >Editar</button>
