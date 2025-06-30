@@ -3,8 +3,10 @@ import { persist } from 'zustand/middleware';
 
 export const useUiStore = create(persist((set) => ({
     DarkMode: true, // DATA_PERFIL_Type
+    MenuOptionExercise: "todos",
 
     setDarkMode: (values) => set({ DarkMode: values }),
+    setMenuOptionExercise: (values) => set({ MenuOptionExercise: values }),
 }), {
     name: 'ui-storage',
     storage: {
