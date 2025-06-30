@@ -7,6 +7,7 @@ import { Layout } from '../module/core/ui/Layout'
 
 const DetailUserAdmin = lazy(() => import('../screens/DetailUserAdmin'))
 const DetailUser = lazy(() => import('../screens/DetailUser'))
+const DetailSesion = lazy(() => import('../screens/DetailSesion'))
 const Users = lazy(() => import('../screens/Users'))
 const Exercise = lazy(() => import('../screens/Exercise'))
 const Home = lazy(() => import('../screens/Home'))
@@ -23,6 +24,7 @@ export default function NavigatorRouter() {
           <Route path={'/'} element={<Home />} />
           <Route path={'/profile'} element={<DetailUserAdmin />} />
           <Route path={'/detail-user/:id'} element={<DetailUser />} />
+          <Route path={'/detail-sesion/:id'} element={<DetailSesion />} />
           <Route path={'/users'} element={<Users />} />
           <Route path={'/dashBoard'} element={<Exercise />} />
         </Route>
