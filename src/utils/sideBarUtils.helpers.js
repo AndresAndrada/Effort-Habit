@@ -9,8 +9,12 @@ export const closeDrawer = (option, navigate, setOptionLocation) => {
             setOptionLocation("profile");
             break;
         case "exercise":
-            navigate("/dashBoard");
+            navigate("/exercise");
             setOptionLocation("exercise");
+            break;
+        case "dashboard":
+            navigate("/dashBoard");
+            setOptionLocation("dashboard");
             break;
         case "user":
             navigate("/users");

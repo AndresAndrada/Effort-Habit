@@ -28,7 +28,7 @@ export default function SideBar() {
           <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
           <ul className={`menu bg-base-200 text-base-content min-h-full max-w-60 sm:w-80 p-4 ${DarkMode ? "bg-primary text-secondary" : "bg-secondary text-primary"} transition-bg`}>
             {siderBar.map((e, index) =>
-              <li key={index} className={`${opcionLocation === e.label && "bg-gray-400"}`}><a onClick={() => handleCloseDrawer(e.label)}>{e?.title}</a></li>
+              <li key={index} className={`${opcionLocation === e.label && "bg-gray-500/20 rounded-xl"}`}><a onClick={() => handleCloseDrawer(e.label)}>{e?.title}</a></li>
             )}
           </ul>
         </div>

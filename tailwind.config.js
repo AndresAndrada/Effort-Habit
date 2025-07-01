@@ -118,8 +118,8 @@ export default {
         },
       },
       animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
+        'accordion-down': 'accordion-down 0.5s ease-out',
+        'accordion-up': 'accordion-up 0.5s ease-out',
       },
       screens: {
         'sm': '480px',  // Personalizado, por ejemplo, para pantallas pequeñas de 480px
