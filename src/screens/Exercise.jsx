@@ -14,8 +14,6 @@ export default function Exercise() {
   const { DarkMode, MenuOptionExercise, setMenuOptionExercise } = useUiStore();
   const [search, setSearch] = useState("todos");
   // const [optionScreens, setOptionScreens] = useState("todos");
-  console.log(MenuOptionExercise, 'MenuOptionExerciseeeeeeeee');
-
 
   useEffect(() => {
     if (search !== "todos") {
@@ -25,12 +23,12 @@ export default function Exercise() {
 
   return (
     <div className={`flex flex-col md:flex-row min-h-screen items-start md:px-6 py-12 mt-12 w-full ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
-      <div className={`hidden md:flex max-w-md w-full md:flex flex-col items-center justify-center ${DarkMode ? "bg-secondary shadow-xl" : "bg-tertiary"} transition-bg rounded-xl`}>
+      <div className={`hidden max-w-md w-full md:flex flex-col items-center justify-center shadow-4xl ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl`}>
         <Acordion>
           <input type="radio" name="my-accordion-3" defaultChecked />
           <div className="collapse-title font-semibold text-primary">Ejercicio</div>
           <div className="collapse-content text-sm flex flex-col gap-2">
-            <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("todos")}>Todos</Link>
+            <Link className={`${DarkMode ? "text-primary hover:bg-gray-500" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("todos")}>Todos</Link>
             <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("add")}>Agregar</Link>
             <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("upDate")}> Modificar</Link>
           </div>

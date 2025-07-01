@@ -6,10 +6,11 @@ import { SignIn } from '../screens/SignIn'
 import { Layout } from '../module/core/ui/Layout'
 
 const DetailUserAdmin = lazy(() => import('../screens/DetailUserAdmin'))
-const DetailUser = lazy(() => import('../screens/DetailUser'))
 const DetailSesion = lazy(() => import('../screens/DetailSesion'))
-const Users = lazy(() => import('../screens/Users'))
+const DetailUser = lazy(() => import('../screens/DetailUser'))
+const Dashboard = lazy(() => import('../screens/Dashboard'))
 const Exercise = lazy(() => import('../screens/Exercise'))
+const Users = lazy(() => import('../screens/Users'))
 const Home = lazy(() => import('../screens/Home'))
 
 export default function NavigatorRouter() {
@@ -22,11 +23,12 @@ export default function NavigatorRouter() {
       <RouterRoutes>
         <Route element={<Layout />}>
           <Route path={'/'} element={<Home />} />
+          <Route path={'/users'} element={<Users />} />
+          <Route path={'/exercise'} element={<Exercise />} />
           <Route path={'/profile'} element={<DetailUserAdmin />} />
+          <Route path={'/dashboard'} element={<Dashboard />} />
           <Route path={'/detail-user/:id'} element={<DetailUser />} />
           <Route path={'/detail-sesion/:id'} element={<DetailSesion />} />
-          <Route path={'/users'} element={<Users />} />
-          <Route path={'/dashBoard'} element={<Exercise />} />
         </Route>
         <Route path={'/sign-in'} element={<SignIn />} />
       </RouterRoutes>

@@ -5,5 +5,5 @@ export const siderBar = [{
 }, {
     title: "Usuario", label: "user"
 }, {
-    title: "Panel de control", label: "exercise"
+    title: "Panel de control", label: "dashboard"
 }];
