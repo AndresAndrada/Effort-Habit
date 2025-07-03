@@ -3,7 +3,7 @@ import { sesion } from "../utils/exercise";
 import { useUiStore } from "../stores";
 import { Link } from "react-router-dom";
 import { FiPlusCircle } from "react-icons/fi";
-import { user } from "../utils/users";
+import { user } from "../utils/usersUtils.helpers";
 import { ModalEditSesion } from "../module/core/components/ModalEditSesion";
 import { Acordion } from "../module/core/ui/Acordion";
 import { useNavigate } from 'react-router-dom'

@@ -10,7 +10,7 @@ export default function Footer() {
 
   return (
     <footer>
-      <footer className={`footer p-10 ${DarkMode ? "bg-primary" : "bg-secondary"} text-base-content justify-around text-center transition-bg shadow-[0_-8px_24px_-4px_rgba(0,0,0,0.2)]`}>
+      <footer className={`footer p-10 ${DarkMode ? "bg-primary" : "bg-secondary"} justify-around text-center transition-bg shadow-[0_-8px_24px_-4px_rgba(0,0,0,0.2)]`}>
         <aside>
           <h1 className={`text-[20px] font-normal ${DarkMode ? "text-secondary" : "text-primary"} text-center transition-bg`}>Effort&Habit</h1>
           {/* <img src={LOGO} alt="Logo" className="w-48" /> */}
