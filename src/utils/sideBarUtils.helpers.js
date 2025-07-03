@@ -1,3 +1,16 @@
+export const siderBarAdmin = [
+    { title: "Inicio", label: "main" },
+    { title: "Perfil", label: "profile" },
+    { title: "Entrenamientos", label: "exercise" },
+    { title: "Panel de control", label: "dashboard" }
+];
+
+export const siderBarUser = [
+    { title: "Inicio", label: "main" },
+    { title: "Perfil", label: "profile" },
+    { title: "Entrenamientos", label: "exercise" },
+];
+
 export const closeDrawer = (option, navigate, setOptionLocation) => {
     switch (option) {
         case "main":
