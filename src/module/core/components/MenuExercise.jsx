@@ -1,52 +1,74 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useUiStore } from '../../../stores'
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 
-export const MenuExercise = () => {
+export const MenuExercise = ({
+  options, // []
+  onSelect, // () => { }
+  darkMode, // false
+  className, // string
+  label // string
+}) => {
   const [openModal, setOpenModal] = useState(false);
-  const { DarkMode, setMenuOptionExercise } = useUiStore();
+  const { MenuOptionExercise, setMenuOptionExercise } = useUiStore();
   const handleMenuOption = (option) => {
+    console.log(option, "option");
+    onSelect(option)
     setMenuOptionExercise(option);
   }
   return (
-    <div className="dropdown z-50 w-full flex md:hidden">
+    <div className="dropdown z-100 w-full flex md:hidden">
       <summary tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar" onClick={() => setOpenModal(!openModal)}>
         {!openModal
-          ? <IoIosArrowDown size={20} className={`inline-block ${DarkMode
+          ? <IoIosArrowDown size={20} className={`inline-block ${darkMode
             ? "bg-primary"
             : "bg-secondary"} transition-bg`}
-            color={DarkMode ? "black" : "white"} />
-          : <IoIosArrowUp size={20} className={`inline-block ${DarkMode
+            color={darkMode ? "black" : "white"} />
+          : <IoIosArrowUp size={20} className={`inline-block ${darkMode
             ? "bg-primary"
             : "bg-secondary"} transition-colors`}
-            color={DarkMode
+            color={darkMode
               ? "black"
               : "white"} />}
       </summary>
-      <ul className={`menu z-[1] dropdown-content ${DarkMode ? "bg-secondary border-primary" : "bg-tertiary border-secondary"} rounded-box z-1 w-52 p-2 shadow-sm border`}>
+      <ul className={`menu z-[1] dropdown-content ${darkMode ? "bg-secondary border-primary" : "bg-tertiary border-secondary"} rounded-box z-1 w-52 p-2 shadow-sm border`}>
         <div className="max-h-72 overflow-y-scroll">
-          <li><p className={`font-bold text-primary`}>Ejercicio</p></li>
-          <li className="text-primary w-full text-left pl-6 my-1"
-          ><a onMouseDown={() => handleMenuOption("todos")} className="text-primary">Todos</a></li>
-          <li className="text-primary w-full text-left pl-6 my-1"
-          ><a onMouseDown={() => handleMenuOption("add")} className="text-primary">Agregar</a></li>
-          <li className="text-primary w-full text-left pl-6 my-1"
-          ><a onMouseDown={() => handleMenuOption("upDate")} className="text-primary">Modificar</a></li>
-          <li><p className={`font-bold text-primary`}>Estadisticas</p></li>
-          <li className="text-primary w-full text-left pl-6 my-1"
-          ><a onMouseDown={() => handleMenuOption("strong")} className="text-primary">Fuerza</a></li>
-          <li className="text-primary w-full text-left pl-6 my-1"
-          ><a onMouseDown={() => handleMenuOption("resistence")} className="text-primary">Resistencia</a></li>
-          <li className="text-primary w-full text-left pl-6 my-1"
-          ><a onMouseDown={() => handleMenuOption("flexibility")} className="text-primary">Flexibilidad</a></li>
-          <li><p className={`font-bold text-primary`}>Configuraciones</p></li>
-          <li className="text-primary w-full text-left pl-6 my-1"
-          ><a onMouseDown={() => handleMenuOption("")} className="text-primary">Todos</a></li>
-          <li className="text-primary w-full text-left pl-6 my-1"
-          ><a onMouseDown={() => handleMenuOption("")} className="text-primary">Agregar</a></li>
+          {options.map((option) => (
+            <div key={option.id}>
+              {option.type === "title"
+                ? (<li><p className={`font-bold text-primary`}>{option.title}</p></li>)
+                : (<li className="text-primary w-full text-left pl-3 my-1"
+                ><a onMouseDown={() => handleMenuOption(option.value)} className={`text-primary ${MenuOptionExercise === option.value && "bg-slate-400/15"}`}>{option.label}</a></li>)}
+              {/* < li > <p className={`font-bold text-primary`}>Ejercicio</p></li>
+              <li className="text-primary w-full text-left pl-3 my-1"
+              ><a onMouseDown={() => handleMenuOption(option.value)} className={`text-primary ${MenuOptionExercise === "todos" && "bg-slate-400/15"}`}>Todos</a></li> */}
+            </div>
+          ))}
         </div>
-      </ul>
-    </div>
+
+      </ul >
+    </div >
   )
 }
+
+
+//   <li className="text-primary w-full text-left pl-3 my-1"
+//   ><a onMouseDown={() => handleMenuOption("add")} className={`text-primary ${MenuOptionExercise === "add" && "bg-slate-400/15"}`}>Agregar</a></li>
+//   <li className="text-primary w-full text-left pl-3 my-1"
+//   ><a onMouseDown={() => handleMenuOption("upDate")} className={`text-primary ${MenuOptionExercise === "upDate" && "bg-slate-400/15"}`}>Modificar</a></li>
+//   <li><p className={`font-bold text-primary`}>Estadisticas</p></li>
+//   <li className="text-primary w-full text-left pl-3 my-1"
+//   ><a onMouseDown={() => handleMenuOption("strong")} className={`text-primary ${MenuOptionExercise === "stong" && "bg-slate-400/15"}`}>Fuerza</a></li>
+//   <li className="text-primary w-full text-left pl-3 my-1"
+//   ><a onMouseDown={() => handleMenuOption("resistence")} className={`text-primary ${MenuOptionExercise === "resistence" && "bg-slate-400/15"}`}>Resistencia</a></li>
+//   <li className="text-primary w-full text-left pl-3 my-1"
+//   ><a onMouseDown={() => handleMenuOption("flexibility")} className={`text-primary ${MenuOptionExercise === "flexibility" && "bg-slate-400/15"}`}>Flexibilidad</a></li>
+//   <li><p className={`font-bold text-primary`}>Configuraciones</p></li>
+//   <li className="text-primary w-full text-left pl-3 my-1"
+//   ><a onMouseDown={() => handleMenuOption("")} className={`text-primary ${MenuOptionExercise === "" && "bg-slate-400/15"}`}>Todos</a></li>
+//   <li className="text-primary w-full text-left pl-3 my-1"
+//   ><a onMouseDown={() => handleMenuOption("")} className={`text-primary ${MenuOptionExercise === "" && "bg-slate-400/15"}`}>Agregar</a></li>
+// </div>

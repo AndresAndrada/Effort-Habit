@@ -1,4 +1,4 @@
-import { exercises } from '../utils/exercise'
+import { exercises, menuOptions } from '../utils/exercise'
 import { Link } from 'react-router-dom'
 import { useUiStore } from '../stores'
 import { useState } from 'react'
@@ -58,17 +58,22 @@ export default function Exercise() {
       </div >
       <div className='flex flex-col w-full px-4 justify-center items-center gap-8'>
         <div className='w-full flex justify-between items-center gap-2'>
-          <MenuExercise />
+          {/* <MenuExercise /> */}
+          <MenuExercise
+            options={menuOptions}
+            onSelect={setMenuOptionExercise}
+            darkMode={DarkMode}
+          />
           <SearchBar setSearch={setSearch} placeholder={"Buscar ejercicio"} />
         </div>
-        {MenuOptionExercise === "todos" && <div className="flex justify-center gap-4 flex-wrap w-full h-full overflow-y-auto">
+        {MenuOptionExercise === "todos" && <div className="flex -z-0 justify-center gap-4 flex-wrap w-full h-full">
           {exercises.map((s) => (
             <Acordion key={s.id}>
               <input type="radio" name="my-accordion-4" />
               <div className="collapse-title font-semibold text-primary">{s.type_exercise}</div>
-              <div className="collapse-content text-sm flex flex-col gap-2">
+              <div className="collapse-content text-sm flex w-full flex-col gap-2 overflow-x-scroll">
                 <p className="text-base-content mb-2"><span className="font-semibold">Tipo de ejercicio:</span> {s.type_exercise}</p>
-                <table className='table'>
+                <table className='table w-full'>
                   <thead>
                     <tr className={`${DarkMode ? "bg-primary text-secondary" : "bg-secondary text-primary"} transition-bg`}>
                       <th>Nombre</th>
@@ -98,8 +103,8 @@ export default function Exercise() {
                           {exercise.video}
                         </th>
                         <th className='flex gap-2'>
-                          <button className={`btn ${DarkMode ? "bg-primary hover:bg-tertiary" : "bg-secondary hover:bg-primary"} transition-bg`}><FaRegEdit color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>
-                          <button className={`btn ${DarkMode ? "bg-primary hover:bg-tertiary" : "bg-secondary hover:bg-primary"} transition-bg`}><MdDelete color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>
+                          <button className={`btn ${DarkMode ? "bg-primary hover:bg-tertiary" : "bg-secondary hover:bg-secondary-content"} transition-bg`}><FaRegEdit color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>
+                          <button className={`btn ${DarkMode ? "bg-primary hover:bg-tertiary" : "bg-secondary hover:bg-secondary-content"} transition-bg`}><MdDelete color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>
                         </th>
                       </tr>
                     ))}

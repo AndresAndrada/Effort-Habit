@@ -53,7 +53,7 @@ export default function Navbar() {
   // }, [])
 
   return (
-    <div className={`navbar fixed top-0 left-0 right-0 z-50 w-screen transition-bg ${showNavbar ? 'translate-y-0' : '-translate-y-full'} pr-8 bg-white/70 dark:bg-black/40 backdrop-blur-md drop-shadow-md`}>
+    <div className={`navbar fixed top-0 left-0 right-0 z-10 w-screen transition-bg ${showNavbar ? 'translate-y-0' : '-translate-y-full'} pr-8 bg-white/70 dark:bg-black/40 backdrop-blur-md drop-shadow-md`}>
       {/* Sidebar solo visible en móvil */}
       <div className="flex-none">
         <SideBar />
