@@ -22,8 +22,8 @@ export default function Dashboard() {
       >
         {dashBoard.map((item, index) => (
           <CardsDashboard key={index} onClick={() => handleNavigateOption(item.label)}>
-            <img src="/src/assets/svg/mint.svg" alt="Entrenamiento personalizado" className="w-16 h-16 mb-4" />
-            <Title>{item.title}</Title>
+            <img src="/src/assets/svg/mint.svg" alt="Entrenamiento personalizado" className="hidden sm:flex sm:w-8 sm:h-16 mb-4" />
+            <Title size={"text-2xl"}>{item.title}</Title>
             <p className={`text-base-content text-center ${DarkMode ? "text-slate-300" : "text-stone-300"} transition-bg`}>
               {item.description}
             </p>
