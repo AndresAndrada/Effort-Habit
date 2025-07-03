@@ -185,3 +185,17 @@ export const sesion = [{
   status: true,
   active: true,
 }]
+
+export const menuOptions = [
+  { id: 1, type: "title", title: "Ejercicio" },
+  { id: 2, label: "Todos", value: "todos" },
+  { id: 3, label: "Agregar", value: "add" },
+  { id: 4, label: "Modificar", value: "upDate" },
+  { id: 5, type: "title", title: "Estadisticas" },
+  { id: 6, label: "Fuerza", value: "strong" },
+  { id: 7, label: "Resistencia", value: "resistence" },
+  { id: 8, label: "Flexibilidad", value: "flexibility" },
+  { id: 9, type: "title", title: "Configuraciones" },
+  { id: 10, label: "Todos", value: "" },
+  { id: 11, label: "Agregar", value: "" }
+];
