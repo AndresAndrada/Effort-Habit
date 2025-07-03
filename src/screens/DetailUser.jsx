@@ -7,6 +7,7 @@ import { user } from "../utils/usersUtils.helpers";
 import { ModalEditSesion } from "../module/core/components/ModalEditSesion";
 import { Acordion } from "../module/core/ui/Acordion";
 import { useNavigate } from 'react-router-dom'
+import { CardUser } from "../module/core/ui/cards/CardUser";
 
 export default function DetailUser() {
   const navigate = useNavigate();
@@ -17,20 +18,9 @@ export default function DetailUser() {
     <div className={`flex flex-col sm:flex-row items-start min-h-screen px-4 pt-24 w-full ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg gap-4`}>
       <div className="max-w-[25rem] w-full flex flex-col items-center justify-center gap-4">
         {/* Contenido principal: datos del usuario */}
-        <div className={`max-w-md w-full ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl p-8 shadow-4xl flex flex-col items-center`}>
-          <img
-            src={user?.avatar || "/src/assets/svg/userCircle.svg"}
-            alt="Avatar del usuario"
-            className="w-24 h-24 rounded-full mb-4 border-4 border-primary object-cover"
-          />
-          <h2 className="text-2xl font-bold mb-2 text-primary">{user?.name || 'Nombre de usuario'}</h2>
-          <p className="mb-1 text-primary"><span className="font-semibold">Email:</span> {user?.email || 'No especificado'}</p>
-          <p className="mb-1 text-primary"><span className="font-semibold">Teléfono:</span> {user?.phone || 'No especificado'}</p>
-          <p className="mb-1 text-primary"><span className="font-semibold">Dirección:</span> {user?.address || 'No especificada'}</p>
-          <p className="mb-1 text-primary"><span className="font-semibold">Estado:</span> {user?.status || 'No especificada'}</p>
-        </div>
-        <div className={`join join-vertical ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl w-full shadow-4xl`}>
-          <Acordion>
+        <CardUser user={user} />
+        <div className={`join join-vertical ${DarkMode ? "bg-secondary/40" : "bg-tertiary/20"} transition-bg rounded-xl w-full shadow-4xl`}>
+          <Acordion darkMode={true}>
             <input type="radio" name="my-accordion-4" defaultChecked />
             <div className="collapse-title font-semibold text-primary">Sesion</div>
             <div className="collapse-content text-sm flex flex-col gap-2">
@@ -38,7 +28,7 @@ export default function DetailUser() {
               <Link className="hover:bg-secondary transition-colors w-full p-2 text-primary">Modificar sesión</Link>
             </div>
           </Acordion>
-          <Acordion>
+          <Acordion darkMode={true}>
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title font-semibold text-primary">Estadisticas</div>
             <div className="collapse-content text-sm flex flex-col gap-2">
@@ -46,7 +36,7 @@ export default function DetailUser() {
               <Link className="hover:bg-secondary transition-colors w-full p-2 text-primary">Flexibilidad</Link>
             </div>
           </Acordion>
-          <Acordion>
+          <Acordion darkMode={true}>
             <input type="radio" name="my-accordion-4" />
             <div className="collapse-title font-semibold text-primary">Configuraciones</div>
             <div className="collapse-content text-sm flex flex-col gap-2">
@@ -58,7 +48,7 @@ export default function DetailUser() {
       </div>
       <div className="flex justify-center flex-wrap w-full h-full overflow-y-auto md:gap-4">
         {sesion?.map((sesion, index) => (
-          <div key={sesion?.id ?? index} onClick={() => navigate(`/detail-sesion/${sesion.id}`)} className={`max-w-md w-full min-h-64 bg-base-200 rounded-xl shadow-4xl p-8 mb-4 flex flex-col items-center cursor-pointer hover:bg-gray-600 transition-colors ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg`}>
+          <div key={sesion?.id ?? index} onClick={() => navigate(`/detail-sesion/${sesion.id}`)} className={`max-w-md w-full min-h-64 bg-base-200 rounded-xl shadow-4xl p-8 mb-4 flex flex-col items-center cursor-pointer hover:bg-gray-600 transition-colors ${DarkMode ? "bg-secondary/40" : "bg-tertiary"} transition-bg`}>
             <h2 className="text-xl font-bold mb-4 text-primary">{sesion?.name_sesion}</h2>
             <p className="text-base-content mb-2"><span className="font-semibold">Tipo de ejercicio:</span> {sesion?.type_exercise}</p>
             <ul className="list-disc list-inside mb-4">

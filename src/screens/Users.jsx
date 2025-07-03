@@ -17,9 +17,9 @@ export default function Users() {
 
   return (
     <div className={`${DarkMode ? "bg-primary" : "bg-secondary"} min-h-screen transition-bg pt-16`}>
-      <div className={`flex items-start mx-4 ${DarkMode ? "bg-primary" : "bg-secondary"} pt-8 transition-bg`}>
-        <div className={`hidden max-w-md w-full md:flex flex-col items-center shadow-4xl ${DarkMode ? "bg-secondary" : "bg-tertiary"} h-auto transition-bg rounded-xl`}>
-          <Acordion>
+      <div className={`flex items-start mx-4 pt-8 transition-bg`}>
+        <div className={`hidden max-w-md w-full md:flex flex-col items-center shadow-4xl ${DarkMode ? "bg-secondary/40" : "bg-tertiary/20"} h-auto transition-bg rounded-xl`}>
+          <Acordion darkMode={true}>
             <input type="radio" name="my-accordion-3" defaultChecked />
             <div className="collapse-title font-semibold text-primary">Ejercicio</div>
             <div className="collapse-content text-sm flex flex-col gap-2">
@@ -29,7 +29,7 @@ export default function Users() {
             </div>
           </Acordion>
           {/* </div> */}
-          <Acordion>
+          <Acordion darkMode={true}>
             {/* <div className="collapse collapse-arrow join-item"> */}
             <input type="radio" name="my-accordion-3" />
             <div className="collapse-title font-semibold text-primary">Estadisticas</div>
@@ -39,7 +39,7 @@ export default function Users() {
             </div>
           </Acordion>
           {/* </div> */}
-          <Acordion>
+          <Acordion darkMode={true}>
             {/* <div className="collapse collapse-arrow join-item"> */}
             <input type="radio" name="my-accordion-3" />
             <div className="collapse-title font-semibold text-primary">Configuraciones</div>
@@ -53,13 +53,13 @@ export default function Users() {
         </div >
         <div className='flex flex-col max-w-7xl w-full px-4 items-center'>
           <div className='w-full flex'>
-            <Title>Usuarios</Title>
+            <Title className={true}>Usuarios</Title>
           </div>
-          <div className={`w-full flex flex-col items-center ${DarkMode ? "bg-secondary" : "bg-tertiary"} rounded-2xl shadow-4xl px-6 overflow-x-auto bg-red-600`}>
+          <div className={`w-full flex flex-col items-center ${DarkMode ? "bg-secondary/50" : "bg-tertiary"} rounded-2xl shadow-4xl px-6 overflow-x-auto bg-red-600`}>
             <table className="table">
               {/* head */}
               <thead>
-                <tr className='border-b border-white'>
+                <tr className='border-b border-white text-primary'>
                   <th>
                     <label>
                       {/* <input type="checkbox" className="checkbox" /> */}
@@ -101,7 +101,7 @@ export default function Users() {
                         <br />
                         <span className="text-primary badge badge-ghost badge-sm">Desktop Support Technician</span>
                       </td>
-                      <td className="text-primary">{user?.status ? "Activo" : "Inactivo"}</td>
+                      <td><p className={`text-primary text-center rounded-full ${user?.status ? "bg-green-600" : "bg-red-600"}`}>{user?.status ? "Activo" : "Inactivo"}</p></td>
                       <th className=''>
                         <button className="text-primary btn btn-ghost btn-xs">{user?.status ? "Desactivar" : "Activar"}</button>
                         <button className="text-primary btn btn-ghost btn-xs"

@@ -1,0 +1,16 @@
+[{
+    "id": 1,
+    "title": "Entrenamiento Personalizado",
+    "img": "/src/assets/svg/personalized_training.svg",
+    "description": "Planes adaptados a tus objetivos y necesidades, guiados por profesionales."
+}, {
+    "id": 2,
+    "title": "Clases Grupales",
+    "img": "/src/assets/svg/personalized_training.svg",
+    "description": "Motívate y entrena en grupo con actividades dinámicas y divertidas."
+}, {
+    "id": 3,
+    "title": "Asesoramiento Nutricional",
+    "img": "/src/assets/svg/personalized_training.svg",
+    "description": "Complementa tu entrenamiento con consejos de alimentación saludable."
+}]

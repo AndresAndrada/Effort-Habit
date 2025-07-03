@@ -1,7 +1,7 @@
 import { useUiStore } from "../stores";
-import img from "../assets/svg/login.svg";
 import { ButtonPrimary } from "../module/core/ui/button/ButtonPrimary";
 import { Title } from "../module/core/ui/title/Title";
+import homeUtils from "../utils/homeUtils.helpers.json";
 
 export default function Home() {
   const { DarkMode } = useUiStore();
@@ -10,7 +10,7 @@ export default function Home() {
       <section className="w-full flex items-center justify-center text-center h-screen">
         <div className="md:flex-1 w-full h-full md:w-1/2 bg-banner overflow-hidden bg-cover bg-[position:center] md:overflow-visible md:bg-none md:bg-[position:unset] md:bg-black flex justify-center items-center px-4 pt-12">
           <div className="md:flex-1 max-w-[40rem] md:max-h-[30rem] h-[85%] flex flex-col justify-center items-center shadow-4xl bg-white/70 dark:bg-black/40 backdrop-blur-md rounded-2xl p-4">
-            <h1 className={`text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-primary-content ${DarkMode ? "text-stone-400" : "text-stone-300"} transition-bg`}>
+            <h1 className={`text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-stone-300 transition-bg`}>
               ¡Bienvenido a Effort&Habit!
             </h1>
             <p className={`text-base md:text-xl text-base-content mb-6 ${DarkMode ? "text-primary" : "text-primary"} transition-bg`}>
@@ -33,25 +33,17 @@ export default function Home() {
         </div>
       </section>
       <section id="servicios" className="mt-16 w-[90%] max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className={`${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl p-6 shadow-4xl flex flex-col items-center`}>
-          <img src="/src/assets/svg/mint.svg" alt="Entrenamiento personalizado" className="w-16 h-16 mb-4" />
-          <Title>Entrenamiento Personalizado</Title>
-          {/* <h2 className="text-stone-300 transition-bg text-xl font-bold mb-2 text-center">Entrenamiento Personalizado</h2> */}
-          <p className={`text-base-content text-center ${DarkMode ? "text-slate-300" : "text-stone-300"} transition-bg`}>Planes adaptados a tus objetivos y necesidades, guiados por profesionales.</p>
-        </div>
-        <div className={`${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl p-6 shadow-4xl flex flex-col items-center`}>
-          <img src="/src/assets/svg/login.svg" alt="Clases grupales" className="w-16 h-16 mb-4" />
-          <h2 className="text-stone-300 transition-bg text-xl font-bold mb-2">Clases Grupales</h2>
-          <p className="text-stone-300 transition-bg">Motívate y entrena en grupo con actividades dinámicas y divertidas.</p>
-        </div>
-        <div className={`${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl p-6 shadow-4xl flex flex-col items-center`}>
-          <img src={img} alt="Asesoramiento nutricional" className="w-16 h-16 mb-4" />
-          <h2 className="text-stone-300 transition-bg text-xl font-bold mb-2 text-center">Asesoramiento Nutricional</h2>
-          <p className="text-stone-300 transition-bg">Complementa tu entrenamiento con consejos de alimentación saludable.</p>
-        </div>
+        {homeUtils.map((items) => (
+          <div key={items.id} className={`cursor-context-menu ${DarkMode ? "bg-secondary/40 hover:bg-secondary/45" : "bg-tertiary/30 hover:bg-tertiary/45"} transition-bg rounded-xl p-6 shadow-4xl flex flex-col items-center`}>
+            <img src="/src/assets/svg/mint.svg" alt="Entrenamiento personalizado" className="w-16 h-16 mb-4" />
+            <Title size={"text-2xl"}>{items.title}</Title>
+            <p className={`text-center text-stone-300 transition-bg`}>{items.description}</p>
+          </div>
+
+        ))}
       </section>
-      <section id="contacto" className={`mt-20 w-[90%] max-w-xl ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl p-8 shadow-4xl flex flex-col items-center`}>
-        <h2 className="text-stone-300 text-2xl font-bold mb-4">Contáctanos</h2>
+      <section id="contacto" className={`mt-20 w-[90%] max-w-xl cursor-context-menu ${DarkMode ? "bg-secondary/40 hover:bg-secondary/45" : "bg-tertiary/30 hover:bg-tertiary/45"} transition-bg rounded-xl p-8 shadow-4xl flex flex-col items-center`}>
+        <Title size={"text-2xl"}>Contáctanos</Title>
         <p className="text-slate-300 transition-bg pb-3">¿Tienes dudas o quieres comenzar? ¡Escríbenos!</p>
         <ButtonPrimary href={"#servicios"}>Enviar correo</ButtonPrimary>
       </section>

@@ -53,7 +53,7 @@ export const users = [
         phone: '123456789',
         address: 'Calle Falsa 123',
         role: "user",
-        status: true,
+        status: false,
         birthDate: "1990-05-15",
         age: 34,
         weight: 75, // kg
@@ -75,7 +75,7 @@ export const users = [
         phone: '123456789',
         address: 'Calle Falsa 123',
         role: "user",
-        status: true,
+        status: false,
         birthDate: "1990-05-15",
         age: 34,
         weight: 75, // kg
@@ -141,7 +141,7 @@ export const users = [
         phone: '123456789',
         address: 'Calle Falsa 123',
         role: "user",
-        status: true,
+        status: false,
         birthDate: "1990-05-15",
         age: 34,
         weight: 75, // kg
