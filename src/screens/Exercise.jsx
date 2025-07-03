@@ -66,7 +66,7 @@ export default function Exercise() {
           />
           <SearchBar setSearch={setSearch} placeholder={"Buscar ejercicio"} />
         </div>
-        {MenuOptionExercise === "todos" && <div className="flex justify-center gap-4 flex-wrap w-full h-full">
+        {MenuOptionExercise === "todos" && <div className="flex -z-0 justify-center gap-4 flex-wrap w-full h-full">
           {exercises.map((s) => (
             <Acordion key={s.id}>
               <input type="radio" name="my-accordion-4" />

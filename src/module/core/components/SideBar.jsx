@@ -6,15 +6,15 @@ import { closeDrawer } from "../../../utils/sideBarUtils.helpers";
 
 export default function SideBar() {
   const { DarkMode } = useUiStore();
-  const [opcionLocation, setOptionLocation] = useState("main")
+  const [opcionLocation, setOptionLocation] = useState("main");
   const navigate = useNavigate();
 
   const handleCloseDrawer = (option) => {
-    closeDrawer(option, navigate, setOptionLocation)
+    closeDrawer(option, navigate, setOptionLocation);
   };
 
   return (
-    <div className="flex-1 -z-0">
+    <div className="flex-1 z-10">
       <div className="drawer flex flex-row items-center">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">

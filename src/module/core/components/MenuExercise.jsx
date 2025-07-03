@@ -20,7 +20,7 @@ export const MenuExercise = ({
     setMenuOptionExercise(option);
   }
   return (
-    <div className="dropdown z-50 w-full flex md:hidden">
+    <div className="dropdown z-100 w-full flex md:hidden">
       <summary tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar" onClick={() => setOpenModal(!openModal)}>
         {!openModal
           ? <IoIosArrowDown size={20} className={`inline-block ${darkMode
