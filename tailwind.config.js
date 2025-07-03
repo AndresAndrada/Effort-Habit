@@ -38,11 +38,11 @@ export default {
           foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
-          DEFAULT: '#142d4c',
+          DEFAULT: '#141010',
           foreground: 'hsl(var(--secondary-foreground))',
         },
         tertiary: {
-          DEFAULT: '#385170',
+          DEFAULT: '#222831',
           foreground: 'hsl(var(--secondary-foreground))',
         },
         useHover: {

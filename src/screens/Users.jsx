@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { ModalEdit } from '../module/core/ui/modal/ModalEdit';
 import { useUiStore } from '../stores';
-import { users } from '../utils/users';
+import { users } from '../utils/usersUtils.helpers';
 import { Acordion } from '../module/core/ui/Acordion';
 import { Link } from 'react-router-dom';
 import { Title } from '../module/core/ui/title/Title';
