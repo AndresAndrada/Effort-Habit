@@ -2,12 +2,11 @@ import { useUiStore } from "../../../../stores"
 
 /* eslint-disable react/prop-types */
 export default function InputComponent({ formikTouched, formikError, formikOnBlur, formikHandleChange, formikValuesName, title, name }) {
-  console.log("🚀 ~ InputComponent ~ name:", formikError, formikTouched)
   const { DarkMode } = useUiStore();
   return (
     <div className="flex flex-col w-full items-start gap-2">
       <div className="flex px-4 justify-end items-start gap-2">
-        <label className={`${DarkMode ? "text-primary" : "text-primary"} text-hawk-turquoise text-center font-product-sans font-bold text-xs`}>
+        <label className={`${DarkMode ? "text-primary" : "text-primary"} text-hawk-turquoise text-center font-product-sans font-bold text-sm`}>
           {title}
         </label>
       </div>

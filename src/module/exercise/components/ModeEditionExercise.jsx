@@ -9,6 +9,7 @@ import img from '../../../assets/icons/user-circle.svg'
 import { exercises } from "../../../utils/exercise";
 import InputNumberComponent from "../../core/ui/input/InputNumberComponent";
 import { useUiStore } from "../../../stores";
+import { ButtonForm } from "../../core/ui/button/ButtonForm";
 
 export const ModeEditionExercise = () => {
   const { DarkMode } = useUiStore();
@@ -27,7 +28,6 @@ export const ModeEditionExercise = () => {
   const Type = exercises.map(e => {
     return { id: e.id, name_exercise: e.name_exercise }
   })
-  console.log("🚀 ~ ModeEditionExercise ~ Type:", Type)
   const formik = useFormik({
     initialValues: {
       type: '',
@@ -80,7 +80,7 @@ export const ModeEditionExercise = () => {
   })
   return (
     // <div className={`p-9 w-full flex flex-col justify-center items-center gap-8 rounded-lg ${DarkMode ? "bg-secondary" : "bg-tertiary"} shadow-2xl overflow-hidden`}>
-    <div className={`${DarkMode ? "bg-secondary" : "bg-tertiary"} flex flex-col justify-center px-8 pb-8 gap-12 transition-bg rounded-xl w-full shadow-2xl`}>
+    <div className={`${DarkMode ? "bg-secondary" : "bg-tertiary"} flex flex-col justify-center px-8 pb-8 gap-12 transition-bg rounded-xl w-full shadow-4xl`}>
       <div>
         <Toaster />
       </div>
@@ -89,42 +89,41 @@ export const ModeEditionExercise = () => {
       </h1>
       <form
         onSubmit={formik.handleSubmit}
-        className="w-full flex flex-col justify-center gap-8"
+        className="w-full flex flex-col justify-center items-end gap-8"
       // Elimina rounded-lg aquí si no quieres doble borde
       >
         <div className="flex flex-col justify-center w-full gap-8">
-          <div className="flex gap-40 justify-center">
-            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-            <div className="flex flex-col gap-4">
-              <p className={`${DarkMode ? "text-secondary" : "text-primary"} text-center font-product-sans font-bold text-base leading-normal`}>
-                Imagen
-              </p>
-              <div className="flex justify-center items-center gap-x-5 bg-gray-600 rounded-full w-60 h-60">
-                <DialogEditImgUser
-                  handleImageChange={handleImageChange}
-                  loading={loading}
-                  selectedFile={selectedFile}
-                  img={productAvatar}
-                  handleSubmit={formik.handleSubmit}
-                />
+          <div className="flex flex-1 flex-col gap-12">
+            <div className="flex gap-12 w-full">
+              <div className="flex flex-col gap-4">
+                <p className={`${DarkMode ? "text-secondary" : "text-primary"} text-center font-product-sans font-bold text-sm leading-normal`}>
+                  Imagen
+                </p>
+                <div className="flex justify-center items-center gap-x-5 bg-gray-600 rounded-full w-20 h-20">
+                  <DialogEditImgUser
+                    handleImageChange={handleImageChange}
+                    loading={loading}
+                    selectedFile={selectedFile}
+                    img={productAvatar}
+                    handleSubmit={formik.handleSubmit}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col gap-4">
+                <p className={`${DarkMode ? "text-secondary" : "text-primary"} text-center font-product-sans font-bold text-sm leading-normal`}>
+                  Video
+                </p>
+                <div className="flex justify-center items-center gap-x-5 bg-gray-600 rounded-full w-20 h-20">
+                  <DialogEditImgUser
+                    handleImageChange={handleImageChange}
+                    loading={loading}
+                    selectedFile={selectedFile}
+                    img={productAvatar}
+                    handleSubmit={formik.handleSubmit}
+                  />
+                </div>
               </div>
             </div>
-            <div className="flex flex-col gap-4">
-              <p className={`${DarkMode ? "text-secondary" : "text-primary"} text-center font-product-sans font-bold text-base leading-normal`}>
-                Video
-              </p>
-              <div className="flex justify-center items-center gap-x-5 bg-gray-600 rounded-full w-60 h-60">
-                <DialogEditImgUser
-                  handleImageChange={handleImageChange}
-                  loading={loading}
-                  selectedFile={selectedFile}
-                  img={productAvatar}
-                  handleSubmit={formik.handleSubmit}
-                />
-              </div>
-            </div>
-          </div>
-          <div className='w-full flex flex-col sm:flex-col md:flex-row justify-center gap-3 sm:gap-10 '>
             <div className='w-full flex flex-col gap-5'>
               <InputComponent
                 title='Nombre'
@@ -137,14 +136,14 @@ export const ModeEditionExercise = () => {
               />
               <div className="flex flex-col w-full items-start gap-2">
                 <div className="flex px-4 justify-end items-start gap-2">
-                  <label className="text-teal-700 text-hawk-turquoise text-center font-product-sans font-bold text-xs">
+                  <label className="text-primary text-hawk-turquoise text-center font-product-sans font-bold text-sm">
                     Tipo
                   </label>
                 </div>
                 <select
                   type="type"
                   placeholder="Tipo de producto"
-                  className={`select input input-bordered w-full bg-white flex p-2 items-center text-teal-700 gap-2 border-2 ${formik.touched.type && formik.errors.type ? 'border-red-500' : 'border-teal-700'}  placeholder-teal-700 rounded-lg focus:border-primary`}
+                  className={`select input input-bordered w-full bg-white flex p-2 items-center text-secondary gap-2 border-2 ${formik.touched.type && formik.errors.type ? 'border-red-500' : 'border-secondary'}  placeholder-primary rounded-lg focus:border-primary`}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   value={formik.values.type}
@@ -180,6 +179,8 @@ export const ModeEditionExercise = () => {
                 formikValuesName={formik.values.description}
               />
             </div>
+          </div>
+          <div className='w-full flex flex-1 flex-col md:flex-row justify-center gap-3 sm:gap-10 '>
             <div className='w-full flex flex-col gap-5'>
               <InputNumberComponent
                 title='Precio minorista'
@@ -211,18 +212,11 @@ export const ModeEditionExercise = () => {
             </div>
           </div>
         </div>
-        <div className="w-full">
+        <div className="w-40">
           {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button
-            className={
-              formik.dirty && formik.isValid
-                ? 'flex w-full p-[0.5rem 1rem] h-10 justify-center items-center gap-2 rounded-[0.625rem] bg-secondary text-white hover:bg-primary'
-                : 'flex w-full p-[0.5rem 1rem] h-10 justify-center items-center gap-2 rounded-[0.625rem] bg-gray-500 text-white'
-            }
-            disabled={!(formik.dirty && formik.isValid && formik.values)}
-          >
+          <ButtonForm disabled={!(formik.dirty && formik.isValid && formik.values)}>
             Crear ejercicio
-          </button>
+          </ButtonForm>
         </div>
       </form>
     </div>

@@ -1,9 +1,14 @@
-export const siderBar = [{
-    title: "Inicio", label: "main"
-}, {
-    title: "Perfil", label: "profile"
-}, {
-    title: "Usuario", label: "user"
-}, {
-    title: "Panel de control", label: "dashboard"
-}];
+export const siderBar = [
+    {
+        title: "Inicio", label: "main"
+    },
+    {
+        title: "Perfil", label: "profile"
+    },
+    {
+        title: "Entrenamientos", label: "exersice"
+    },
+    {
+        title: "Panel de control", label: "dashboard"
+    }
+];
