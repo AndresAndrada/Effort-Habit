@@ -5,6 +5,7 @@ export const user = {
     email: 'martin@gmail.com',
     phone: '123456789',
     address: 'Calle Falsa 123',
+    role: "user",
     status: true
 }
 

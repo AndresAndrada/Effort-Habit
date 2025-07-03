@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useUiStore } from "../../../stores";
-import { siderBar } from "../../../utils/sidebar";
 import { useState } from "react";
-import { closeDrawer } from "../../../utils/sideBarUtils.helpers";
+import { closeDrawer, siderBarAdmin, siderBarUser } from "../../../utils/sideBarUtils.helpers";
+import { user } from "../../../utils/users";
 
 export default function SideBar() {
   const { DarkMode } = useUiStore();
@@ -27,9 +27,12 @@ export default function SideBar() {
         <div className="drawer-side">
           <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
           <ul className={`menu bg-base-200 text-base-content min-h-full max-w-60 sm:w-80 p-4 ${DarkMode ? "bg-primary text-secondary" : "bg-secondary text-primary"} transition-bg`}>
-            {siderBar.map((e, index) =>
-              <li key={index} className={`${opcionLocation === e.label && "bg-gray-500/20 rounded-xl"}`}><a onClick={() => handleCloseDrawer(e.label)}>{e?.title}</a></li>
-            )}
+            {user.role === "admin"
+              ? siderBarAdmin.map((e, index) =>
+                <li key={index} className={`${opcionLocation === e.label && "bg-gray-500/20 rounded-xl"}`}><a onClick={() => handleCloseDrawer(e.label)}>{e?.title}</a></li>
+              )
+              : siderBarUser.map((e, index) =>
+                <li key={index} className={`${opcionLocation === e.label && "bg-gray-500/20 rounded-xl"}`}><a onClick={() => handleCloseDrawer(e.label)}>{e?.title}</a></li>)}
           </ul>
         </div>
       </div>
