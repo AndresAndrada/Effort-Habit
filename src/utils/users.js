@@ -41,5 +41,21 @@ export const users = [
         phone: '123456789',
         address: 'Calle Falsa 123',
         status: true
-    }
+    }, {
+        id: 5,
+        avatar: '',
+        name: 'John Doe',
+        email: 'martin@gmail.com',
+        phone: '123456789',
+        address: 'Calle Falsa 123',
+        status: true
+    }, {
+        id: 6,
+        avatar: '',
+        name: 'John Doe',
+        email: 'martin@gmail.com',
+        phone: '123456789',
+        address: 'Calle Falsa 123',
+        status: true
+    },
 ]

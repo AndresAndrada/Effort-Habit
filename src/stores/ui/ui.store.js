@@ -4,9 +4,11 @@ import { persist } from 'zustand/middleware';
 export const useUiStore = create(persist((set) => ({
     DarkMode: true, // DATA_PERFIL_Type
     MenuOptionExercise: "todos",
+    MenuOptionUsers: "todos",
 
     setDarkMode: (values) => set({ DarkMode: values }),
     setMenuOptionExercise: (values) => set({ MenuOptionExercise: values }),
+    setMenuOptionUser: (values) => set({ MenuOptionUsers: values }),
 }), {
     name: 'ui-storage',
     storage: {

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useUiStore } from '../stores'
 import { useState } from 'react'
 import { Acordion } from '../module/core/ui/Acordion'
-import { ModeEditionExercise } from '../module/exercise/component/ModeEditionExercise'
+import { ModeEditionExercise } from '../module/exercise/components/ModeEditionExercise'
 import SearchBar from '../module/core/components/SearchBar'
 import { useEffect } from 'react'
 import { FaRegEdit } from "react-icons/fa";
@@ -22,7 +22,7 @@ export default function Exercise() {
   }, [search])
 
   return (
-    <div className={`flex flex-col md:flex-row min-h-screen items-start md:px-6 py-12 mt-12 w-full ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
+    <div className={`w-full min-h-screen flex flex-col md:flex-row items-start md:px-6 py-12 mt-12  ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
       <div className={`hidden max-w-md w-full md:flex flex-col items-center justify-center shadow-4xl ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl`}>
         <Acordion>
           <input type="radio" name="my-accordion-3" defaultChecked />
@@ -58,19 +58,7 @@ export default function Exercise() {
       </div >
       <div className='flex flex-col w-full px-4 justify-center items-center gap-8'>
         <div className='w-full flex justify-between items-center gap-2'>
-          <MenuExercise>
-            <li><p className={`font-bold text-primary`}>Ejercicio</p></li>
-            <li className='pl-2' onClick={() => setMenuOptionExercise("todos")}><p className="text-primary">Todos</p></li>
-            <li className='pl-2' onClick={() => setMenuOptionExercise("add")}><p className="text-primary">Agregar</p></li>
-            <li className='pl-2' onClick={() => setMenuOptionExercise("upDate")}><p className="text-primary">Modificar</p></li>
-            <li><p className={`font-bold text-primary`}>Estadisticas</p></li>
-            <li className='pl-2' onClick={() => setMenuOptionExercise("strong")}><p className="text-primary">Fuerza</p></li>
-            <li className='pl-2' onClick={() => setMenuOptionExercise("resistance")}><p className="text-primary">Resistencia</p></li>
-            <li className='pl-2' onClick={() => setMenuOptionExercise("flexibility")}><p className="text-primary">Flexibilidad</p></li>
-            <li><p className={`font-bold text-primary`}>Configuraciones</p></li>
-            <li className='pl-2' onClick={() => setMenuOptionExercise("todos")}><p className="text-primary">Todos</p></li>
-            <li className='pl-2' onClick={() => setMenuOptionExercise("todos")}><p className="text-primary">Agregar</p></li>
-          </MenuExercise>
+          <MenuExercise />
           <SearchBar setSearch={setSearch} placeholder={"Buscar ejercicio"} />
         </div>
         {MenuOptionExercise === "todos" && <div className="flex justify-center gap-4 flex-wrap w-full h-full overflow-y-auto">
@@ -121,10 +109,10 @@ export default function Exercise() {
             </Acordion >
           ))}
         </div>}
-        {MenuOptionExercise === 'add' && (
+        {MenuOptionExercise === "add" && (
           <ModeEditionExercise />
         )}
-        {MenuOptionExercise === 'upDate' && (
+        {MenuOptionExercise === "upDate" && (
           <ModeEditionExercise />
         )}
       </div>
