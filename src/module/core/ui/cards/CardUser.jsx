@@ -5,7 +5,7 @@ import { FaEdit } from "react-icons/fa";
 export const CardUser = ({ user, edit }) => {
   const { DarkMode } = useUiStore();
   return (
-    <section className={`${DarkMode ? "bg-secondary/40" : "bg-tertiary/20"} w-full rounded-xl shadow-md p-8 flex flex-col items-center bg-red-600`}>
+    <section className={`${DarkMode ? "bg-secondary/40" : "bg-tertiary/20"} w-full rounded-xl shadow-lg p-8 flex flex-col items-center bg-red-600 `}>
       {edit && <div className='w-full flex justify-end cursor-pointer hover:text-secondary transition-colors'>
         <FaEdit color="white" size="1.5rem" className='hover:shadow-4xl' />
       </div>}

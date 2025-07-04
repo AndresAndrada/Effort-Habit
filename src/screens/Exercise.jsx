@@ -9,11 +9,16 @@ import { useEffect } from 'react'
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { MenuExercise } from '../module/core/components/MenuExercise'
+import { scrollToTop } from '../utils/scrollToTop'
 
 export default function Exercise() {
   const { DarkMode, MenuOptionExercise, setMenuOptionExercise } = useUiStore();
   const [search, setSearch] = useState("todos");
   // const [optionScreens, setOptionScreens] = useState("todos");
+
+  useEffect(() => {
+    scrollToTop({ smooth: true });
+  }, []);
 
   useEffect(() => {
     if (search !== "todos") {
@@ -66,16 +71,16 @@ export default function Exercise() {
           />
           <SearchBar setSearch={setSearch} placeholder={"Buscar ejercicio"} />
         </div>
-        {MenuOptionExercise === "todos" && <div className="flex -z-0 justify-center gap-4 flex-col w-full h-full">
+        {MenuOptionExercise === "todos" && <div className={`${DarkMode ? "border border-gray-500" : "border-white"} flex -z-0 justify-center gap-4 flex-col w-full h-full p-2 rounded-xl`}>
           {exercises.map((s) => (
             <Acordion key={s.id}>
               <input type="radio" name="my-accordion-4" />
               <div className="collapse-title font-semibold text-primary">{s.type_exercise}</div>
               <div className="collapse-content text-sm flex w-full flex-col gap-2 overflow-x-scroll">
-                <p className="text-base-content mb-2"><span className="font-semibold">Tipo de ejercicio:</span> {s.type_exercise}</p>
+                <p className="mb-2 text-white"><span className="text-white font-semibold">Tipo de ejercicio:</span> {s.type_exercise}</p>
                 <table className='table w-full'>
                   <thead>
-                    <tr className={`${DarkMode ? "bg-primary text-secondary" : "bg-secondary text-primary"} transition-bg`}>
+                    <tr className={`${DarkMode ? "bg-primary text-secondary" : "bg-secondary text-white"} transition-bg`}>
                       <th>Nombre</th>
                       <th>Descripcion</th>
                       <th>Variante</th>
@@ -86,22 +91,12 @@ export default function Exercise() {
                   </thead>
                   <tbody>
                     {s.exercises.map((exercise) => (
-                      <tr key={exercise.id} className={`${DarkMode ? "hover:bg-tertiary" : "hover:bg-secondary"} text-stone-300 cursor-pointer`}>
-                        <th>
-                          {exercise.name_exercise}
-                        </th>
-                        <th>
-                          {exercise.description}
-                        </th>
-                        <th>
-                          {exercise.variante}
-                        </th>
-                        <th>
-                          {exercise.image}
-                        </th>
-                        <th>
-                          {exercise.video}
-                        </th>
+                      <tr key={exercise.id} className={`${DarkMode ? "hover:bg-tertiary" : "hover:bg-secondary"} text-white cursor-pointer`}>
+                        <th>{exercise.name_exercise}</th>
+                        <th>{exercise.description}</th>
+                        <th>{exercise.variante}</th>
+                        <th>{exercise.image}</th>
+                        <th>{exercise.video}</th>
                         <th className='flex gap-2'>
                           <button className={`btn ${DarkMode ? "bg-primary hover:bg-gray-300" : "bg-secondary hover:bg-gray-300"} transition-bg`}><FaRegEdit color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>
                           <button className={`btn ${DarkMode ? "bg-primary hover:bg-gray-300" : "bg-secondary hover:bg-gray-300"} transition-bg`}><MdDelete color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>

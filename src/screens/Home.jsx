@@ -2,9 +2,16 @@ import { useUiStore } from "../stores";
 import { ButtonPrimary } from "../module/core/ui/button/ButtonPrimary";
 import { Title } from "../module/core/ui/title/Title";
 import homeUtils from "../utils/homeUtils.helpers.json";
+import { useEffect } from "react";
+import { scrollToTop } from "../utils/scrollToTop";
 
 export default function Home() {
   const { DarkMode } = useUiStore();
+
+  useEffect(() => {
+    scrollToTop({ smooth: true });
+  }, []);
+
   return (
     <main className={`min-h-screen flex flex-col items-center justify-center pb-8 ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
       <section className="w-full flex items-center justify-center text-center h-screen">

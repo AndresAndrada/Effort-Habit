@@ -8,11 +8,17 @@ import { ModalEditSesion } from "../module/core/components/ModalEditSesion";
 import { Acordion } from "../module/core/ui/Acordion";
 import { useNavigate } from 'react-router-dom'
 import { CardUser } from "../module/core/ui/cards/CardUser";
+import { useEffect } from "react";
+import { scrollToTop } from "../utils/scrollToTop";
 
 export default function DetailUser() {
   const navigate = useNavigate();
   const { DarkMode } = useUiStore();
   const [modalEditSesión, setModalEditSesion] = useState(false);
+
+  useEffect(() => {
+    scrollToTop({ smooth: true });
+  }, []);
 
   return (
     <div className={`flex flex-col sm:flex-row items-start min-h-screen px-4 pt-24 w-full ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg gap-4`}>

@@ -3,13 +3,20 @@ import { Title } from "../module/core/ui/title/Title";
 import { useUiStore } from "../stores"
 import { sesion } from "../utils/exercise"
 import { shortenString } from "../utils/shortenString";
+import { useEffect } from "react";
+import { scrollToTop } from "../utils/scrollToTop";
 
 export default function SesionDetalle() {
   const { DarkMode } = useUiStore();
   // Busca la sesión con id 1
   const sesion1 = sesion.find(s => s.id === 1);
 
+  useEffect(() => {
+    scrollToTop({ smooth: true });
+  }, []);
+
   if (!sesion1) return <div>No se encontró la sesión.</div>;
+
 
   return (
     <div className={`min-h-screen flex flex-col items-center md:items-start md:flex-row ${DarkMode ? "bg-primary" : "bg-secondary"} md:px-6 py-24 w-full transition-bg gap-4`}>
