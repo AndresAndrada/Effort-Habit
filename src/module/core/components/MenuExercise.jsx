@@ -34,12 +34,12 @@ export const MenuExercise = ({
               ? "black"
               : "white"} />}
       </summary>
-      <ul className={`menu z-[1] dropdown-content ${darkMode ? "bg-primary border-secondary" : "bg-tertiary border-secondary"} rounded-box z-1 w-52 p-2 shadow-sm`}>
+      <ul className={`menu z-[1] dropdown-content ${darkMode ? "bg-primary" : "bg-tertiary"} rounded-box z-1 w-52 p-2 shadow-4xl`}>
         <div className="max-h-72 overflow-y-scroll">
           {options.map((option) => (
             <div key={option.id}>
               {option.type === "title"
-                ? (<li className="pointer-events-none select-none cursor-default opacity-80"><p className="font-bold">{option.title}</p></li>)
+                ? (<li className="pointer-events-none select-none cursor-default opacity-80"><p className={`${darkMode ? "text-black" : "text-primary"} font-bold`}>{option.title}</p></li>)
                 : (<li className={`${darkMode ? "text-black" : "text-primary"} w-full text-left pl-3 my-1`}
                 ><a onMouseDown={() => handleMenuOption(option.value)} className={`${darkMode ? "text-black" : "text-primary"}  ${MenuOptionExercise === option.value && "bg-slate-400/15"}`}>{option.label}</a></li>)}
               {/* < li > <p className={`font-bold text-primary`}>Ejercicio</p></li>

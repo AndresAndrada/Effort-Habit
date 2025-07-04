@@ -80,7 +80,7 @@ export const ModeEditionExercise = () => {
   })
   return (
     // <div className={`p-9 w-full flex flex-col justify-center items-center gap-8 rounded-lg ${DarkMode ? "bg-secondary" : "bg-tertiary"} shadow-2xl overflow-hidden`}>
-    <div className={`${DarkMode ? "bg-secondary" : "bg-tertiary"} flex flex-col justify-center px-8 pb-8 gap-12 transition-bg rounded-xl w-full shadow-4xl`}>
+    <div className={`${DarkMode ? "bg-secondary/40 border border-gray-500" : "bg-tertiary/20 border border-white"} flex flex-col justify-center px-8 pb-8 gap-12 transition-bg rounded-xl w-full shadow-4xl`}>
       <div>
         <Toaster />
       </div>
