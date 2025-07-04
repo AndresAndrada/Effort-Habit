@@ -5,10 +5,16 @@ import { users } from '../utils/usersUtils.helpers';
 import { Acordion } from '../module/core/ui/Acordion';
 import { Link } from 'react-router-dom';
 import { Title } from '../module/core/ui/title/Title';
+import { useEffect } from 'react';
+import { scrollToTop } from '../utils/scrollToTop';
 
 export default function Users() {
   const navigate = useNavigate();
   const { DarkMode, setMenuOptionUser } = useUiStore();
+
+  useEffect(() => {
+    scrollToTop({ smooth: true });
+  }, []);
 
   // Handlers de ejemplo
   // const handleEdit = (id) => alert(`Editar usuario ${id}`);

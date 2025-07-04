@@ -24,6 +24,10 @@ export default {
       border: {
         border: 'hsl(var(--primary))',
       },
+      fontFamily: {
+        montserrat: ['Montserrat', 'sans-serif'],
+        // ...otras fuentes si quieres
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
