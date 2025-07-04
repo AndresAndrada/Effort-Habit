@@ -22,9 +22,9 @@ export default function Exercise() {
   }, [search])
 
   return (
-    <div className={`w-full min-h-screen flex flex-col md:flex-row items-start md:px-6 py-12 mt-12  ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
-      <div className={`hidden max-w-md w-full md:flex flex-col items-center justify-center shadow-4xl ${DarkMode ? "bg-secondary" : "bg-tertiary"} transition-bg rounded-xl`}>
-        <Acordion>
+    <section className={`w-full min-h-screen flex flex-col md:flex-row items-start px-4 py-12 mt-12  ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
+      <div className={`hidden max-w-md w-full md:flex flex-col items-center justify-center shadow-4xl ${DarkMode ? "bg-secondary/40" : "bg-tertiary/20"} transition-bg rounded-xl`}>
+        <Acordion darkMode={true}>
           <input type="radio" name="my-accordion-3" defaultChecked />
           <div className="collapse-title font-semibold text-primary">Ejercicio</div>
           <div className="collapse-content text-sm flex flex-col gap-2">
@@ -34,7 +34,7 @@ export default function Exercise() {
           </div>
         </Acordion>
         {/* </div> */}
-        <Acordion>
+        <Acordion darkMode={true}>
           {/* <div className="collapse collapse-arrow join-item"> */}
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title font-semibold text-primary">Estadisticas</div>
@@ -44,7 +44,7 @@ export default function Exercise() {
           </div>
         </Acordion>
         {/* </div> */}
-        <Acordion>
+        <Acordion darkMode={true}>
           {/* <div className="collapse collapse-arrow join-item"> */}
           <input type="radio" name="my-accordion-3" />
           <div className="collapse-title font-semibold text-primary">Configuraciones</div>
@@ -56,8 +56,8 @@ export default function Exercise() {
         </Acordion>
         {/* </div> */}
       </div >
-      <div className='flex flex-col w-full px-4 justify-center items-center gap-8'>
-        <div className='w-full flex justify-between items-center gap-2'>
+      <div className='flex flex-col w-full px-4 justify-center items-start gap-4'>
+        <div className='max-w-[30rem] w-full flex justify-between items-center gap-2'>
           {/* <MenuExercise /> */}
           <MenuExercise
             options={menuOptions}
@@ -66,7 +66,7 @@ export default function Exercise() {
           />
           <SearchBar setSearch={setSearch} placeholder={"Buscar ejercicio"} />
         </div>
-        {MenuOptionExercise === "todos" && <div className="flex -z-0 justify-center gap-4 flex-wrap w-full h-full">
+        {MenuOptionExercise === "todos" && <div className="flex -z-0 justify-center gap-4 flex-col w-full h-full">
           {exercises.map((s) => (
             <Acordion key={s.id}>
               <input type="radio" name="my-accordion-4" />
@@ -103,8 +103,8 @@ export default function Exercise() {
                           {exercise.video}
                         </th>
                         <th className='flex gap-2'>
-                          <button className={`btn ${DarkMode ? "bg-primary hover:bg-tertiary" : "bg-secondary hover:bg-secondary-content"} transition-bg`}><FaRegEdit color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>
-                          <button className={`btn ${DarkMode ? "bg-primary hover:bg-tertiary" : "bg-secondary hover:bg-secondary-content"} transition-bg`}><MdDelete color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>
+                          <button className={`btn ${DarkMode ? "bg-primary hover:bg-gray-300" : "bg-secondary hover:bg-gray-300"} transition-bg`}><FaRegEdit color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>
+                          <button className={`btn ${DarkMode ? "bg-primary hover:bg-gray-300" : "bg-secondary hover:bg-gray-300"} transition-bg`}><MdDelete color={`${DarkMode ? "#142d4c" : "#ececec"}`} /></button>
                         </th>
                       </tr>
                     ))}
@@ -121,6 +121,6 @@ export default function Exercise() {
           <ModeEditionExercise />
         )}
       </div>
-    </div >
+    </section >
   )
 }
