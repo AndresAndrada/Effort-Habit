@@ -20,7 +20,7 @@ export const MenuExercise = ({
     setMenuOptionExercise(option);
   }
   return (
-    <div className="dropdown z-100 w-full flex md:hidden">
+    <details className="dropdown dropdown- z-100 w-full flex md:hidden">
       <summary tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar" onClick={() => setOpenModal(!openModal)}>
         {!openModal
           ? <IoIosArrowDown size={20} className={`inline-block ${darkMode
@@ -34,14 +34,14 @@ export const MenuExercise = ({
               ? "black"
               : "white"} />}
       </summary>
-      <ul className={`menu z-[1] dropdown-content ${darkMode ? "bg-secondary border-primary" : "bg-tertiary border-secondary"} rounded-box z-1 w-52 p-2 shadow-sm border`}>
+      <ul className={`menu z-[1] dropdown-content ${darkMode ? "bg-primary border-secondary" : "bg-tertiary border-secondary"} rounded-box z-1 w-52 p-2 shadow-sm`}>
         <div className="max-h-72 overflow-y-scroll">
           {options.map((option) => (
             <div key={option.id}>
               {option.type === "title"
-                ? (<li><p className={`font-bold text-primary`}>{option.title}</p></li>)
-                : (<li className="text-primary w-full text-left pl-3 my-1"
-                ><a onMouseDown={() => handleMenuOption(option.value)} className={`text-primary ${MenuOptionExercise === option.value && "bg-slate-400/15"}`}>{option.label}</a></li>)}
+                ? (<li className="pointer-events-none select-none cursor-default opacity-80"><p className="font-bold">{option.title}</p></li>)
+                : (<li className={`${darkMode ? "text-black" : "text-primary"} w-full text-left pl-3 my-1`}
+                ><a onMouseDown={() => handleMenuOption(option.value)} className={`${darkMode ? "text-black" : "text-primary"}  ${MenuOptionExercise === option.value && "bg-slate-400/15"}`}>{option.label}</a></li>)}
               {/* < li > <p className={`font-bold text-primary`}>Ejercicio</p></li>
               <li className="text-primary w-full text-left pl-3 my-1"
               ><a onMouseDown={() => handleMenuOption(option.value)} className={`text-primary ${MenuOptionExercise === "todos" && "bg-slate-400/15"}`}>Todos</a></li> */}
@@ -50,7 +50,7 @@ export const MenuExercise = ({
         </div>
 
       </ul >
-    </div >
+    </details >
   )
 }
 
