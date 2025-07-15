@@ -35,9 +35,9 @@ export const MenuExercise = ({
           {options.map((option) => (
             <div key={option.id}>
               {option.type === "title"
-                ? (<li className="pointer-events-none select-none cursor-default opacity-80"><p className="font-bold">{option.title}</p></li>)
-                : (<li className={`${darkMode ? "text-black" : "text-primary"} w-full text-left pl-3 my-1`}
-                ><a onMouseDown={() => handleMenuOption(option.value)} className={`${darkMode ? "text-black" : "text-primary"}  ${MenuOptionExercise === option.value && "bg-slate-400/15"}`}>{option.label}</a></li>)}
+                ? (<li className="pointer-events-none select-none cursor-default opacity-80"><p className={`${darkMode ? "text-letterPrimary" : "text-letterSecondary"} font-bold transition-bg`}>{option.title}</p></li>)
+                : (<li className={`${darkMode ? "text-letterPrimary" : "text-letterSecondary"} w-full text-left pl-3 my-1 transition-bg`}
+                ><a onMouseDown={() => handleMenuOption(option.value)} className={`${darkMode ? "text-black" : "text-primary"}  ${MenuOptionExercise === option.value && "bg-slate-400/15"} transition-bg`}>{option.label}</a></li>)}
               {/* < li > <p className={`font-bold text-primary`}>Ejercicio</p></li>
               <li className="text-primary w-full text-left pl-3 my-1"
               ><a onMouseDown={() => handleMenuOption(option.value)} className={`text-primary ${MenuOptionExercise === "todos" && "bg-slate-400/15"}`}>Todos</a></li> */}
