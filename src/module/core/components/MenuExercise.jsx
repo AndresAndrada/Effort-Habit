@@ -20,28 +20,24 @@ export const MenuExercise = ({
     setMenuOptionExercise(option);
   }
   return (
-    <details className="dropdown dropdown- z-100 w-full flex md:hidden">
+    <details className="dropdown dropdown-content z-100 w-[3rem] flex md:hidden">
       <summary tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar" onClick={() => setOpenModal(!openModal)}>
         {!openModal
-          ? <IoIosArrowDown size={20} className={`inline-block ${darkMode
-            ? "bg-primary"
-            : "bg-secondary"} transition-bg`}
-            color={darkMode ? "black" : "white"} />
-          : <IoIosArrowUp size={20} className={`inline-block ${darkMode
-            ? "bg-primary"
-            : "bg-secondary"} transition-colors`}
+          ? <IoIosArrowDown size={20} className="inline-block transition-bg"
+            color={darkMode ? "#79c2d0" : "#53a8b6"} />
+          : <IoIosArrowUp size={20} className="inline-block transition-colors"
             color={darkMode
-              ? "black"
-              : "white"} />}
+              ? "#79c2d0"
+              : "#53a8b6"} />}
       </summary>
       <ul className={`menu z-[1] dropdown-content ${darkMode ? "bg-primary" : "bg-tertiary"} rounded-box z-1 w-52 p-2 shadow-4xl`}>
         <div className="max-h-72 overflow-y-scroll">
           {options.map((option) => (
             <div key={option.id}>
               {option.type === "title"
-                ? (<li className="pointer-events-none select-none cursor-default opacity-80"><p className={`${darkMode ? "text-black" : "text-primary"} font-bold`}>{option.title}</p></li>)
-                : (<li className={`${darkMode ? "text-black" : "text-primary"} w-full text-left pl-3 my-1`}
-                ><a onMouseDown={() => handleMenuOption(option.value)} className={`${darkMode ? "text-black" : "text-primary"}  ${MenuOptionExercise === option.value && "bg-slate-400/15"}`}>{option.label}</a></li>)}
+                ? (<li className="pointer-events-none select-none cursor-default opacity-80"><p className={`${darkMode ? "text-letterPrimary" : "text-letterSecondary"} font-bold transition-bg`}>{option.title}</p></li>)
+                : (<li className={`${darkMode ? "text-letterPrimary" : "text-letterSecondary"} w-full text-left pl-3 my-1 transition-bg`}
+                ><a onMouseDown={() => handleMenuOption(option.value)} className={`${darkMode ? "text-black" : "text-primary"}  ${MenuOptionExercise === option.value && "bg-slate-400/15"} transition-bg`}>{option.label}</a></li>)}
               {/* < li > <p className={`font-bold text-primary`}>Ejercicio</p></li>
               <li className="text-primary w-full text-left pl-3 my-1"
               ><a onMouseDown={() => handleMenuOption(option.value)} className={`text-primary ${MenuOptionExercise === "todos" && "bg-slate-400/15"}`}>Todos</a></li> */}

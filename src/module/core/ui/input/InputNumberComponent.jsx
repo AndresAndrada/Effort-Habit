@@ -14,7 +14,7 @@ export default function InputNumberComponent({ title, name, formikTouched, formi
         </label>
       </div>
       <label
-        className={`input input-bordered w-full bg-white flex p-2 items-center gap-2 rounded-lg placeholder-teal-700 focus:border-primary border-2 ${formikTouched && formikError ? 'border-red-500' : 'border-secondary'
+        className={`input input-bordered w-full bg-white flex p-2 items-center gap-2 placeholder-teal-700 border-letterPrimary focus:border-primary border-2 rounded-xl ${formikTouched && formikError ? 'border-red-500' : 'border-secondary'
           }`}
       >
         <input

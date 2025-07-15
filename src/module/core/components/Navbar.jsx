@@ -8,6 +8,7 @@ import { useUiStore, useUserStore } from '../../../stores'
 import SideBar from './SideBar';
 import { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom';
+import { Title } from '../ui/title/Title';
 // import { getLocalStorage } from '@/modules/auth/utils/getLocalStorage'
 
 export default function Navbar() {
@@ -60,13 +61,13 @@ export default function Navbar() {
       </div>
       {/* Logo y nombre */}
       <div className="flex-1">
-        <a className={`btn btn-ghost text-xl sm:text-2xl md:text-3xl ${DarkMode ? "text-stone-300" : "text-stone-300"} transition-bg`} onClick={() => navigate('/')}>Effort&Habit</a>
+        <a className="btn btn-ghost flex items-center text-xl sm:text-2xl md:text-3xl text-letterPrimary transition-bg" onClick={() => navigate('/')}>Effort&Habit</a>
       </div>
       {/* Menú horizontal solo visible en desktop */}
       <div className="flex-none hidden sm:flex lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li className={`${DarkMode ? "text-stone-300" : "text-stone-300"} transition-bg`}><Link to={"/dashBoard"} className='text-xl'>Panel de control</Link></li>
-          <li className={`${DarkMode ? "text-stone-300" : "text-stone-300"} transition-bg`}><Link className='text-xl'>Contacto</Link></li>
+          <li className="transition-bg"><Link to={"/dashBoard"} className='text-xl text-letterPrimary'>Panel de control</Link></li>
+          <li className="transition-bg"><Link className='text-xl text-letterPrimary'>Contacto</Link></li>
         </ul>
       </div>
       {/* Iconos y usuario siempre visibles */}

@@ -26,13 +26,20 @@ export default function SideBar() {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-          <ul className={`menu min-h-full max-w-60 w-full p-4 ${DarkMode ? "bg-primary text-secondary" : "bg-secondary text-primary"} transition-bg`}>
+          <ul className={`menu min-h-full max-w-60 w-full p-4 gap-3 ${DarkMode ? "bg-primary text-letterPrimary" : "bg-secondary text-letterSecondary"} transition-bg`}>
             {user.role === "admin"
               ? siderBarAdmin.map((e, index) =>
-                <li key={index} className={`${opcionLocation === e.label && "bg-gray-500/20 rounded-xl"}`}><a onClick={() => handleCloseDrawer(e.label)}>{e?.title}</a></li>
+                <li key={index} className={`${opcionLocation === e.label && "bg-gray-500/20 rounded-xl flex flex-row"} py-1`}>
+
+                  <a onClick={() => handleCloseDrawer(e.label)} className="flex-1"><span className="flex items-center justify-center text-xl">{e.icons}</span>{e?.title}</a>
+                </li>
               )
               : siderBarUser.map((e, index) =>
-                <li key={index} className={`${opcionLocation === e.label && "bg-gray-500/20 rounded-xl"}`}><a onClick={() => handleCloseDrawer(e.label)}>{e?.title}</a></li>)}
+                <li key={index} className={`${opcionLocation === e.label && "bg-gray-500/20 rounded-xl flex flex-row"}`}>
+                  <span className="flex items-center justify-center text-xl">{e.icons}</span>
+                  <a onClick={() => handleCloseDrawer(e.label)} className="flex-1">{e?.title}</a>
+                </li>
+              )}
           </ul>
         </div>
       </div>
