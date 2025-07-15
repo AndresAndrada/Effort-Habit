@@ -1,14 +1,19 @@
+import { FaHome } from "react-icons/fa";
+import { RiProfileLine } from "react-icons/ri";
+import { GiStrong } from "react-icons/gi";
+import { RiEqualizerFill } from "react-icons/ri";
+
 export const siderBarAdmin = [
-    { title: "Inicio", label: "main" },
-    { title: "Perfil", label: "profile" },
-    { title: "Entrenamientos", label: "exercise" },
-    { title: "Panel de control", label: "dashboard" }
+    { title: "Inicio", label: "main", icons: <FaHome size={"1rem"} /> },
+    { title: "Perfil", label: "profile", icons: <RiProfileLine /> },
+    { title: "Entrenamientos", label: "exercise", icons: <GiStrong /> },
+    { title: "Panel de control", label: "dashboard", icons: <RiEqualizerFill /> }
 ];
 
 export const siderBarUser = [
-    { title: "Inicio", label: "main" },
-    { title: "Perfil", label: "profile" },
-    { title: "Entrenamientos", label: "exercise" },
+    { title: "Inicio", label: "main", icons: <FaHome /> },
+    { title: "Perfil", label: "profile", icons: <RiProfileLine /> },
+    { title: "Entrenamientos", label: "exercise", icons: <GiStrong /> },
 ];
 
 export const closeDrawer = (option, navigate, setOptionLocation) => {

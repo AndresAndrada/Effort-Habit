@@ -28,6 +28,7 @@ export const ModeEditionExercise = () => {
   const Type = exercises.map(e => {
     return { id: e.id, name_exercise: e.name_exercise }
   })
+
   const formik = useFormik({
     initialValues: {
       type: '',
@@ -80,7 +81,7 @@ export const ModeEditionExercise = () => {
   })
   return (
     // <div className={`p-9 w-full flex flex-col justify-center items-center gap-8 rounded-lg ${DarkMode ? "bg-secondary" : "bg-tertiary"} shadow-2xl overflow-hidden`}>
-    <div className={`${DarkMode ? "bg-secondary/40 border border-gray-500" : "bg-tertiary/20 border border-white"} flex flex-col justify-center px-8 pb-8 gap-12 transition-bg rounded-xl w-full shadow-4xl`}>
+    <div className={`${DarkMode ? "bg-secondary/40 border border-letterPrimary" : "bg-tertiary/20 border border-white"} flex flex-col justify-center px-8 pb-8 gap-12 transition-bg rounded-xl w-full shadow-[0_4px_20px_0_#53a8b6]`}>
       <div>
         <Toaster />
       </div>
@@ -90,13 +91,12 @@ export const ModeEditionExercise = () => {
       <form
         onSubmit={formik.handleSubmit}
         className="w-full flex flex-col justify-center items-end gap-8"
-      // Elimina rounded-lg aquí si no quieres doble borde
       >
-        <div className="flex flex-col justify-center w-full gap-8">
+        <div className="flex justify-center w-full gap-8">
           <div className="flex flex-1 flex-col gap-12">
-            <div className="flex gap-12 w-full">
+            <div className="flex gap-12 w-full justify-center items-center">
               <div className="flex flex-col gap-4">
-                <p className={`${DarkMode ? "text-secondary" : "text-primary"} text-center font-product-sans font-bold text-sm leading-normal`}>
+                <p className="text-white text-center font-product-sans font-bold text-sm leading-normal">
                   Imagen
                 </p>
                 <div className="flex justify-center items-center gap-x-5 bg-gray-600 rounded-full w-20 h-20">
@@ -110,7 +110,7 @@ export const ModeEditionExercise = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-4">
-                <p className={`${DarkMode ? "text-secondary" : "text-primary"} text-center font-product-sans font-bold text-sm leading-normal`}>
+                <p className="text-white text-center font-product-sans font-bold text-sm leading-normal">
                   Video
                 </p>
                 <div className="flex justify-center items-center gap-x-5 bg-gray-600 rounded-full w-20 h-20">
@@ -143,7 +143,7 @@ export const ModeEditionExercise = () => {
                 <select
                   type="type"
                   placeholder="Tipo de producto"
-                  className={`select input input-bordered w-full bg-white flex p-2 items-center text-secondary gap-2 border-2 ${formik.touched.type && formik.errors.type ? 'border-red-500' : 'border-secondary'}  placeholder-primary rounded-lg focus:border-primary`}
+                  className={`select input input-bordered w-full bg-white flex p-2 items-center text-secondary gap-2 border-letterPrimary border-2 ${formik.touched.type && formik.errors.type ? 'border-red-500' : 'border-secondary'}  placeholder-primary rounded-xl focus:border-primary`}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   value={formik.values.type}
@@ -155,8 +155,7 @@ export const ModeEditionExercise = () => {
                     Tipo de producto
                   </option>
                   {Type?.length > 0 && Type.map(type => {
-                    return <><option value={type.id} className='text-teal-700' key={type.id}>{type.name_type}</option>
-                    </>
+                    return <option key={type.id} value={type.id} className='text-teal-700'>{type.name_type}</option>
                   })
                   }
                 </select>

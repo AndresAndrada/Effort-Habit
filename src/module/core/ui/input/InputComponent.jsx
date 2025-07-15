@@ -13,7 +13,7 @@ export default function InputComponent({ formikTouched, formikError, formikOnBlu
       <input
         type="text"
         placeholder={title}
-        className={`input w-full bg-white flex p-2 items-center gap-2 rounded-lg text-secondary placeholder-gray-400 focus:border-tertiary border-2 ${formikTouched && formikError ? 'border-red-500' : 'border-secondary'}`}
+        className={`input w-full bg-white flex p-2 items-center gap-2 rounded-xl text-secondary placeholder-gray-400 border-letterPrimary focus:border-white border-2 ${formikTouched && formikError ? 'border-red-500' : 'border-secondary'}`}
         onBlur={formikOnBlur}
         // onError={formik.touched.name_product && Boolean(formik.errors.name_product)}
         onChange={formikHandleChange}
