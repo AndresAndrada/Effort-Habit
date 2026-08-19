@@ -1,9 +1,7 @@
 import { useUiStore } from "../stores";
-import { ButtonPrimary } from "../module/core/ui/button/ButtonPrimary";
-import { Title } from "../module/core/ui/title/Title";
-import homeUtils from "../utils/homeUtils.helpers.json";
 import { useEffect } from "react";
 import { scrollToTop } from "../utils/scrollToTop";
+import Sections from "../module/home/components/Sections";
 
 export default function Home() {
   const { DarkMode } = useUiStore();
@@ -24,8 +22,8 @@ export default function Home() {
               Somos un grupo de Profesores de Educación Física dedicados a mejorar la calidad de vida de las personas. Nuestro objetivo es fomentar un estilo de vida saludable y activo a través de la actividad física.
             </p>
             <div className="flex gap-2 justify-center">
-              <a href="#servicios" className={`btn btn-outline bg-secondary btn-md transition-bg`}>Ver servicios</a>
-              <a href="#contacto" className={`btn btn-outline bg-secondary btn-md transition-bg`}>Contáctanos</a>
+              <a href="#servicios" className={`btn btn-outline bg-secondary btn-md transition-colors duration-500`}>Ver servicios</a>
+              <a href="#contacto" className={`btn btn-outline bg-secondary btn-md transition-colors duration-500`}>Contáctanos</a>
             </div>
           </div>
         </div>
@@ -39,21 +37,7 @@ export default function Home() {
           />
         </div>
       </section>
-      <section id="servicios" className="mt-16 w-[90%] max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-8">
-        {homeUtils.map((items) => (
-          <div key={items.id} className={`cursor-context-menu ${DarkMode ? "bg-secondary/40 hover:bg-secondary/45" : "bg-tertiary/30 hover:bg-tertiary/45"} transition-bg rounded-xl p-6 shadow-4xl flex flex-col items-center`}>
-            <img src="/src/assets/svg/mint.svg" alt="Entrenamiento personalizado" className="w-16 h-16 mb-4" />
-            <Title size="text-2xl">{items.title}</Title>
-            <p className={`text-center text-stone-300 transition-bg`}>{items.description}</p>
-          </div>
-
-        ))}
-      </section>
-      <section id="contacto" className={`mt-20 w-[90%] max-w-xl cursor-context-menu ${DarkMode ? "bg-secondary/40 hover:bg-secondary/45" : "bg-tertiary/30 hover:bg-tertiary/45"} transition-bg rounded-xl p-8 shadow-4xl flex flex-col items-center`}>
-        <Title size={"text-2xl"}>Contáctanos</Title>
-        <p className="text-slate-300 transition-bg pb-3">¿Tienes dudas o quieres comenzar? ¡Escríbenos!</p>
-        <ButtonPrimary href={"#servicios"}>Enviar correo</ButtonPrimary>
-      </section>
+      <Sections />
     </main>
   )
 }
