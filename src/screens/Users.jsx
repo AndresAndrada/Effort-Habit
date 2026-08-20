@@ -27,21 +27,21 @@ export default function Users() {
         <div className={`hidden max-w-md w-full md:flex flex-col items-center shadow-4xl text-letterPrimary ${DarkMode ? "" : "bg-tertiary/20"} h-auto transition-bg rounded-xl`}>
           <Acordion darkMode={true}>
             <input type="radio" name="my-accordion-3" defaultChecked />
-            <div className="collapse-title font-semibold">Ejercicio</div>
+            <div className="collapse-title font-semibold text-letterPrimary">Ejercicio</div>
             <div className="collapse-content text-sm flex flex-col gap-2">
-              <Link className={`${DarkMode ? "hover:bg-letterPrimary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("todos")}>Todos</Link>
-              <Link className={`${DarkMode ? "text-primary hover:bg-letterPrimary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("add")}>Agregar</Link>
-              <Link className={`${DarkMode ? "text-primary hover:bg-letterPrimary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}> Modificar</Link>
+              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-letterPrimary hover:bg-gray-500/35"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("todos")}>Todos</Link>
+              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-letterPrimary hover:bg-gray-500/35"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("add")}>Agregar</Link>
+              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-letterPrimary hover:bg-gray-500/35"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}> Modificar</Link>
             </div>
           </Acordion>
           {/* </div> */}
           <Acordion darkMode={true}>
             {/* <div className="collapse collapse-arrow join-item"> */}
             <input type="radio" name="my-accordion-3" />
-            <div className="collapse-title font-semibold text-primary">Estadisticas</div>
+            <div className="collapse-title font-semibold text-letterPrimary">Estadisticas</div>
             <div className="collapse-content text-sm flex flex-col gap-2">
-              <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Fuerza</Link>
-              <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Flexibilidad</Link>
+              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-letterPrimary hover:bg-gray-500/35"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Fuerza</Link>
+              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-letterPrimary hover:bg-gray-500/35"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Flexibilidad</Link>
             </div>
           </Acordion>
           {/* </div> */}
@@ -50,8 +50,8 @@ export default function Users() {
             <input type="radio" name="my-accordion-3" />
             <div className="collapse-title font-semibold text-letterPrimary">Configuraciones</div>
             <div className="collapse-content text-sm flex flex-col gap-2">
-              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-tertiary" : "text-letterPrimary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Borrar sesión</Link>
-              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-tertiary" : "text-letterPrimary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Editar</Link>
+              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-letterPrimary hover:bg-gray-500/35"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Borrar sesión</Link>
+              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-letterPrimary hover:bg-gray-500/35"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Editar</Link>
             </div>
             {/* </div> */}
           </Acordion>
@@ -61,11 +61,11 @@ export default function Users() {
           <div className='w-full flex'>
             <Title className={true}>Usuarios</Title>
           </div>
-          <div className={`w-full flex flex-col items-center ${DarkMode ? "bg-secondary/50" : "bg-tertiary"} rounded-2xl shadow-4xl px-6 overflow-x-auto bg-red-600`}>
+          <div className={`w-full flex flex-col items-center ${DarkMode ? "" : "bg-tertiary"} rounded-2xl shadow-4xl px-6 overflow-x-auto`}>
             <table className="table">
               {/* head */}
               <thead>
-                <tr className='border-b border-white text-primary'>
+                <tr className='border-b border-white text-letterPrimary'>
                   <th>
                     <label>
                       {/* <input type="checkbox" className="checkbox" /> */}
@@ -81,7 +81,7 @@ export default function Users() {
                 {/* row 1 */}
                 {users?.map((user) => {
                   return (
-                    <tr className={`${DarkMode ? "hover:bg-tertiary text-secondary" : "hover:bg-secondary text-slate-900"} border-white border-b-0 px-8`} key={user.id}>
+                    <tr className={`${DarkMode ? "hover:bg-gray-500/35 text-letterPrimary" : "hover:bg-secondary text-slate-900"} border-white border-b-0 px-8`} key={user.id}>
                       <th>
                         <label>
                           <input type="checkbox" className="checkbox size-4 border-2 border-primary" />
@@ -97,23 +97,23 @@ export default function Users() {
                             </div>
                           </div>
                           <div>
-                            <div className="text-primary text-xs sm:text-sm font-bold">Hart Hagerty</div>
-                            <div className="text-primary text-xs sm:text-sm opacity-50">United States</div>
+                            <div className="text-letterPrimary text-xs sm:text-sm font-bold">Hart Hagerty</div>
+                            <div className="text-letterPrimary text-xs sm:text-sm opacity-50">United States</div>
                           </div>
                         </div>
                       </td>
-                      <td className="hidden sm:flex flex-col text-primary">
+                      <td className="hidden sm:flex flex-col text-letterPrimary">
                         Zemlak, Daniel and Leannon
                         <br />
-                        <span className="text-primary badge badge-ghost badge-sm">Desktop Support Technician</span>
+                        <span className="text-letterPrimary badge badge-ghost badge-sm">Desktop Support Technician</span>
                       </td>
                       <td><p className={`text-primary text-center rounded-full ${user?.status ? "bg-green-600" : "bg-red-600"}`}>{user?.status ? "Activo" : "Inactivo"}</p></td>
                       <th className=''>
-                        <button className="text-primary btn btn-ghost btn-xs">{user?.status ? "Desactivar" : "Activar"}</button>
-                        <button className="text-primary btn btn-ghost btn-xs"
+                        <button className="text-letterPrimary btn btn-ghost btn-xs">{user?.status ? "Desactivar" : "Activar"}</button>
+                        <button className="text-letterPrimary btn btn-ghost btn-xs"
                           onClick={() => document.getElementById('my_modal_1').showModal()}
                         >Editar</button>
-                        <button className="text-primary btn btn-ghost btn-xs">Eliminar</button>
+                        <button className="text-letterPrimary btn btn-ghost btn-xs">Eliminar</button>
                       </th>
                     </tr>
                   )
