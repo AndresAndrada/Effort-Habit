@@ -24,14 +24,14 @@ export default function Users() {
   return (
     <div className={`${DarkMode ? "bg-primary" : "bg-secondary"} min-h-screen transition-bg pt-16`}>
       <div className={`flex items-start mx-4 pt-8 transition-bg`}>
-        <div className={`hidden max-w-md w-full md:flex flex-col items-center shadow-4xl ${DarkMode ? "bg-secondary/40" : "bg-tertiary/20"} h-auto transition-bg rounded-xl`}>
+        <div className={`hidden max-w-md w-full md:flex flex-col items-center shadow-4xl text-letterPrimary ${DarkMode ? "" : "bg-tertiary/20"} h-auto transition-bg rounded-xl`}>
           <Acordion darkMode={true}>
             <input type="radio" name="my-accordion-3" defaultChecked />
-            <div className="collapse-title font-semibold text-primary">Ejercicio</div>
+            <div className="collapse-title font-semibold">Ejercicio</div>
             <div className="collapse-content text-sm flex flex-col gap-2">
-              <Link className={`${DarkMode ? "text-primary hover:bg-gray-500" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("todos")}>Todos</Link>
-              <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("add")}>Agregar</Link>
-              <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}> Modificar</Link>
+              <Link className={`${DarkMode ? "hover:bg-letterPrimary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("todos")}>Todos</Link>
+              <Link className={`${DarkMode ? "text-primary hover:bg-letterPrimary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("add")}>Agregar</Link>
+              <Link className={`${DarkMode ? "text-primary hover:bg-letterPrimary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}> Modificar</Link>
             </div>
           </Acordion>
           {/* </div> */}
@@ -48,10 +48,10 @@ export default function Users() {
           <Acordion darkMode={true}>
             {/* <div className="collapse collapse-arrow join-item"> */}
             <input type="radio" name="my-accordion-3" />
-            <div className="collapse-title font-semibold text-primary">Configuraciones</div>
+            <div className="collapse-title font-semibold text-letterPrimary">Configuraciones</div>
             <div className="collapse-content text-sm flex flex-col gap-2">
-              <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Borrar sesión</Link>
-              <Link className={`${DarkMode ? "text-primary hover:bg-tertiary" : "text-primary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Editar</Link>
+              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-tertiary" : "text-letterPrimary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Borrar sesión</Link>
+              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-tertiary" : "text-letterPrimary hover:bg-secondary"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Editar</Link>
             </div>
             {/* </div> */}
           </Acordion>

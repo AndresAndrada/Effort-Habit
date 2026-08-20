@@ -2,7 +2,7 @@ import img from "../assets/svg/login.svg";
 
 export const dashBoard = [{
     id: "1",
-    title: "Usuario",
+    title: "Usuarios",
     label: "user",
     subTitle: "Todos los usuarios",
     description: "Crear, eliminar y editar usuarios",
