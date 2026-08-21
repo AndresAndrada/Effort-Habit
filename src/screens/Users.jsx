@@ -10,7 +10,7 @@ import { scrollToTop } from '../utils/scrollToTop';
 
 export default function Users() {
   const navigate = useNavigate();
-  const { DarkMode, setMenuOptionUser } = useUiStore();
+  const { DarkMode, MenuOptionUsers, setMenuOptionUser } = useUiStore();
 
   useEffect(() => {
     scrollToTop({ smooth: true });
@@ -24,14 +24,14 @@ export default function Users() {
   return (
     <div className={`${DarkMode ? "bg-primary" : "bg-secondary"} min-h-screen transition-bg pt-16`}>
       <div className={`flex items-start mx-4 pt-8 transition-bg`}>
-        <div className={`hidden max-w-md w-full md:flex flex-col items-center shadow-4xl text-letterPrimary ${DarkMode ? "" : "bg-tertiary/20"} h-auto transition-bg rounded-xl`}>
+        <div className={`hidden max-w-md w-full md:flex flex-col items-center shadow-4xl ${DarkMode ? "" : "bg-tertiary"} h-auto transition-bg rounded-xl`}>
           <Acordion darkMode={true}>
             <input type="radio" name="my-accordion-3" defaultChecked />
             <div className="collapse-title font-semibold text-letterPrimary">Ejercicio</div>
             <div className="collapse-content text-sm flex flex-col gap-2">
-              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-letterPrimary hover:bg-gray-500/35"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("todos")}>Todos</Link>
-              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-letterPrimary hover:bg-gray-500/35"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("add")}>Agregar</Link>
-              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-letterPrimary hover:bg-gray-500/35"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}> Modificar</Link>
+              <Link className={`${MenuOptionUsers === "todos" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("todos")}>Todos</Link>
+              <Link className={`${MenuOptionUsers === "add" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("add")}>Agregar</Link>
+              <Link className={`${MenuOptionUsers === "upDate" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}> Modificar</Link>
             </div>
           </Acordion>
           {/* </div> */}
@@ -40,8 +40,8 @@ export default function Users() {
             <input type="radio" name="my-accordion-3" />
             <div className="collapse-title font-semibold text-letterPrimary">Estadisticas</div>
             <div className="collapse-content text-sm flex flex-col gap-2">
-              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-letterPrimary hover:bg-gray-500/35"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Fuerza</Link>
-              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-letterPrimary hover:bg-gray-500/35"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Flexibilidad</Link>
+              <Link className={`${MenuOptionUsers === "upDate" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Fuerza</Link>
+              <Link className={`${MenuOptionUsers === "upDate" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Flexibilidad</Link>
             </div>
           </Acordion>
           {/* </div> */}
@@ -50,8 +50,8 @@ export default function Users() {
             <input type="radio" name="my-accordion-3" />
             <div className="collapse-title font-semibold text-letterPrimary">Configuraciones</div>
             <div className="collapse-content text-sm flex flex-col gap-2">
-              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-letterPrimary hover:bg-gray-500/35"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Borrar sesión</Link>
-              <Link className={`${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-letterPrimary hover:bg-gray-500/35"} transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Editar</Link>
+              <Link className={`${MenuOptionUsers === "upDate" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Borrar sesión</Link>
+              <Link className={`${MenuOptionUsers === "upDate" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Editar</Link>
             </div>
             {/* </div> */}
           </Acordion>
@@ -61,11 +61,11 @@ export default function Users() {
           <div className='w-full flex'>
             <Title className={true}>Usuarios</Title>
           </div>
-          <div className={`w-full flex flex-col items-center ${DarkMode ? "" : "bg-tertiary"} rounded-2xl shadow-4xl px-6 overflow-x-auto`}>
+          <div className={`w-full flex flex-col items-center ${DarkMode ? "" : "bg-tertiary"} rounded-2xl shadow-4xl px-6 overflow-x-auto duration-500`}>
             <table className="table">
               {/* head */}
               <thead>
-                <tr className='border-b border-white text-letterPrimary'>
+                <tr className='border-b border-letterPrimary text-letterPrimary'>
                   <th>
                     <label>
                       {/* <input type="checkbox" className="checkbox" /> */}
@@ -81,10 +81,10 @@ export default function Users() {
                 {/* row 1 */}
                 {users?.map((user) => {
                   return (
-                    <tr className={`${DarkMode ? "hover:bg-gray-500/35 text-letterPrimary" : "hover:bg-secondary text-slate-900"} border-white border-b-0 px-8`} key={user.id}>
+                    <tr className={`${DarkMode ? "hover:bg-gray-500/35 text-secondary" : "hover:bg-secondary text-slate-900"} border-white border-b-0 px-8`} key={user.id}>
                       <th>
                         <label>
-                          <input type="checkbox" className="checkbox size-4 border-2 border-primary" />
+                          <input type="checkbox" className="checkbox size-4 border-2 border-letterPrimary" />
                         </label>
                       </th>
                       <td className='cursor-pointer' onClick={() => navigate(`/detail-user/${user.id}`)}>
@@ -107,7 +107,7 @@ export default function Users() {
                         <br />
                         <span className="text-letterPrimary badge badge-ghost badge-sm">Desktop Support Technician</span>
                       </td>
-                      <td><p className={`text-primary text-center rounded-full ${user?.status ? "bg-green-600" : "bg-red-600"}`}>{user?.status ? "Activo" : "Inactivo"}</p></td>
+                      <td><p className={`text-letterPrimary text-center rounded-full ${user?.status ? "bg-green-600" : "bg-red-600"}`}>{user?.status ? "Activo" : "Inactivo"}</p></td>
                       <th className=''>
                         <button className="text-letterPrimary btn btn-ghost btn-xs">{user?.status ? "Desactivar" : "Activar"}</button>
                         <button className="text-letterPrimary btn btn-ghost btn-xs"
