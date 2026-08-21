@@ -5,12 +5,21 @@ import { users } from '../utils/usersUtils.helpers';
 import { Acordion } from '../module/core/ui/Acordion';
 import { Link } from 'react-router-dom';
 import { Title } from '../module/core/ui/title/Title';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { scrollToTop } from '../utils/scrollToTop';
 
 export default function Users() {
   const navigate = useNavigate();
   const { DarkMode, MenuOptionUsers, setMenuOptionUser } = useUiStore();
+  const [filterName, setFilterName] = useState("");
+  const [filterDocumento, setFilterDocumento] = useState("");
+  const [filterStatus, setFilterStatus] = useState("todos");
+
+  const filteredUsers = users?.filter((u) =>
+    u.name.toLowerCase().includes(filterName.toLowerCase()) &&
+    String(u.documento).includes(filterDocumento) &&
+    (filterStatus === "todos" || u.status === (filterStatus === "activo"))
+  );
 
   useEffect(() => {
     scrollToTop({ smooth: true });
@@ -29,12 +38,11 @@ export default function Users() {
             <input type="radio" name="my-accordion-3" defaultChecked />
             <div className="collapse-title font-semibold text-letterPrimary">Ejercicio</div>
             <div className="collapse-content text-sm flex flex-col gap-2">
-              <Link className={`${MenuOptionUsers === "todos" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("todos")}>Todos</Link>
-              <Link className={`${MenuOptionUsers === "add" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("add")}>Agregar</Link>
-              <Link className={`${MenuOptionUsers === "upDate" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}> Modificar</Link>
+              <Link className={`${MenuOptionUsers === "todos" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("todos")}>Todos</Link>
+              <Link className={`${MenuOptionUsers === "add" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("add")}>Agregar</Link>
+              <Link className={`${MenuOptionUsers === "upDate" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}> Modificar</Link>
             </div>
           </Acordion>
-          {/* </div> */}
           <Acordion darkMode={true}>
             {/* <div className="collapse collapse-arrow join-item"> */}
             <input type="radio" name="my-accordion-3" />
@@ -61,6 +69,31 @@ export default function Users() {
           <div className='w-full flex'>
             <Title className={true}>Usuarios</Title>
           </div>
+          <div className={`w-full flex flex-wrap gap-2 mb-4 justify-center ${DarkMode ? "text-letterPrimary" : "text-primary"}`}>
+            <input
+              type="text"
+              placeholder="Filtrar por nombre"
+              value={filterName}
+              onChange={(e) => setFilterName(e.target.value)}
+              className="input input-sm input-bordered w-full sm:w-44 border-letterPrimary text-letterPrimary bg-transparent"
+            />
+            <input
+              type="text"
+              placeholder="Filtrar por documento"
+              value={filterDocumento}
+              onChange={(e) => setFilterDocumento(e.target.value)}
+              className="input input-sm input-bordered w-full sm:w-44 border-letterPrimary text-letterPrimary bg-transparent"
+            />
+            <select
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value)}
+              className="select select-sm select-bordered w-full sm:w-40 border-letterPrimary text-letterPrimary bg-transparent"
+            >
+              <option value="todos">Todos</option>
+              <option value="activo">Activos</option>
+              <option value="inactivo">Inactivos</option>
+            </select>
+          </div>
           <div className={`w-full flex flex-col items-center ${DarkMode ? "" : "bg-tertiary"} rounded-2xl shadow-4xl px-6 overflow-x-auto duration-500`}>
             <table className="table">
               {/* head */}
@@ -79,7 +112,7 @@ export default function Users() {
               </thead>
               <tbody>
                 {/* row 1 */}
-                {users?.map((user) => {
+                {filteredUsers?.map((user) => {
                   return (
                     <tr className={`${DarkMode ? "hover:bg-gray-500/35 text-secondary" : "hover:bg-secondary text-slate-900"} border-white border-b-0 px-8`} key={user.id}>
                       <th>
@@ -97,7 +130,7 @@ export default function Users() {
                             </div>
                           </div>
                           <div>
-                            <div className="text-letterPrimary text-xs sm:text-sm font-bold">Hart Hagerty</div>
+                            <div className="text-letterPrimary text-xs sm:text-sm font-bold">{user.name}</div>
                             <div className="text-letterPrimary text-xs sm:text-sm opacity-50">United States</div>
                           </div>
                         </div>
@@ -105,7 +138,7 @@ export default function Users() {
                       <td className="hidden sm:flex flex-col text-letterPrimary">
                         Zemlak, Daniel and Leannon
                         <br />
-                        <span className="text-letterPrimary badge badge-ghost badge-sm">Desktop Support Technician</span>
+                        <span className="text-letterPrimary">Desktop Support Technician</span>
                       </td>
                       <td><p className={`text-letterPrimary text-center rounded-full ${user?.status ? "bg-green-600" : "bg-red-600"}`}>{user?.status ? "Activo" : "Inactivo"}</p></td>
                       <th className=''>

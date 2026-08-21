@@ -25,6 +25,7 @@ export const user = {
 export const users = [
     {
         id: 1,
+        documento: '38294756',
         avatar: '',
         name: 'John Doe',
         email: 'martin@gmail.com',
@@ -46,7 +47,31 @@ export const users = [
         experience: "Intermedia",
         motivation: ["Prepararse para una maratón"],
     }, {
+        id: 1,
+        documento: '38294756',
+        avatar: '',
+        name: 'Martin Gomez',
+        email: 'martin@gmail.com',
+        phone: '123456789',
+        address: 'Calle Falsa 123',
+        role: "user",
+        status: true,
+        birthDate: "1990-05-15",
+        age: 34,
+        weight: 75, // kg
+        height: 178, // cm
+        profession: "Ingeniero de software",
+        trainingDays: ["Lunes", "Miércoles", "Viernes"],
+        trainingHours: "07:00 - 08:00",
+        sport: ["Fútbol", "Ciclismo"],
+        goal: "Mejorar resistencia y perder grasa",
+        injuries: ["Ninguna"], // lesiones previas
+        medicalConditions: ["Ninguna"],
+        experience: "Intermedia",
+        motivation: ["Prepararse para una maratón"],
+    },{
         id: 2,
+        documento: '27483920',
         avatar: '',
         name: 'John Doe',
         email: 'martin@gmail.com',
@@ -69,6 +94,7 @@ export const users = [
         motivation: ["Prepararse para una maratón"],
     }, {
         id: 3,
+        documento: '41029384',
         avatar: '',
         name: 'John Doe',
         email: 'martin@gmail.com',
@@ -91,6 +117,7 @@ export const users = [
         motivation: ["Prepararse para una maratón"],
     }, {
         id: 4,
+        documento: '35678123',
         avatar: '',
         name: 'John Doe',
         email: 'martin@gmail.com',
@@ -113,6 +140,7 @@ export const users = [
         motivation: ["Prepararse para una maratón"],
     }, {
         id: 5,
+        documento: '29837465',
         avatar: '',
         name: 'John Doe',
         email: 'martin@gmail.com',
@@ -135,6 +163,7 @@ export const users = [
         motivation: ["Prepararse para una maratón"],
     }, {
         id: 6,
+        documento: '40928374',
         avatar: '',
         name: 'John Doe',
         email: 'martin@gmail.com',
