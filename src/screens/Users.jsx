@@ -40,7 +40,7 @@ export default function Users() {
             <div className="collapse-content text-sm flex flex-col gap-2">
               <Link className={`${MenuOptionUsers === "todos" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("todos")}>Todos</Link>
               <Link className={`${MenuOptionUsers === "add" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("add")}>Agregar</Link>
-              <Link className={`${MenuOptionUsers === "upDate" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}> Modificar</Link>
+              <Link className={`${MenuOptionUsers === "notification" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("notification")}> Modificar</Link>
             </div>
           </Acordion>
           <Acordion darkMode={true}>
@@ -48,8 +48,8 @@ export default function Users() {
             <input type="radio" name="my-accordion-3" />
             <div className="collapse-title font-semibold text-letterPrimary">Estadisticas</div>
             <div className="collapse-content text-sm flex flex-col gap-2">
-              <Link className={`${MenuOptionUsers === "upDate" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Fuerza</Link>
-              <Link className={`${MenuOptionUsers === "upDate" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Flexibilidad</Link>
+              <Link className={`${MenuOptionUsers === "strong" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("strong")}>Fuerza</Link>
+              <Link className={`${MenuOptionUsers === "flexibility" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("flexibility")}>Flexibilidad</Link>
             </div>
           </Acordion>
           {/* </div> */}
@@ -58,7 +58,7 @@ export default function Users() {
             <input type="radio" name="my-accordion-3" />
             <div className="collapse-title font-semibold text-letterPrimary">Configuraciones</div>
             <div className="collapse-content text-sm flex flex-col gap-2">
-              <Link className={`${MenuOptionUsers === "upDate" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Borrar sesión</Link>
+              <Link className={`${MenuOptionUsers === "delete" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("delete")}>Borrar sesión</Link>
               <Link className={`${MenuOptionUsers === "upDate" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Editar</Link>
             </div>
             {/* </div> */}
@@ -69,7 +69,7 @@ export default function Users() {
           <div className='w-full flex'>
             <Title className={true}>Usuarios</Title>
           </div>
-          <div className={`w-full flex flex-wrap gap-2 mb-4 justify-center ${DarkMode ? "text-letterPrimary" : "text-primary"}`}>
+          <div className={`w-full flex flex-wrap shadow-xl gap-2 mb-4 p-6 rounded-xl  ${DarkMode ? "text-letterPrimary" : "text-primary"}`}>
             <input
               type="text"
               placeholder="Filtrar por nombre"
@@ -140,7 +140,7 @@ export default function Users() {
                         <br />
                         <span className="text-letterPrimary">Desktop Support Technician</span>
                       </td>
-                      <td><p className={`text-letterPrimary text-center rounded-full ${user?.status ? "bg-green-600" : "bg-red-600"}`}>{user?.status ? "Activo" : "Inactivo"}</p></td>
+                      <td><p className={`text-white text-center rounded-full ${user?.status ? "bg-green-600" : "bg-red-600"}`}>{user?.status ? "Activo" : "Inactivo"}</p></td>
                       <th className=''>
                         <button className="text-letterPrimary btn btn-ghost btn-xs">{user?.status ? "Desactivar" : "Activar"}</button>
                         <button className="text-letterPrimary btn btn-ghost btn-xs"
