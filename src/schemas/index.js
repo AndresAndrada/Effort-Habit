@@ -25,7 +25,7 @@ export const LoginScheme = yup.object().shape({
 })
 
 export const RegisterScheme = yup.object().shape({
-    userFullName: yup
+    name: yup
         .string()
         .min(5, 'Debe contener más de 5 caracteres')
         .max(65, 'Máximo de 65 caracteres')
@@ -45,8 +45,16 @@ export const RegisterScheme = yup.object().shape({
         .required('Ingrese su contraseña')
         .matches(
             passwordRules,
-            'Debe contener 8 catacteres, una mayuscula, una minuscula, un número y una caracter especial.'
+            'Debe contener 8 caracteres, una mayúscula, una minúscula, un número y un caracter especial.'
         ),
+            confirmPassword: yup
+            .string()
+            .required('Confirma tu contraseña')
+            .oneOf([yup.ref('password')], 'Las contraseñas no coinciden'),
+            role: yup
+            .string()
+            .oneOf(['trainer', 'teacher', 'admin'], 'Rol no válido')
+            .required('Selecciona un rol'),
 })
 
 export const AddCompany = yup.object().shape({

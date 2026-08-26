@@ -30,6 +30,22 @@ React 18 + Vite 5 SPA ("Effort&Habit", a gym/training management dashboard for P
 - Contract ABI is in `src/utils/ABI.js`.
 
 ## Conventions / gotchas
-- ESLint 9 flat config (`eslint.config.js`) with `react-refresh/only-export-components` warn — module files that export both components and non-components may warn.
-- Code style is uneven (senior/beginner mix): heavy `console.log`, commented-out blocks, some copy-paste components. Match the surrounding file's style rather than "fixing" everything.
-- Both `package-lock.json` and `pnpm-lock.yaml` exist; `node_modules` is installed. Use `npm` unless pnpm is explicitly requested.
+- ESLint 9 flat config (`eslint.config.js`) con `react-refresh/only-export-components` warn — módulos que exportan componentes y no-componentes pueden advertir.
+- Estilo de código desigual (mezcla senior/junior): mucho `console.log`, bloques comentados, componentes copiados. Seguir el estilo del archivo circundante en lugar de "arreglar" todo.
+- Existen tanto `package-lock.json` como `pnpm-lock.yaml`; `node_modules` está instalado. Usar `npm` a menos que se pida pnpm explícitamente.
+
+## SEO Best Practices
+- **Meta tags**: Definir `title`, `description`, Open Graph (`og:title`, `og:description`, `og:image`, `og:type`), Twitter Cards (`twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`) en `index.html`. Actualizar dinámicamente por ruta con `react-helmet-async` (recomendado para SPA) en cada pantalla (`src/screens/`).
+- **HTML semántico**: Jerarquía de headings correcta (`h1` → `h2` → `h3`...), landmarks (`<main>`, `<nav>`, `<aside>`, `<header>`, `<footer>`), `<section>`/`<article>` con `aria-labelledby` cuando aplique.
+- **Sitemap y robots.txt**: Generar `sitemap.xml` y `robots.txt` en build con `vite-plugin-sitemap` (configurar `routes` en `vite.config.js` para incluir rutas lazy-loaded). `robots.txt` permitir indexar `/`, `/dashboard`, `/ejercicios`; bloquear `/sign-in`, `/api` (si existiera).
+- **Datos estructurados (JSON-LD)**: Incluir `@type: "WebApplication"` + `Organization` en `index.html` o inyectado vía helmet. Propiedades clave: `name`, `url`, `applicationCategory`, `operatingSystem`, `offers`, `author`, `inLanguage: "es-ES"`.
+- **Core Web Vitals**: Lazy-loading de rutas (ya con `React.lazy` + `Suspense`), code-splitting automático de Vite, imágenes optimizadas (usar `<img loading="lazy">` + formatos WebP/AVIF, considerar `vite-plugin-imagemin`). Evitar layout shift: `width`/`height` en imágenes, `font-display: swap`.
+- **URLs canónicas y hreflang**: `<link rel="canonical" href="...">` por página. Si se añade multi-idioma (español primario), `hreflang="es"` + `x-default` en `index.html` y helmet.
+- **Contenido accesible = SEO**: `alt` descriptivo en imágenes, `aria-label`/`aria-labelledby` en controles sin texto visible, `role` apropiado. Evitar contenido solo en JS sin fallback semántico.
+
+## Principios SOLID
+- **S**ingle Responsibility: Cada componente/hook/store hace una sola cosa. Separar *data fetching* (custom hooks `useUsers`, `useExercises`) de *UI rendering* (componentes presentacionales). Stores Zustand por dominio (`user.store.js`, `exercise.store.js`), no un store global monolítico.
+- **O**pen/Closed: Extender comportamiento vía composición (custom hooks, HOCs, compound components) sin modificar código existente. Ej.: `useAuth` base + `useAdminAuth` que extiende, no modifica.
+- **L**iskov Substitution: Hooks/stores con misma interfaz deben ser intercambiables. Ej.: `useAuthProvider` (mock) y `useAuthProvider` (real API) exponen `{ user, login, logout }` — consumidores no notan el cambio.
+- **I**nterface Segregation: Hooks/stores pequeños y enfocados (`useUser`, `useExercises`, `useDashboardStats`) en lugar de uno gigante `useDashboard`. Cada pantalla importa solo lo que necesita.
+- **D**ependency Inversion: Depender de abstracciones (Context, interfaces TypeScript/JSDoc) no de concreciones. Inyectar stores/servicios vía Context (`AuthProvider`, `ExerciseProvider`) o props, no importar stores directamente en componentes de UI.

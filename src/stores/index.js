@@ -1,4 +1,3 @@
-export * from './user/user.store'
-export * from './type/type.store'
-export * from './product/product.store'
-export * from './ui/ui.store'
+export { useAuthStore, useAuth } from './auth/auth.store.js';
+export { useUserStore } from './user/user.store.js';
+export { useUiStore } from './ui/ui.store.js';

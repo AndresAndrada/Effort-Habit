@@ -1,29 +1,23 @@
-// import NavItem from '../ui/navigation/NavItem'
-// import NotificationDropdown from '../ui/dropdown/notificationDropdown'
-// import UserDropdown from '../ui/UserDropdown'
 import { useNavigate } from 'react-router-dom'
 import useLogout from '../../auth/hooks/useLogout';
-import useLogIn from '../../auth/hooks/useLogin';
-import { useUiStore, useUserStore } from '../../../stores'
+import { useUiStore } from '../../../stores'
+import { useAuth } from '../../../hooks/useAuth.js';
 import SideBar from './SideBar';
 import { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom';
-import { Title } from '../ui/title/Title';
-// import { getLocalStorage } from '@/modules/auth/utils/getLocalStorage'
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { Authenticated } = useUserStore();
+  const { isAuthenticated } = useAuth();
   const { DarkMode, setDarkMode } = useUiStore();
   const [showNavbar, setShowNavbar] = useState(true);
   const lastScrollY = useRef(0);
   const { logout } = useLogout();
-  const { logIn } = useLogIn();
 
   const handlerSision = () => {
-    Authenticated
-      ? navigate('/sign-in')
-      : logout()
+    isAuthenticated
+      ? logout()
+      : navigate('/sign-in')
   }
 
   useEffect(() => {
@@ -66,7 +60,7 @@ export default function Navbar() {
       {/* Menú horizontal solo visible en desktop */}
       <div className="flex-none hidden sm:flex lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li className="transition-bg"><Link to={"/dashBoard"} className='text-xl text-letterPrimary'>Panel de control</Link></li>
+          <li className="transition-bg"><Link to={"/dashboard"} className='text-xl text-letterPrimary'>Panel de control</Link></li>
           <li className="transition-bg"><Link className='text-xl text-letterPrimary'>Contacto</Link></li>
         </ul>
       </div>
@@ -88,7 +82,7 @@ export default function Navbar() {
             </div>
           </div>
           <ul tabIndex={0} className={`menu menu-sm dropdown-content ${DarkMode ? "bg-primary" : "bg-secondary"} rounded-box z-1 mt-3 w-52 p-2 shadow`}>
-            {Authenticated
+            {isAuthenticated
               ? <>
                 <li>
                   <a className={`justify-between ${DarkMode ? "text-secondary" : "text-primary"}`} onClick={() => navigate('/profile')}>
@@ -98,7 +92,7 @@ export default function Navbar() {
                 <li><a className={`justify-between ${DarkMode ? "text-secondary" : "text-primary"}`}>Settings</a></li>
                 <li onClick={handlerSision}><a className={`justify-between ${DarkMode ? "text-secondary" : "text-primary"}`}>Logout</a></li>
               </>
-              : <li onClick={() => logIn()}><a className={`justify-between ${DarkMode ? "text-secondary" : "text-primary"}`}>Login</a></li>
+              : <li onClick={handlerSision}><a className={`justify-between ${DarkMode ? "text-secondary" : "text-primary"}`}>Login</a></li>
             }
           </ul>
         </div>

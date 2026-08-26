@@ -5,15 +5,16 @@ import { LoginScheme } from '../../../schemas'
 import showPasswordIcon from '../../../assets/svg/showPassword.svg'
 import hidePasswordIcon from '../../../assets/svg/showPassword.svg'
 import { useNavigate } from 'react-router-dom'
-import useLogin from '../hooks/useLogin'
+import { useAuth } from '../../../hooks/useAuth.js'
 import { useUserStore } from '../../../stores'
+import { Link } from 'react-router-dom'
 
 export default function FormLogin() {
   const [showPassword, setShowPassword] = useState(false)
   const { setAuthenticated } = useUserStore();
+  const { setUser, setTokens } = useAuth();
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-  // const { logIn } = useLogin()
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -22,34 +23,24 @@ export default function FormLogin() {
     // validationSchema: LoginScheme,
     onSubmit: async (values, { resetForm }) => {
       console.log(JSON.stringify(values), 'VALUES')
+      const mockUser = {
+        id: '1',
+        name: values.email?.split('@')[0] || 'Usuario',
+        email: values.email || 'usuario@demo.com',
+        role: values.email?.includes('admin') ? 'admin' : values.email?.includes('trainer') ? 'trainer' : 'teacher',
+      };
+      const mockTokens = { accessToken: 'mock-token', refreshToken: 'mock-refresh' };
       setAuthenticated(true);
-      // resetForm()
-      // try {
-      //   setLoading(true)
-      //   const res = await logIn(values)
-      //   if (res?.ok) {
-      navigate('/')
+      setUser(mockUser);
+      setTokens(mockTokens);
+
+      const destino = mockUser.role === 'trainer' ? '/my-sessions' : '/dashboard';
+      navigate(destino, { replace: true })
       resetForm()
-      //     toast.success('¡Bienvenido!', {
-      //       duration: 2000,
-      //       position: 'top-center',
-      //     })
-      //   } else {
-      //     setLoading(false)
-      //     toast.error('Email o contraseña incorrecto, vuleve a intentarlo', {
-      //       duration: 4000,
-      //       position: 'top-center',
-      //     })
-      //   }
-      // } catch (error) {
-      //   setLoading(false)
-      //   console.log(error)
-      //   toast.error('Algo salio mal, vuelve a intentarlo', {
-      //     duration: 3000,
-      //     position: 'top-center',
-      //   })
-      // }
-      // return
+      toast.success('¡Bienvenido!', {
+        duration: 2000,
+        position: 'top-center',
+      })
     },
   })
   return (
@@ -163,6 +154,12 @@ export default function FormLogin() {
         <h6 className="text-secondary text-center font-productsans text-xs font-normal cursor-pointer">
           {' '}
           ¿Olvidaste tu contraseña?
+        </h6>
+      </div>
+      <div className="flex justify-center items-start">
+        <h6 className="text-secondary text-center font-productsans text-xs font-normal cursor-pointer">
+          {' '}
+          No tenes cuenta? <Link to="/sign-up" className='text-letterPrimary underline'>Registrate</Link>
         </h6>
       </div>
     </div>
