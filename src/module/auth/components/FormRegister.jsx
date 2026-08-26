@@ -43,10 +43,10 @@ export const FormRegister = () => {
         };
         console.log("🚀 ~ FormRegister ~ mockUser:", mockUser)
         const mockTokens = { accessToken: 'mock-token', refreshToken: 'mock-refresh' };
-        // setAuthenticated(true);
-        // setUser(mockUser);
+        setAuthenticated(true);
+        setUser(mockUser);
         // setAuthUser(mockUser);
-        // setTokens(mockTokens);
+        setTokens(mockTokens);
 
         toast.success('¡Cuenta creada con éxito!', {
           duration: 2000,
