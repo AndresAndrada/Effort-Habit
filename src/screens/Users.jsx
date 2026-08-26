@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { Title } from '../module/core/ui/title/Title';
 import { useEffect, useState } from 'react';
 import { scrollToTop } from '../utils/scrollToTop';
+import { SubTitle } from '../module/core/ui/title/SubTitle';
 
 export default function Users() {
   const navigate = useNavigate();
@@ -33,10 +34,10 @@ export default function Users() {
   return (
     <div className={`${DarkMode ? "bg-primary" : "bg-secondary"} min-h-screen transition-bg pt-16`}>
       <div className={`flex items-start mx-4 pt-8 transition-bg`}>
-        <div className={`hidden max-w-md w-full md:flex flex-col items-center shadow-4xl ${DarkMode ? "" : "bg-tertiary"} h-auto transition-bg rounded-xl`}>
+        <div className={`hidden max-w-md w-full md:flex flex-col items-center h-auto transition-bg rounded-xl shadow-[0_2px_15px_0_#53a8b6]`}>
           <Acordion darkMode={true}>
             <input type="radio" name="my-accordion-3" defaultChecked />
-            <div className="collapse-title font-semibold text-letterPrimary">Ejercicio</div>
+            <SubTitle>Ejercicio</SubTitle>
             <div className="collapse-content text-sm flex flex-col gap-2">
               <Link className={`${MenuOptionUsers === "todos" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("todos")}>Todos</Link>
               <Link className={`${MenuOptionUsers === "add" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("add")}>Agregar</Link>
@@ -46,7 +47,7 @@ export default function Users() {
           <Acordion darkMode={true}>
             {/* <div className="collapse collapse-arrow join-item"> */}
             <input type="radio" name="my-accordion-3" />
-            <div className="collapse-title font-semibold text-letterPrimary">Estadisticas</div>
+            <SubTitle>Estadisticas</SubTitle>
             <div className="collapse-content text-sm flex flex-col gap-2">
               <Link className={`${MenuOptionUsers === "strong" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("strong")}>Fuerza</Link>
               <Link className={`${MenuOptionUsers === "flexibility" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("flexibility")}>Flexibilidad</Link>
@@ -56,7 +57,7 @@ export default function Users() {
           <Acordion darkMode={true}>
             {/* <div className="collapse collapse-arrow join-item"> */}
             <input type="radio" name="my-accordion-3" />
-            <div className="collapse-title font-semibold text-letterPrimary">Configuraciones</div>
+            <SubTitle>Configuraciones</SubTitle>
             <div className="collapse-content text-sm flex flex-col gap-2">
               <Link className={`${MenuOptionUsers === "delete" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("delete")}>Borrar sesión</Link>
               <Link className={`${MenuOptionUsers === "upDate" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionUser("upDate")}>Editar</Link>
@@ -69,20 +70,20 @@ export default function Users() {
           <div className='w-full flex'>
             <Title className={true}>Usuarios</Title>
           </div>
-          <div className={`w-full flex flex-wrap shadow-xl gap-2 mb-4 p-6 rounded-xl  ${DarkMode ? "text-letterPrimary" : "text-primary"}`}>
+          <div className={`w-full flex flex-wrap gap-2 mb-4 p-6 rounded-xl  shadow-[0_2px_15px_0_#53a8b6]`}>
             <input
               type="text"
               placeholder="Filtrar por nombre"
               value={filterName}
               onChange={(e) => setFilterName(e.target.value)}
-              className="input input-sm input-bordered w-full sm:w-44 border-letterPrimary text-letterPrimary bg-transparent"
+              className={`input input-sm input-bordered w-full sm:w-44 border-letterPrimary ${DarkMode ? "text-black" : "text-white"} bg-transparent duration-500`}
             />
             <input
               type="text"
               placeholder="Filtrar por documento"
               value={filterDocumento}
               onChange={(e) => setFilterDocumento(e.target.value)}
-              className="input input-sm input-bordered w-full sm:w-44 border-letterPrimary text-letterPrimary bg-transparent"
+              className={`input input-sm input-bordered w-full sm:w-44 border-letterPrimary ${DarkMode ? "text-black" : "text-white"} bg-transparent duration-500`}
             />
             <select
               value={filterStatus}
@@ -94,7 +95,7 @@ export default function Users() {
               <option value="inactivo">Inactivos</option>
             </select>
           </div>
-          <div className={`w-full flex flex-col items-center ${DarkMode ? "" : "bg-tertiary"} rounded-2xl shadow-4xl px-6 overflow-x-auto duration-500`}>
+          <div className={`w-full flex flex-col items-center rounded-2xl px-6 overflow-x-auto duration-500 shadow-[0_2px_15px_0_#53a8b6]`}>
             <table className="table">
               {/* head */}
               <thead>

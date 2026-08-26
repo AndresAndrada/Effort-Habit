@@ -20,6 +20,10 @@ React 18 + Vite 5 SPA ("Effort&Habit", a gym/training management dashboard for P
 - State: Zustand stores in `src/stores/{user,product,type,ui}` persisted to `localStorage` (store keys like `user-storage`). Fake data flows through these stores via plain arrays/ids.
 - Styling: TailwindCSS + daisyUI classes AND Radix UI Themes (the `Theme` wrapper) coexist. Keep both working; `tailwind.config.js` and `postcss.config.js` are standard.
 
+## Responsive
+- Breakpoints are customized in `tailwind.config.js` (`theme.extend.screens`): `sm:` is **480px**, NOT Tailwind's default 640px (md 768 / lg 1024 / xl 1280 / 2xl 1536 are default).
+- UI is written mobile-first (`hidden md:flex`, `sm:w-44`); follow that pattern instead of desktop-first or media queries.
+
 ## Web3 (experimental, treat with caution)
 - `src/utils/client.js` creates viem public/wallet clients on the **Base** chain.
 - `src/module/home/components/hooks/Blockchain.jsx` hardcodes a private key (line ~18) and a contract address (line ~15) — do not add/commit additional secrets; flag if you touch this. If `mainnet`/`base` imports change, keep chain usage consistent with `client.js`.
