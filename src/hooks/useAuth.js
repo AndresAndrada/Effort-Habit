@@ -5,57 +5,37 @@ import { useAuthStore } from '../stores/auth/auth.store.js';
  * @returns {Object} Estado y métodos de autenticación
  */
 export function useAuth() {
-  const {
-    isAuthenticated,
-    user,
-    tokens,
-    role,
-    isLoading,
-    error,
-    login,
-    register,
-    logout,
-    refreshAccessToken,
-    fetchMe,
-    updateUser,
-    clearError,
-    isAdmin,
-    isTeacher,
-    isTrainer,
-    canManageUsers,
-    canManageExercises,
-    canCreateSessions,
-    canViewAllSessions,
-  } = useAuthStore();
-
+  const store = useAuthStore();
   return {
     // Estado
-    isAuthenticated,
-    user,
-    tokens,
-    role,
-    isLoading,
-    error,
+    isAuthenticated: store.isAuthenticated,
+    user: store.user,
+    tokens: store.tokens,
+    role: store.role,
+    isLoading: store.isLoading,
+    error: store.error,
 
     // Acciones
-    login,
-    register,
-    logout,
-    refreshAccessToken,
-    fetchMe,
-    updateUser,
-    clearError,
+    login: store.login,
+    register: store.register,
+    logout: store.logout,
+    refreshAccessToken: store.refreshAccessToken,
+    fetchMe: store.fetchMe,
+    updateUser: store.updateUser,
+    setUser: store.setUser,
+    setTokens: store.setTokens,
+    clearError: store.clearError,
 
-    // Roles (computed)
-    isAdmin,
-    isTeacher,
-    isTrainer,
+    // Roles (computed) - ahora son funciones que se llaman
+    isAdmin: store.isAdmin(),
+    isTeacher: store.isTeacher(),
+    isTrainer: store.isTrainer(),
 
-    // Permisos (computed)
-    canManageUsers,
-    canManageExercises,
-    canCreateSessions,
-    canViewAllSessions,
+    // Permisos (computed) - ahora son funciones que se llaman
+    canManageUsers: store.canManageUsers(),
+    canManageExercises: store.canManageExercises(),
+    canCreateSessions: store.canCreateSessions(),
+    canViewAllSessions: store.canViewAllSessions(),
   };
 }
 
@@ -82,7 +62,7 @@ export function usePermission(roles) {
  * Hook para verificar si el usuario actual puede acceder a un recurso
  */
 export function useResourceAccess(resource) {
-  const { user, isAdmin, isTeacher } = useAuthStore();
+  const { user, isAdmin, isTeacher } = useAuth();
 
   if (isAdmin) return true;
   if (!user) return false;

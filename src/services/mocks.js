@@ -55,12 +55,31 @@ export const authMock = {
    */
   login: async (credentials) => {
     await delay();
-    const user = usersDb.find(
+    
+    // Buscar usuario en la base de usuarios mock
+    let user = usersDb.find(
       (u) => u.email === credentials.email && u.status
     );
+    console.log("🚀 ~ user:", user)
+    
+    // Si no existe, crear uno dinámicamente (modo prototype sin validación estricta)
     if (!user) {
-      throw { response: { status: 401, data: { message: 'Credenciales inválidas' } } };
+      const role = credentials.email?.includes('admin') ? 'admin' 
+                    : credentials.email?.includes('trainer') ? 'trainer' 
+                    : 'teacher';
+      user = {
+        id: generateId(),
+        name: credentials.email?.split('@')[0] || 'Usuario',
+        email: credentials.email,
+        role,
+        status: true,
+        avatar: '',
+        createdAt: new Date().toISOString(),
+      };
+      // Opcional: agregarlo a usersDb para que persista en esta sesión de navegador
+      usersDb.push(user);
     }
+    
     currentUser = clone(user);
     return {
       data: {

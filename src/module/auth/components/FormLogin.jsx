@@ -1,55 +1,56 @@
-import { useState } from 'react'
-import { useFormik } from 'formik'
-import toast, { Toaster } from 'react-hot-toast'
-import { LoginScheme } from '../../../schemas'
-import showPasswordIcon from '../../../assets/svg/showPassword.svg'
-import hidePasswordIcon from '../../../assets/svg/showPassword.svg'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../../hooks/useAuth.js'
-import { useUserStore } from '../../../stores'
-import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import { useFormik } from 'formik';
+import toast, { Toaster } from 'react-hot-toast';
+import { LoginScheme } from '../../../schemas';
+import showPasswordIcon from '../../../assets/svg/showPassword.svg';
+import hidePasswordIcon from '../../../assets/svg/hidePassword.svg';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../../../hooks/useAuth.js';
 
 export default function FormLogin() {
-  const [showPassword, setShowPassword] = useState(false)
-  const { setAuthenticated } = useUserStore();
-  const { setUser, setTokens } = useAuth();
-  const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
+  const [showPassword, setShowPassword] = useState(false);
+  const { login, isLoading } = useAuth();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
-    // validationSchema: LoginScheme,
-    onSubmit: async (values, { resetForm }) => {
-      console.log(JSON.stringify(values), 'VALUES')
-      const mockUser = {
-        id: '1',
-        name: values.email?.split('@')[0] || 'Usuario',
-        email: values.email || 'usuario@demo.com',
-        role: values.email?.includes('admin') ? 'admin' : values.email?.includes('trainer') ? 'trainer' : 'teacher',
-      };
-      const mockTokens = { accessToken: 'mock-token', refreshToken: 'mock-refresh' };
-      setAuthenticated(true);
-      setUser(mockUser);
-      setTokens(mockTokens);
-
-      const destino = mockUser.role === 'trainer' ? '/my-sessions' : '/dashboard';
-      navigate(destino, { replace: true })
-      resetForm()
-      toast.success('¡Bienvenido!', {
-        duration: 2000,
-        position: 'top-center',
-      })
+    validationSchema: LoginScheme,
+    validateOnChange: true,
+    validateOnBlur: true,
+    onSubmit: async (values, { resetForm, setErrors, setSubmitting }) => {
+      try {
+        const result = await login(values);
+        if (result.ok) {
+          toast.success('¡Bienvenido!', {
+            duration: 2000,
+            position: 'top-center',
+          });
+          resetForm();
+          // Redirect based on role
+          const userRole = result.user?.role || 'trainer';
+          const destino = userRole === 'trainer' ? '/my-sessions' : '/dashboard';
+          navigate(destino, { replace: true });
+        } else {
+          setErrors({ form: result.message });
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error('Error al iniciar sesión', { duration: 2000, position: 'top-center' });
+      } finally {
+        setSubmitting(false);
+      }
     },
-  })
+  });
+
   return (
-    <div className="w-100% max-w-96 sm:w-96 inline-flex p-6 flex-col justify-center items-center gap-8 rounded-lg bg-white shadow-xl">
+    <div className="w-full max-w-96 sm:w-96 inline-flex p-6 flex-col justify-center items-center gap-8 rounded-lg bg-white shadow-xl">
       <div>
         <Toaster />
       </div>
       <h1 className="text-teal-700 text-center font-product-sans font-bold text-lg leading-normal">
-        Iniciar de sesión
+        Iniciar sesión
       </h1>
       <form
         onSubmit={formik.handleSubmit}
@@ -66,11 +67,10 @@ export default function FormLogin() {
             placeholder="Correo"
             className={
               formik.touched.email && formik.errors.email
-                ? 'input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 border-red-500  placeholder-teal-700 rounded-lg focus:border-primary'
-                : 'input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 border-teal-700  placeholder-teal-700 rounded-lg focus:border-primary'
+                ? 'input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 border-red-500 placeholder-teal-700 rounded-lg focus:border-primary'
+                : 'input input-bordered w-full bg-white flex p-2 items-center gap-2 border-2 border-teal-700 placeholder-teal-700 rounded-lg focus:border-primary'
             }
             onBlur={formik.handleBlur}
-            // onError={formik.touched.email && Boolean(formik.errors.email)}
             onChange={formik.handleChange}
             value={formik.values.email}
             id="email"
@@ -78,10 +78,7 @@ export default function FormLogin() {
             autoComplete="email"
           />
           {formik.touched.email && (
-            <p
-              id="email-error"
-              className="text-center min-w-3 w-72 text-red-600 text-xs"
-            >
+            <p id="email-error" className="text-center min-w-3 w-72 text-red-600 text-xs">
               {formik.errors.email}
             </p>
           )}
@@ -101,15 +98,11 @@ export default function FormLogin() {
           >
             <input
               type={showPassword ? 'text' : 'password'}
-              alt=':'
               className="grow placeholder-teal-700"
               placeholder="Contraseña"
               id="password"
               onBlur={formik.handleBlur}
               value={formik.values.password}
-              // onError={
-              //   formik.touched.password && Boolean(formik.errors.password)
-              // }
               autoComplete="current-password"
               onChange={formik.handleChange}
             />
@@ -121,10 +114,7 @@ export default function FormLogin() {
             />
           </label>
           {formik.touched.password && (
-            <p
-              id="email-error"
-              className="text-center min-w-3 w-72 text-red-600 text-xs"
-            >
+            <p id="password-error" className="text-center min-w-3 w-72 text-red-600 text-xs">
               {formik.errors.password}
             </p>
           )}
@@ -137,31 +127,30 @@ export default function FormLogin() {
         </div>
         <div className="w-full">
           <button
+            type="submit"
             className={
-              formik.dirty && formik.isValid
-                ? 'flex w-full p-[0.5rem 1rem] h-10 justify-center items-center gap-2 rounded-[0.625rem] bg-teal-700 text-white hover:bg-emerald-800'
-                : 'flex w-full p-[0.5rem 1rem] h-10 justify-center items-center gap-2 rounded-[0.625rem] bg-gray-500 text-white'
+              !isLoading && formik.isValid
+                ? 'flex w-full p-[0.5rem 1rem] h-10 justify-center items-center gap-2 rounded-[0.625rem] bg-teal-700 text-white hover:bg-emerald-800 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-teal-700'
+                : 'flex w-full p-[0.5rem 1rem] h-10 justify-center items-center gap-2 rounded-[0.625rem] bg-gray-500 text-white cursor-not-allowed'
             }
-          // disabled={!(formik.dirty && formik.isValid && formik.values)}
+            disabled={isLoading || !formik.isValid}
           >
-            {loading
-              ? <span className="loading loading-spinner loading-sm"></span>
+            {isLoading
+              ? <span className="loading loading-spinner loading-sm" />
               : 'Iniciar'}
           </button>
         </div>
       </form>
       <div className="flex justify-center items-start gap-2">
         <h6 className="text-secondary text-center font-productsans text-xs font-normal cursor-pointer">
-          {' '}
           ¿Olvidaste tu contraseña?
         </h6>
       </div>
       <div className="flex justify-center items-start">
         <h6 className="text-secondary text-center font-productsans text-xs font-normal cursor-pointer">
-          {' '}
-          No tenes cuenta? <Link to="/sign-up" className='text-letterPrimary underline'>Registrate</Link>
+          No tenes cuenta? <Link to="/sign-up" className="text-letterPrimary underline">Registrate</Link>
         </h6>
       </div>
     </div>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from 'react';
+import { createContext, useContext } from 'react';
 import { useAuthStore } from '../stores/auth/auth.store.js';
 
 /**
@@ -14,14 +14,16 @@ const AuthContext = createContext(null);
  */
 /* eslint-disable react/prop-types */
 export function AuthProvider({ children }) {
-  const { fetchMe, isAuthenticated, tokens } = useAuthStore();
-
-  useEffect(() => {
-    // Al cargar la app, si hay tokens guardados, recuperar usuario
-    if (tokens?.accessToken && isAuthenticated) {
-      fetchMe();
-    }
-  }, [tokens, isAuthenticated, fetchMe]);
+  // En modo prototype/mock, NO llamamos fetchMe() porque no hay backend real.
+  // El middleware persist de Zustand ya hidrata automáticamente el estado
+  // desde localStorage (auth-storage). Cuando haya backend real, descomentar:
+  // 
+  // const { fetchMe, isAuthenticated, tokens } = useAuthStore();
+  // useEffect(() => {
+  //   if (tokens?.accessToken && isAuthenticated) {
+  //     fetchMe(); // Valida token con backend y trae datos frescos
+  //   }
+  // }, []);
 
   return <AuthContext.Provider value={null}>{children}</AuthContext.Provider>;
 }

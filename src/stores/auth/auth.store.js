@@ -27,6 +27,7 @@ export const useAuthStore = create(
         try {
           const response = await authService.login(credentials);
           const { user, tokens } = response.data;
+          console.log('🔐 LOGIN SUCCESS - Setting store:', { user, tokens, role: user.role });
           set({
             isAuthenticated: true,
             user,
@@ -141,12 +142,12 @@ export const useAuthStore = create(
        * Establece usuario manualmente (para testing o recuperación)
        * @param {User} user
        */
-      setUser: (user) =>
+      setUser: (user) =>{
         set({
           user,
           role: user?.role || null,
           isAuthenticated: !!user,
-        }),
+        })},
 
       /**
        * Establece tokens manualmente
@@ -159,73 +160,34 @@ export const useAuthStore = create(
        */
       clearError: () => set({ error: null }),
 
-      // Selectores computados
-      /**
-       * @returns {boolean}
-       */
-      get isAdmin() {
-        return get().role === 'admin';
-      },
-
-      /**
-       * @returns {boolean}
-       */
-      get isTeacher() {
-        return get().role === 'teacher';
-      },
-
-      /**
-       * @returns {boolean}
-       */
-      get isTrainer() {
-        return get().role === 'trainer';
-      },
-
-      /**
-       * @returns {boolean}
-       */
-      get canManageUsers() {
-        return get().role === 'admin';
-      },
-
-      /**
-       * @returns {boolean}
-       */
-      get canManageExercises() {
-        return ['admin', 'teacher'].includes(get().role);
-      },
-
-      /**
-       * @returns {boolean}
-       */
-      get canCreateSessions() {
-        return ['admin', 'teacher'].includes(get().role);
-      },
-
-      /**
-       * @returns {boolean}
-       */
-      get canViewAllSessions() {
-        return ['admin', 'teacher'].includes(get().role);
-      },
+      // Selectores computados (funciones en lugar de getters para evitar problemas con persist)
+      isAdmin: () => get().role === 'admin',
+      isTeacher: () => get().role === 'teacher',
+      isTrainer: () => get().role === 'trainer',
+      canManageUsers: () => get().role === 'admin',
+      canManageExercises: () => ['admin', 'teacher'].includes(get().role),
+      canCreateSessions: () => ['admin', 'teacher'].includes(get().role),
+      canViewAllSessions: () => ['admin', 'teacher'].includes(get().role),
     }),
     {
       name: 'auth-storage',
-      partialize: (state) => ({
-        isAuthenticated: state.isAuthenticated,
-        user: state.user,
-        tokens: state.tokens,
-        role: state.role,
-      }),
-      storage: {
-        getItem: (name) => {
-          const item = localStorage.getItem(name);
-          return item ? JSON.parse(item) : null;
-        },
-        setItem: (name, value) => {
-          localStorage.setItem(name, JSON.stringify(value));
-        },
-        removeItem: (name) => localStorage.removeItem(name),
+      // CRÍTICO: NO usar partialize, guardar TODO el estado
+      // partialize puede causar problemas de hidratación en ciertas versiones de Zustand
+      onRehydrateStorage: () => (state, error) => {
+        if (error) {
+          console.error('❌ Error rehydrating storage:', error);
+        } else {
+          console.log('💾 REHYDRATE SUCCESS - Estado restaurado:', state);
+        }
+      },
+      version: 1,
+      migrate: (persistedState, version) => {
+        console.log('🔄 MIGRATE - version:', version, 'state:', persistedState);
+        // Si viene de versión anterior, asegurar que tenga la estructura correcta
+        if (version === 0) {
+          return persistedState;
+        }
+        return persistedState;
       },
     }
   )

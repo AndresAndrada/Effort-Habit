@@ -4,8 +4,10 @@ import { Loader } from '../../module/core/Loader';
 
 /* eslint-disable react/prop-types */
 export function ProtectedRoute({ fallbackPath = '/sign-in' }) {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading, user, role } = useAuth();
   const location = useLocation();
+
+  console.log('🛡️ ProtectedRoute check:', { isAuthenticated, isLoading, user, role, path: location.pathname });
 
   if (isLoading) {
     return (
@@ -16,6 +18,7 @@ export function ProtectedRoute({ fallbackPath = '/sign-in' }) {
   }
 
   if (!isAuthenticated) {
+    console.warn('❌ Not authenticated, redirecting to', fallbackPath);
     return <Navigate to={fallbackPath} state={{ from: location }} replace />;
   }
 
