@@ -2,12 +2,12 @@ import { Title } from '../../module/core/ui/title/Title';
 import { useAuth } from '../../hooks/useAuth';
 import { useUiStore } from '../../stores';
 
-export const MyTrainers = () => {
+const MyTrainers = () => {
   const { user, role } = useAuth();
   const { DarkMode } = useUiStore();
 
   return (
-    <div className={`min-h-screen p-8 ${DarkMode ? 'bg-primary' : 'bg-secondary'}`}>
+    <div className={`min-h-screen flex flex-col items-center justify-center pb-8 ${DarkMode ? "bg-primary" : "bg-secondary"} transition-bg`}>
       <Title className={true}>Mis Entrenadores</Title>
       <div className="mt-6 p-6 rounded-xl bg-base-200">
         <p>Próximamente: Lista de entrenadores asignados para {user?.name} ({role})</p>
@@ -16,3 +16,5 @@ export const MyTrainers = () => {
     </div>
   );
 };
+
+export default MyTrainers;

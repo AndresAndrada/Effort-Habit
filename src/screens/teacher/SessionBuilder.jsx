@@ -16,3 +16,5 @@ export const SessionBuilder = () => {
     </div>
   );
 };
+
+export default SessionBuilder;

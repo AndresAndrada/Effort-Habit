@@ -2,74 +2,58 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { authService } from '../../services';
 
-/**
- * Store de autenticación con roles, tokens y persistencia
- * Reemplaza al anterior user.store.js
- */
+const INITIAL_AUTH_STATE = {
+  isAuthenticated: false,
+  user: null,
+  tokens: null,
+  role: null,
+  isLoading: false,
+  error: null,
+};
+
+const ROLE_PERMISSIONS = {
+  admin:   { isAdmin: true, canManageUsers: true, canManageExercises: true, canCreateSessions: true, canViewAllSessions: true },
+  teacher: { canManageExercises: true, canCreateSessions: true, canViewAllSessions: true },
+};
+
+const runAuthAction = async (set, get, op, { errorMsg, onSuccess } = {}) => {
+  set({ isLoading: true, error: null });
+  try {
+    const response = await op();
+    onSuccess?.(response);
+    return { ok: true, ...(response.data ?? {}) };
+  } catch (error) {
+    const message = error.response?.data?.message || errorMsg;
+    set({ error: message });
+    return { ok: false, message };
+  } finally {
+    set({ isLoading: false });
+  }
+};
+
 export const useAuthStore = create(
   persist(
     (set, get) => ({
-      // Estado
-      isAuthenticated: false,
-      user: null,
-      tokens: null,
-      role: null,
-      isLoading: false,
-      error: null,
+      ...INITIAL_AUTH_STATE,
 
-      // Acciones
-      /**
-       * Inicia sesión
-       * @param {{email: string, password: string}} credentials
-       */
-      login: async (credentials) => {
-        set({ isLoading: true, error: null });
-        try {
-          const response = await authService.login(credentials);
-          const { user, tokens } = response.data;
-          console.log('🔐 LOGIN SUCCESS - Setting store:', { user, tokens, role: user.role });
-          set({
-            isAuthenticated: true,
-            user,
-            tokens,
-            role: user.role,
-            isLoading: false,
-          });
-          return { ok: true, user };
-        } catch (error) {
-          const message = error.response?.data?.message || 'Error al iniciar sesión';
-          set({ isLoading: false, error: message });
-          return { ok: false, message };
-        }
-      },
+      login: async (credentials) =>
+        runAuthAction(set, get, () => authService.login(credentials), {
+          errorMsg: 'Error al iniciar sesión',
+          onSuccess: (response) => {
+            const { user, tokens } = response.data;
+            set({ isAuthenticated: true, user, tokens, role: user.role });
+          },
+        }),
 
-      /**
-       * Registra un nuevo usuario
-       * @param {{name: string, email: string, password: string, role: string, assignedTeacherId?: string}} data
-       */
-      register: async (data) => {
-        set({ isLoading: true, error: null });
-        try {
-          const response = await authService.register(data);
-          const { user, tokens } = response.data;
-          set({
-            isAuthenticated: true,
-            user,
-            tokens,
-            role: user.role,
-            isLoading: false,
-          });
-          return { ok: true, user };
-        } catch (error) {
-          const message = error.response?.data?.message || 'Error al registrarse';
-          set({ isLoading: false, error: message });
-          return { ok: false, message };
-        }
-      },
+      register: async (data) =>
+        runAuthAction(set, get, () => authService.register(data), {
+          errorMsg: 'Error al registrarse',
+          onSuccess: (response) => {
+            const { user, tokens } = response.data;
+            set({ isAuthenticated: true, user, tokens, role: user.role });
+          },
+        }),
 
-      /**
-       * Cierra sesión
-       */
       logout: async () => {
         set({ isLoading: true });
         try {
@@ -77,31 +61,16 @@ export const useAuthStore = create(
         } catch {
           // Ignorar errores de logout en servidor
         } finally {
-          set({
-            isAuthenticated: false,
-            user: null,
-            tokens: null,
-            role: null,
-            isLoading: false,
-            error: null,
-          });
+          set(INITIAL_AUTH_STATE);
         }
       },
 
-      /**
-       * Refresca el access token
-       */
       refreshAccessToken: async () => {
         try {
           const response = await authService.refresh();
           const { accessToken, refreshToken, expiresIn } = response.data;
           set((state) => ({
-            tokens: {
-              ...state.tokens,
-              accessToken,
-              refreshToken,
-              expiresIn,
-            },
+            tokens: { ...state.tokens, accessToken, refreshToken, expiresIn },
           }));
           return accessToken;
         } catch {
@@ -110,91 +79,49 @@ export const useAuthStore = create(
         }
       },
 
-      /**
-       * Obtiene el usuario actual del servidor
-       */
       fetchMe: async () => {
         if (!get().tokens?.accessToken) return;
         set({ isLoading: true });
         try {
           const response = await authService.me();
-          set({
-            user: response.data,
-            role: response.data.role,
-            isAuthenticated: true,
-            isLoading: false,
-          });
+          set({ user: response.data, role: response.data.role, isAuthenticated: true, isLoading: false });
         } catch {
-          set({ isAuthenticated: false, user: null, tokens: null, role: null, isLoading: false });
+          set({ ...INITIAL_AUTH_STATE, isLoading: false });
         }
       },
 
-      /**
-       * Actualiza datos del usuario localmente
-       * @param {Partial<User>} data
-       */
       updateUser: (data) =>
         set((state) => ({
           user: state.user ? { ...state.user, ...data } : null,
         })),
 
-      /**
-       * Establece usuario manualmente (para testing o recuperación)
-       * @param {User} user
-       */
-      setUser: (user) =>{
+      setUser: (user) =>
         set({
           user,
           role: user?.role || null,
           isAuthenticated: !!user,
-        })},
+        }),
 
-      /**
-       * Establece tokens manualmente
-       * @param {{accessToken: string, refreshToken: string, expiresIn: number}} tokens
-       */
       setTokens: (tokens) => set({ tokens }),
 
-      /**
-       * Limpia error
-       */
       clearError: () => set({ error: null }),
 
-      // Selectores computados (funciones en lugar de getters para evitar problemas con persist)
       isAdmin: () => get().role === 'admin',
       isTeacher: () => get().role === 'teacher',
       isTrainer: () => get().role === 'trainer',
-      canManageUsers: () => get().role === 'admin',
-      canManageExercises: () => ['admin', 'teacher'].includes(get().role),
-      canCreateSessions: () => ['admin', 'teacher'].includes(get().role),
-      canViewAllSessions: () => ['admin', 'teacher'].includes(get().role),
+      canManageUsers: () => ROLE_PERMISSIONS[get().role]?.canManageUsers ?? false,
+      canManageExercises: () => ROLE_PERMISSIONS[get().role]?.canManageExercises ?? false,
+      canCreateSessions: () => ROLE_PERMISSIONS[get().role]?.canCreateSessions ?? false,
+      canViewAllSessions: () => ROLE_PERMISSIONS[get().role]?.canViewAllSessions ?? false,
     }),
     {
       name: 'auth-storage',
-      // CRÍTICO: NO usar partialize, guardar TODO el estado
-      // partialize puede causar problemas de hidratación en ciertas versiones de Zustand
-      onRehydrateStorage: () => (state, error) => {
-        if (error) {
-          console.error('❌ Error rehydrating storage:', error);
-        } else {
-          console.log('💾 REHYDRATE SUCCESS - Estado restaurado:', state);
-        }
-      },
       version: 1,
-      migrate: (persistedState, version) => {
-        console.log('🔄 MIGRATE - version:', version, 'state:', persistedState);
-        // Si viene de versión anterior, asegurar que tenga la estructura correcta
-        if (version === 0) {
-          return persistedState;
-        }
-        return persistedState;
+      onRehydrateStorage: () => (state, error) => {
+        if (error) console.error('❌ Error rehydrating storage:', error);
       },
     }
   )
 );
 
-/**
- * Hook de conveniencia para acceder al store
- * @returns {ReturnType<typeof useAuthStore>}
- */
 export const useAuth = () => useAuthStore();

@@ -16,3 +16,5 @@ export const TrainerSessions = () => {
     </div>
   );
 };
+
+export default TrainerSessions;

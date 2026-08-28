@@ -2,7 +2,7 @@ import { Title } from '../../module/core/ui/title/Title';
 import { useAuth } from '../../hooks/useAuth';
 import { useUiStore } from '../../stores';
 
-export const Progress = () => {
+export const Progress = () =>  {
   const { user, role } = useAuth();
   const { DarkMode } = useUiStore();
 
@@ -16,3 +16,5 @@ export const Progress = () => {
     </div>
   );
 };
+
+export default Progress;
