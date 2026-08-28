@@ -1,49 +1,96 @@
-import img from "../assets/svg/login.svg";
+export const dashboardOptions = {
+  admin: [
+    {
+      id: 'users',
+      title: 'Usuarios',
+      label: 'users',
+      subTitle: 'Gestión de usuarios',
+      description: 'Crear, eliminar y editar usuarios',
+    },
+    {
+      id: 'exercises',
+      title: 'Ejercicios',
+      label: 'exercises',
+      subTitle: 'Catálogo de ejercicios',
+      description: 'Crear, eliminar y editar ejercicios',
+    },
+    {
+      id: 'sessions',
+      title: 'Sesiones',
+      label: 'sessions',
+      subTitle: 'Gestión de sesiones',
+      description: 'Ver y gestionar todas las sesiones',
+    },
+    {
+      id: 'trainers',
+      title: 'Entrenadores',
+      label: 'trainers',
+      subTitle: 'Lista de entrenadores',
+      description: 'Ver entrenadores y sus asignaciones',
+    },
+  ],
+  teacher: [
+    {
+      id: 'exercises',
+      title: 'Ejercicios',
+      label: 'exercises',
+      subTitle: 'Catálogo de ejercicios',
+      description: 'Crear, eliminar y editar ejercicios',
+    },
+    {
+      id: 'sessions',
+      title: 'Mis Sesiones',
+      label: 'sessions',
+      subTitle: 'Gestión de sesiones',
+      description: 'Crear y editar sesiones de entrenamiento',
+    },
+    {
+      id: 'trainers',
+      title: 'Mis Entrenadores',
+      label: 'trainers',
+      subTitle: 'Lista de entrenadores',
+      description: 'Ver entrenadores asignados y sus sesiones',
+    },
+  ],
+  trainer: [
+    {
+      id: 'my-sessions',
+      title: 'Mis Sesiones',
+      label: 'my-sessions',
+      subTitle: 'Sesiones asignadas',
+      description: 'Ver y completar mis sesiones de entrenamiento',
+    },
+    {
+      id: 'progress',
+      title: 'Mi Progreso',
+      label: 'progress',
+      subTitle: 'Estadísticas personales',
+      description: 'Ver mi progreso y rendimiento',
+    },
+  ],
+  default: [
+    {
+      id: 'dashboard',
+      title: 'Panel de Control',
+      label: 'dashboard',
+      subTitle: 'Resumen general',
+      description: 'Visión general del sistema',
+    },
+  ],
+};
 
-export const dashBoard = [{
-    id: "1",
-    title: "Usuarios",
-    label: "user",
-    subTitle: "Todos los usuarios",
-    description: "Crear, eliminar y editar usuarios",
-    img,
-}, {
+export const routeMap = {
+  users: '/users',
+  exercises: '/exercises',
+  sessions: '/sessions',
+  trainers: '/trainers',
+  'my-sessions': '/my-sessions',
+  progress: '/progress',
+  dashboard: '/dashboard',
+  profile: '/profile',
+};
 
-    id: "2",
-    title: "Exercise",
-    label: "exercise",
-    subTitle: "Todos los ejercicios",
-    description: "Crear, eliminar y editar ejercicios",
-    img,
-}, {
-
-    id: "3",
-    title: "Panel de control",
-    label: "dashboard",
-    subTitle: "Todos los usuarios",
-    description: "Usuarios, ejercicios y estadísticas",
-    img,
-}];
-
-export const navigateToSection = (option, navigate, setOptionLocation) => {
-    switch (option) {
-        case "main":
-            setTimeout(() => navigate("/"), 0);
-            break;
-        case "profile":
-            setTimeout(() => navigate("/profile"), 0);
-            break;
-        case "exercise":
-            setTimeout(() => navigate("/exercise"), 0);
-            break;
-        case "dashboard":
-            setTimeout(() => navigate("/dashBoard"), 0);
-            setOptionLocation && setOptionLocation("dashboard");
-            break;
-        case "user":
-            setTimeout(() => navigate("/users"), 0);
-            break;
-        default:
-            break;
-    }
+export const navigateToSection = (option, navigate) => {
+  const route = routeMap[option] || '/';
+  navigate(route, { replace: true });
 };

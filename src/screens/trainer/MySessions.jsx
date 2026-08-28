@@ -16,3 +16,5 @@ export const MySessions = () => {
     </div>
   );
 };
+
+export default MySessions;

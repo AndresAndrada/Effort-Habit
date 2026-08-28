@@ -9,7 +9,7 @@ import { scrollToTop } from '../utils/scrollToTop'
 import { MenuExerciseAcordion } from '../module/exercise/components/MenuExerciseAcordion'
 import { AllExercises } from '../module/exercise/components/AllExercises'
 
-export default function Exercise() {
+const Exercise = () => {
   const { DarkMode, MenuOptionExercise, setMenuOptionExercise } = useUiStore();
   const [search, setSearch] = useState("");
   const [filterType, setFilterType] = useState("todos");
@@ -67,3 +67,5 @@ export default function Exercise() {
     </section >
   )
 }
+
+export default Exercise;
