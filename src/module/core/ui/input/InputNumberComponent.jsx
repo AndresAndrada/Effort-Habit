@@ -9,7 +9,8 @@ export default function InputNumberComponent({ title, name, formikTouched, formi
   return (
     <div className="flex flex-col w-full items-start gap-2">
       <div className="flex px-4 justify-end items-start gap-2">
-        <label className={`${DarkMode ? "text-primary" : "text-primary"} text-hawk-turquoise text-center font-product-sans text-sm font-bold`}>
+        <label className={
+          "text-letterPrimary text-hawk-turquoise text-center font-product-sans text-sm font-bold"}>
           {title} <span className='text-gray-400'>{"(opcional)"}</span>
         </label>
       </div>

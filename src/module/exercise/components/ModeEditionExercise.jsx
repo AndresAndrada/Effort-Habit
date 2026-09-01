@@ -81,11 +81,11 @@ export const ModeEditionExercise = () => {
   })
   return (
     // <div className={`p-9 w-full flex flex-col justify-center items-center gap-8 rounded-lg ${DarkMode ? "bg-secondary" : "bg-tertiary"} shadow-2xl overflow-hidden`}>
-    <div className={`${DarkMode ? "bg-secondary/40 border border-letterPrimary" : "bg-tertiary/20 border border-white"} flex flex-col justify-center px-8 pb-8 gap-12 transition-bg rounded-xl w-full shadow-[0_4px_20px_0_#53a8b6]`}>
+    <div className={`${DarkMode ? "" : "bg-tertiary/20"} flex flex-col justify-center px-8 pb-8 gap-12 transition-bg rounded-xl w-full shadow-[0_4px_20px_0_#53a8b6]`}>
       <div>
         <Toaster />
       </div>
-      <h1 className="text-primary text-center font-product-sans font-bold text-2xl leading-normal">
+      <h1 className="text-letterPrimary text-center font-product-sans font-bold text-2xl leading-normal">
         Crear Ejercicio
       </h1>
       <form
@@ -96,7 +96,7 @@ export const ModeEditionExercise = () => {
           <div className="flex flex-1 flex-col gap-12">
             <div className="flex gap-12 w-full justify-center items-center">
               <div className="flex flex-col gap-4">
-                <p className="text-white text-center font-product-sans font-bold text-sm leading-normal">
+                <p className="text-letterPrimary text-center font-product-sans font-bold text-sm leading-normal">
                   Imagen
                 </p>
                 <div className="flex justify-center items-center gap-x-5 bg-gray-600 rounded-full w-20 h-20">
@@ -110,7 +110,7 @@ export const ModeEditionExercise = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-4">
-                <p className="text-white text-center font-product-sans font-bold text-sm leading-normal">
+                <p className="text-letterPrimary text-center font-product-sans font-bold text-sm leading-normal">
                   Video
                 </p>
                 <div className="flex justify-center items-center gap-x-5 bg-gray-600 rounded-full w-20 h-20">
@@ -136,7 +136,7 @@ export const ModeEditionExercise = () => {
               />
               <div className="flex flex-col w-full items-start gap-2">
                 <div className="flex px-4 justify-end items-start gap-2">
-                  <label className="text-primary text-hawk-turquoise text-center font-product-sans font-bold text-sm">
+                  <label className="text-letterPrimary text-hawk-turquoise text-center font-product-sans font-bold text-sm">
                     Tipo
                   </label>
                 </div>

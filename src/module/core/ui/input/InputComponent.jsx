@@ -6,7 +6,7 @@ export default function InputComponent({ formikTouched, formikError, formikOnBlu
   return (
     <div className="flex flex-col w-full items-start gap-2">
       <div className="flex px-4 justify-end items-start gap-2">
-        <label className={`${DarkMode ? "text-primary" : "text-primary"} text-hawk-turquoise text-center font-product-sans font-bold text-sm`}>
+        <label className={"text-letterPrimary text-hawk-turquoise text-center font-product-sans font-bold text-sm"}>
           {title}
         </label>
       </div>
