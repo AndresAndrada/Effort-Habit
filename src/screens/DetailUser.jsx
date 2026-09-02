@@ -25,7 +25,7 @@ export default function DetailUser() {
       <div className="max-w-[25rem] w-full flex flex-col items-center justify-center gap-4">
         {/* Contenido principal: datos del usuario */}
         <CardUser user={user} />
-        <div className={`join join-vertical ${DarkMode ? "bg-secondary/40" : "bg-tertiary/20"} transition-bg rounded-xl w-full shadow-4xl`}>
+        <div className={`join join-vertical ${DarkMode ? "  " : "bg-tertiary/20"} transition-bg rounded-xl w-full shadow-4xl`}>
           <Acordion darkMode={true}>
             <input type="radio" name="my-accordion-4" defaultChecked />
             <div className="collapse-title font-semibold text-primary">Sesion</div>
