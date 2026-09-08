@@ -30,11 +30,13 @@ export default function Dashboard() {
       >
         {options.map((item, index) => (
           <CardsDashboard key={index} onClick={() => handleNavigateOption(item.label)}>
-            <img src="/src/assets/svg/mint.svg" alt={item.title} className="hidden sm:flex sm:w-8 sm:h-16 mb-4" />
+            <img src={item.img} alt={item.title} className="hidden sm:flex rounded-t-xl mb-4" />
+            <div className="m-2 gap-4">
             <Title size={"text-2xl"}>{item.title}</Title>
             <p className={`text-base-content text-center ${DarkMode ? "text-slate-300" : "text-stone-300"} transition-bg`}>
               {item.description}
             </p>
+            </div>
           </CardsDashboard>
         ))}
       </section>
