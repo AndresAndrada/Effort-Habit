@@ -5,6 +5,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useUiStore } from '../../stores';
 import { userService } from '../../services';
 import { Loader } from '../../module/core/Loader';
+import { GoBackLink } from '../../module/core/ui/GoBackLink';
 
 export const MyTrainers = () => {
   const navigate = useNavigate();
@@ -48,9 +49,10 @@ export const MyTrainers = () => {
   }
 
   return (
-    <div className={`min-h-screen p-8 ${DarkMode ? 'bg-primary' : 'bg-secondary'}`}>
+    <div className={`min-h-screen p-28 ${DarkMode ? 'bg-primary' : 'bg-secondary'}`}>
       <div className="max-w-4xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center mb-6 gap-10">
+        <GoBackLink />
           <Title className={true}>Mis Entrenadores</Title>
         </div>
 
