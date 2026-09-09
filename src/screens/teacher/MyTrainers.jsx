@@ -50,9 +50,9 @@ export const MyTrainers = () => {
 
   return (
     <div className={`min-h-screen p-28 ${DarkMode ? 'bg-primary' : 'bg-secondary'}`}>
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-center mb-6 gap-10">
         <GoBackLink />
+      <div className="max-w-4xl mx-auto">
+        <div className="flex items-center justify-center mb-6">
           <Title className={true}>Mis Entrenadores</Title>
         </div>
 
