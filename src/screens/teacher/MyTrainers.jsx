@@ -49,7 +49,7 @@ export const MyTrainers = () => {
   }
 
   return (
-    <div className={`min-h-screen p-28 ${DarkMode ? 'bg-primary' : 'bg-secondary'}`}>
+    <div className={`min-h-screen p-24 ${DarkMode ? 'bg-primary' : 'bg-secondary'}`}>
         <GoBackLink />
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-center mb-6">

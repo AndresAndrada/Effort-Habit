@@ -8,7 +8,7 @@ export const SessionBuilder = () => {
   const { DarkMode } = useUiStore();
 
   return (
-    <div className={`min-h-screen p-28 ${DarkMode ? 'bg-primary' : 'bg-secondary'}`}>
+    <div className={`min-h-screen p-24 ${DarkMode ? 'bg-primary' : 'bg-secondary'}`}>
       <GoBackLink />
        <div className="flex items-center justify-center mb-6">
         <Title className={true}>Crear / Editar Sesión</Title>
