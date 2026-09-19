@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Title } from '../../module/core/ui/title/Title';
 import { useAuth } from '../../hooks/useAuth';
 import { useUiStore } from '../../stores';
 import { sessionService } from '../../services';
+import { CardsDashboard } from '../../module/dashboard/components/CardsDashboard';
 import { Loader } from '../../module/core/Loader';
 
 export const MySessions = () => {

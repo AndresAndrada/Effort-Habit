@@ -9,7 +9,7 @@ import { Loader } from '../../module/core/Loader';
 export const TrainerSessions = () => {
   const navigate = useNavigate();
   const { trainerId } = useParams();
-  const { isTeacher } = useAuth();
+  const { user, isTeacher } = useAuth();
   const { DarkMode } = useUiStore();
   const [sessions, setSessions] = useState([]);
   const [trainer, setTrainer] = useState(null);
