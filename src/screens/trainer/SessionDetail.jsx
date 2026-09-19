@@ -9,7 +9,7 @@ import { Loader } from '../../module/core/Loader';
 export const SessionDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { user } = useAuth();
+  const { user, isTrainer } = useAuth();
   const { DarkMode } = useUiStore();
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
