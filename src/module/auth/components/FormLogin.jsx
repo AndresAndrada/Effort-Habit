@@ -29,8 +29,9 @@ export default function FormLogin() {
           });
           resetForm();
           // Redirect based on role
-          const userRole = result.user?.role || 'trainer';
-          const destino = userRole === 'trainer' ? '/my-sessions' : '/dashboard';
+          const userRole = result.user?.role || 'teacher';
+          console.log("🚀 ~ FormLogin ~ result.user?.role:", result.user?.role)
+          const destino = userRole === 'teacher' ? '/my-sessions' : '/dashboard';
           navigate(destino, { replace: true });
         } else {
           setErrors({ form: result.message });
