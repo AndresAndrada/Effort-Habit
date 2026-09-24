@@ -60,13 +60,12 @@ export const authMock = {
     let user = usersDb.find(
       (u) => u.email === credentials.email && u.status
     );
-    console.log("🚀 ~ user:", user)
-    
     // Si no existe, crear uno dinámicamente (modo prototype sin validación estricta)
     if (!user) {
-      const role = credentials.email?.includes('admin') ? 'admin' 
-                    : credentials.email?.includes('trainer') ? 'trainer' 
-                    : 'teacher';
+      // const role = credentials.email?.includes('admin') ? 'admin' 
+      //               : credentials.email?.includes('trainer') ? 'trainer' 
+      //               : 'teacher';
+       const role = 'teacher';
       user = {
         id: generateId(),
         name: credentials.email?.split('@')[0] || 'Usuario',
@@ -179,8 +178,10 @@ export const userMock = {
   },
 
   get: async (id) => {
+    console.log("👌 ~ id:", id)
     await delay();
     const user = usersDb.find((u) => u.id == id);
+    console.log("😘 ~ user:", user)
     if (!user) throw { response: { status: 404 } };
     return { data: clone(user) };
   },

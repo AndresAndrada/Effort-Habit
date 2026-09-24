@@ -35,7 +35,7 @@ export const useAuthStore = create(
   persist(
     (set, get) => ({
       ...INITIAL_AUTH_STATE,
-
+      
       login: async (credentials) =>
         runAuthAction(set, get, () => authService.login(credentials), {
           errorMsg: 'Error al iniciar sesión',

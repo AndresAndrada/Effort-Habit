@@ -105,7 +105,10 @@ export const routeMap = {
   profile: '/profile',
 };
 
-export const navigateToSection = (option, navigate) => {
+export const navigateToSection = (option, navigate, currentLocation) => {
   const route = routeMap[option] || '/';
-  navigate(route, { replace: true });
+  navigate(route, { 
+    replace: false,
+    state: { from: currentLocation || { pathname: '/dashboard' } }
+  });
 };

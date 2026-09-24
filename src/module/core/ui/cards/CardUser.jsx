@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useUiStore } from '../../../../stores';
 import { FaEdit } from "react-icons/fa";
+import userCircleIcon from '../../../../assets/svg/userCircle.svg';
 
 export const CardUser = ({ user, edit }) => {
   const { DarkMode } = useUiStore();
@@ -10,9 +11,13 @@ export const CardUser = ({ user, edit }) => {
         <FaEdit color="white" size="1.5rem" className='hover:shadow-4xl' />
       </div>}
       <img
-        src={user?.avatar || "/src/assets/svg/userCircle.svg"}
+        src={user?.avatar || userCircleIcon}
         alt="Avatar del usuario"
         className={`w-24 h-24 rounded-full mb-4 border-4 ${DarkMode ? "border-letterPrimary" : "border-secondary"} object-cover`}
+        loading="lazy"
+        width={96}
+        height={96}
+        decoding="async"
       />
       <hr className={`my-4 w-full ${DarkMode ? "border-letterPrimary" : "border-letterPrimary"}`} />
       <h2 className="text-2xl text-letterPrimary font-bold mb-2">{user?.name || 'Nombre de usuario'}</h2>

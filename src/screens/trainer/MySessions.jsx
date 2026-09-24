@@ -17,7 +17,7 @@ export const MySessions = () => {
 
   useEffect(() => {
     const fetchSessions = async () => {
-      if (!user?.id || !isTrainer) return;
+      // if (!user?.id || !isTrainer) return;
       setLoading(true);
       try {
         const response = await sessionService.list({ trainerId: user.id });
@@ -57,7 +57,7 @@ export const MySessions = () => {
   }
 
   return (
-    <div className={`min-h-screen p-8 ${DarkMode ? 'bg-primary' : 'bg-secondary'}`}>
+    <div className={`min-h-screen py-24 ${DarkMode ? 'bg-primary' : 'bg-secondary'}`}>
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <Title className={true}>Mis Sesiones</Title>

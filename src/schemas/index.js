@@ -57,6 +57,118 @@ export const RegisterScheme = yup.object().shape({
             .required('Selecciona un rol'),
 })
 
+export const CreateUserScheme = yup.object().shape({
+    name: yup
+        .string()
+        .min(5, 'Debe contener más de 5 caracteres')
+        .max(65, 'Máximo de 65 caracteres')
+        .required('Ingrese nombre completo'),
+
+    email: yup
+        .string()
+        .max(255)
+        .required('Ingrese el correo')
+        .matches(
+            /^[^@]+@[^@]+\.[^@]+$/,
+            "El correo debe contener '@' antes del '.'"
+        ),
+
+    password: yup
+        .string()
+        .required('Ingrese su contraseña')
+        .matches(
+            passwordRules,
+            'Debe contener 8 caracteres, una mayúscula, una minúscula, un número y un caracter especial.'
+        ),
+
+    role: yup
+        .string()
+        .oneOf(['trainer', 'teacher', 'admin'], 'Rol no válido')
+        .required('Selecciona un rol'),
+
+    documento: yup
+        .string()
+        .min(7, 'Mínimo 7 caracteres')
+        .max(10, 'Máximo 10 caracteres')
+        .required('Ingrese documento'),
+
+    phone: yup
+        .string()
+        .min(9, 'Mínimo 9 caracteres')
+        .max(15, 'Máximo 15 caracteres')
+        .required('Ingrese teléfono'),
+
+    address: yup
+        .string()
+        .max(255)
+        .required('Ingrese dirección'),
+
+    assignedTeacherId: yup
+        .number()
+        .integer()
+        .positive()
+        .optional()
+        .when('role', {
+            is: 'trainer',
+            then: (schema) => schema.required('Seleccione un profesor asignado'),
+            otherwise: (schema) => schema.notRequired(),
+        }),
+})
+
+export const EditUserScheme = yup.object().shape({
+    name: yup
+        .string()
+        .min(5, 'Debe contener más de 5 caracteres')
+        .max(65, 'Máximo de 65 caracteres')
+        .required('Ingrese nombre completo'),
+
+    email: yup
+        .string()
+        .max(255)
+        .required('Ingrese el correo')
+        .matches(
+            /^[^@]+@[^@]+\.[^@]+$/,
+            "El correo debe contener '@' antes del '.'"
+        ),
+
+    role: yup
+        .string()
+        .oneOf(['trainer', 'teacher', 'admin'], 'Rol no válido')
+        .required('Selecciona un rol'),
+
+    documento: yup
+        .string()
+        .min(7, 'Mínimo 7 caracteres')
+        .max(10, 'Máximo 10 caracteres')
+        .required('Ingrese documento'),
+
+    phone: yup
+        .string()
+        .min(9, 'Mínimo 9 caracteres')
+        .max(15, 'Máximo 15 caracteres')
+        .required('Ingrese teléfono'),
+
+    address: yup
+        .string()
+        .max(255)
+        .required('Ingrese dirección'),
+
+    status: yup
+        .boolean()
+        .required('Seleccione estado'),
+
+    assignedTeacherId: yup
+        .number()
+        .integer()
+        .positive()
+        .optional()
+        .when('role', {
+            is: 'trainer',
+            then: (schema) => schema.required('Seleccione un profesor asignado'),
+            otherwise: (schema) => schema.notRequired(),
+        }),
+})
+
 export const AddCompany = yup.object().shape({
     username: yup
         .string()
@@ -188,4 +300,39 @@ export const AddressConsult = yup.object().shape({
     address: yup.string()
         .min(5, 'Debe contener más de 5 caracteres')
         .required('Ingrese el address'),
+})
+
+export const CreateSessionScheme = yup.object().shape({
+    name_sesion: yup
+        .string()
+        .min(3, 'Mínimo 3 caracteres')
+        .max(65, 'Máximo 65 caracteres')
+        .required('Ingrese nombre de la sesión'),
+
+    type_exercise: yup
+        .string()
+        .min(3, 'Mínimo 3 caracteres')
+        .max(50, 'Máximo 50 caracteres')
+        .required('Ingrese tipo de ejercicio'),
+
+    exercises: yup
+        .array()
+        .of(
+            yup.object().shape({
+                id: yup.number().required(),
+                type_exercise: yup.string().required('Ingrese tipo de ejercicio'),
+                items_exercise: yup.array().of(
+                    yup.object().shape({
+                        id: yup.number().required(),
+                        name_exercise: yup.string().required('Ingrese nombre del ejercicio'),
+                        img_exercise: yup.string().optional(),
+                        video_exercise: yup.string().optional(),
+                        repetitions: yup.number().min(1, 'Mínimo 1 repetición').required('Ingrese repeticiones'),
+                        series: yup.number().min(1, 'Mínimo 1 serie').required('Ingrese series'),
+                    })
+                ).min(1, 'Debe tener al menos un ejercicio').required(),
+            })
+        )
+        .min(1, 'Debe tener al menos un grupo de ejercicios')
+        .required(),
 })

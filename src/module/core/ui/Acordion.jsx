@@ -5,7 +5,7 @@ export const Acordion = ({ children, darkMode }) => {
     const { DarkMode } = useUiStore();
     return (
         <>
-            <div className={`join-vertical ${!darkMode ? DarkMode ? "" : "bg-tertiary/20" : ""} transition-bg rounded-xl w-full shadow-xl`}>
+            <div className={`join-vertical ${!darkMode ? DarkMode ? "" : "bg-tertiary/20" : ""} transition-bg duration-300 rounded-xl w-full shadow-xl`}>
                 {/* <input type="radio" name="my-accordion-4" defaultChecked /> */}
                 <div className="collapse collapse-arrow join-item w-full">
                     {children}

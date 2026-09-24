@@ -4,13 +4,12 @@ import toast, { Toaster } from 'react-hot-toast';
 import { LoginScheme } from '../../../schemas';
 import showPasswordIcon from '../../../assets/svg/showPassword.svg';
 import hidePasswordIcon from '../../../assets/svg/hidePassword.svg';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth.js';
 
 export default function FormLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const { login, isLoading } = useAuth();
-  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -23,7 +22,7 @@ export default function FormLogin() {
       try {
         const result = await login(values);
         if (result.ok) {
-          toast.success('¡Bienvenido!', {
+          toast.success(`¡Bienvenido! ${result.user?.name.toUpperCase() || 'Usuario'}`, {
             duration: 2000,
             position: 'top-center',
           });
@@ -31,8 +30,6 @@ export default function FormLogin() {
           // Redirect based on role
           const userRole = result.user?.role || 'teacher';
           console.log("🚀 ~ FormLogin ~ result.user?.role:", result.user?.role)
-          const destino = userRole === 'teacher' ? '/my-sessions' : '/dashboard';
-          navigate(destino, { replace: true });
         } else {
           setErrors({ form: result.message });
         }
