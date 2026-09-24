@@ -1,12 +1,22 @@
 import { ChevronLeftIcon } from '@heroicons/react/24/solid'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 // eslint-disable-next-line react/prop-types
-export const GoBackLink = ({ color = "#000", label }) => {
+export const GoBackLink = ({ color = "#79c2d0", label, fallback = '/' }) => {
   const navigate = useNavigate()
+  const location = useLocation()
 
   const goBack = () => {
-    navigate(-1)
+    // Si el usuario vino de alguna ruta dentro de la app (location.state.from), volver ahí
+    if (location.state?.from) {
+      navigate(location.state.from.pathname)
+    } else if (window.history.length > 2) {
+      // Si hay historial suficiente (más de 2 entradas = no es la primera página visitada)
+      navigate(-1)
+    } else {
+      // Fallback: si entró directo con URL, ir al fallback (dashboard por defecto)
+      navigate(fallback)
+    }
   }
   return (
     <button

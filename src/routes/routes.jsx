@@ -44,7 +44,7 @@ export default function NavigatorRouter() {
           {/* Rutas autenticadas */}
           <Route element={<ProtectedRoute />}>
             <Route path={'/dashboard'} element={<Dashboard />} />
-            <Route path={'/profile'} element={<DetailUser />} />
+            <Route path={'/profile/:id'} element={<DetailUser />} />
 
             <Route element={<AdminRoute />}>
               <Route path={'/users'} element={<Users />} />

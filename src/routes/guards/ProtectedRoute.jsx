@@ -7,8 +7,6 @@ export function ProtectedRoute({ fallbackPath = '/sign-in' }) {
   const { isAuthenticated, isLoading, user, role } = useAuth();
   const location = useLocation();
 
-  console.log('🛡️ ProtectedRoute check:', { isAuthenticated, isLoading, user, role, path: location.pathname });
-
   if (isLoading) {
     return (
       <div className="h-screen w-screen grid place-content-center">
@@ -28,7 +26,7 @@ export function ProtectedRoute({ fallbackPath = '/sign-in' }) {
 export function PublicRoute({ redirectTo = '/dashboard' }) {
   const { isAuthenticated, isLoading, role } = useAuth();
 
-  if (isLoading === true) {
+  if (isLoading) {
     return (
       <div className="h-screen w-screen grid place-content-center">
         <Loader className="h-[4rem] w-[4rem]" />

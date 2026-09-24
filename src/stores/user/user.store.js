@@ -1,13 +1,13 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 export const useUserStore = create(
   persist(
     (set) => (
       {
-        Authenticated: true, // Estado inicial
-        DataPerfilUser: [], // DATA_PERFIL_USER
-        User: {}, // DATA_USER
+        Authenticated: true,
+        DataPerfilUser: [],
+        User: {},
         Details: {},
         Login: false,
 
@@ -18,14 +18,5 @@ export const useUserStore = create(
       }
     ), {
     name: 'user-storage',
-    storage: {
-      getItem: (name) => {
-        const item = localStorage.getItem(name);
-        return item ? JSON.parse(item) : null;
-      },
-      setItem: (name, value) => {
-        localStorage.setItem(name, JSON.stringify(value));
-      },
-      removeItem: (name) => localStorage.removeItem(name),
-    },
+    storage: createJSONStorage(() => localStorage),
   }));

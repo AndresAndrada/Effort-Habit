@@ -4,9 +4,6 @@ import daisyui from 'daisyui';
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    './pages/**/*.{html,js}',
-    './components/**/*.{html,js}',
-    './app/**/*.{js,ts,jsx,,tsx}',
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
@@ -26,7 +23,6 @@ export default {
       },
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
-        // ...otras fuentes si quieres
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -128,13 +124,17 @@ export default {
         'accordion-up': 'accordion-up 0.5s ease-out',
       },
       screens: {
-        'sm': '480px',  // Personalizado, por ejemplo, para pantallas pequeñas de 480px
+        'sm': '480px',
         'md': '768px',
         'lg': '1024px',
         'xl': '1280px',
         '2xl': '1536px',
       },
     },
+  },
+  daisyui: {
+    themes: ['light', 'dark'],
+    logs: false,
   },
   plugins: [tailwindcssAnimate, daisyui],
 }

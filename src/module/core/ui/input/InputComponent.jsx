@@ -2,7 +2,6 @@ import { useUiStore } from "../../../../stores"
 
 /* eslint-disable react/prop-types */
 export default function InputComponent({ formikTouched, formikError, formikOnBlur, formikHandleChange, formikValuesName, title, name }) {
-  const { DarkMode } = useUiStore();
   return (
     <div className="flex flex-col w-full items-start gap-2">
       <div className="flex px-4 justify-end items-start gap-2">
@@ -13,7 +12,7 @@ export default function InputComponent({ formikTouched, formikError, formikOnBlu
       <input
         type="text"
         placeholder={title}
-        className={`input w-full bg-white flex p-2 items-center gap-2 rounded-xl text-secondary placeholder-gray-400 border-letterPrimary focus:border-white border-2 ${formikTouched && formikError ? 'border-red-500' : 'border-secondary'}`}
+        className={`input w-full bg-white flex p-2 items-center gap-2 rounded-xl text-secondary placeholder-gray-400 border-letterPrimary focus:border-letterPrimary border-2 ${formikTouched && formikError ? 'border-red-500' : 'border-gray-300'}`}
         onBlur={formikOnBlur}
         // onError={formik.touched.name_product && Boolean(formik.errors.name_product)}
         onChange={formikHandleChange}
