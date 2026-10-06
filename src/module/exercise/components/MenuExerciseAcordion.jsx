@@ -1,41 +1,45 @@
-import { Link } from "react-router-dom"
-import { Acordion } from "../../core/ui/Acordion"
-import { SubTitle } from "../../core/ui/title/SubTitle"
 import { useUiStore } from "../../../stores";
 
 export const MenuExerciseAcordion = () => {
-    const { DarkMode, setMenuOptionExercise, MenuOptionExercise } = useUiStore();
-    return (
-        <div className={`hidden max-w-md w-full md:flex flex-col items-center justify-center shadow-4xl ${DarkMode ? "" : "bg-tertiary/20"} transition-bg rounded-xl shadow-[0_2px_10px_0_#53a8b6]`}>
-            <Acordion darkMode={true}>
-                <input type="radio" name="my-accordion-3" defaultChecked />
-                <SubTitle>Ejercicio</SubTitle>
-                <div className="collapse-content text-sm flex flex-col gap-2">
-                    <Link className={`${MenuOptionExercise === "todos" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("todos")}>Todos</Link>
-                    <Link className={`${MenuOptionExercise === "add" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("add")}>Agregar</Link>
-                    <Link className={`${MenuOptionExercise === "notification" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("notification")}> Modificar</Link>
-                </div>
-            </Acordion>
-            {/* </div> */}
-            <Acordion darkMode={true}>
-                {/* <div className="collapse collapse-arrow join-item"> */}
-                <input type="radio" name="my-accordion-3" />
-                <SubTitle>Estadisticas</SubTitle>
-                <div className="collapse-content text-sm flex flex-col gap-2">
-                <Link className={`${MenuOptionExercise === "strong" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("strong")}>Fuerza</Link>
-                <Link className={`${MenuOptionExercise === "flexibility" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("flexibility")}>Flexibilidad</Link>
-            </div>
-            </Acordion>
-            {/* </div> */}
-            <Acordion darkMode={true}>
-                {/* <div className="collapse collapse-arrow join-item"> */}
-                <input type="radio" name="my-accordion-3" />
-                <SubTitle>Configuraciones</SubTitle>
-                <div className="collapse-content text-sm flex flex-col gap-2">
-                <Link className={`${MenuOptionExercise === "delete" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("delete")}>Borrar sesión</Link>
-                <Link className={`${MenuOptionExercise === "upDate" ? "border border-letterPrimary" : ""} ${DarkMode ? "text-letterPrimary hover:bg-gray-500/35" : "text-primary hover:bg-gray-500/35"} rounded-xl transition-colors w-full p-2`} onClick={() => setMenuOptionExercise("upDate")}>Editar</Link>
-                </div>
-            </Acordion>
-        </div >
-    )
-}
+  const { DarkMode, setMenuOptionExercise, MenuOptionExercise } = useUiStore();
+
+  const options = [
+    { id: "todos", label: "Todos los ejercicios", icon: "M4 6h16M4 12h16M4 18h16" },
+    { id: "add", label: "Agregar ejercicio", icon: "M12 4v16m8-8H4" },
+    { id: "upDate", label: "Modificar ejercicio", icon: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" },
+    { id: "strong", label: "Estadísticas de fuerza", icon: "M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75z" },
+  ];
+
+  return (
+    <div className={`rounded-xl border overflow-hidden lg:hidden ${
+      DarkMode ? "bg-base-100/60 border-base-300/40" : "bg-white border-base-200 shadow-card"
+    }`}>
+      <div className={`px-5 py-4 border-b ${DarkMode ? "border-base-300/40 bg-base-200/50" : "border-base-200 bg-base-100"}`}>
+        <h2 className={`text-heading-sm font-semibold ${DarkMode ? "text-secondary" : "text-primary"}`}>
+          Ejercicios
+        </h2>
+      </div>
+      <nav className="p-2 space-y-1" aria-label="Filtrar ejercicios">
+        {options.map((opt) => (
+          <button
+            key={opt.id}
+            onClick={() => setMenuOptionExercise(opt.id)}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-body-sm font-medium transition-all duration-200 focus-ring ${
+              MenuOptionExercise === opt.id
+                ? "bg-effort-600 text-white shadow-sm"
+                : DarkMode
+                  ? "text-secondary/70 hover:bg-base-200/50 hover:text-secondary"
+                  : "text-primary/70 hover:bg-base-100 hover:text-primary"
+            }`}
+            aria-current={MenuOptionExercise === opt.id ? "page" : undefined}
+          >
+            <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d={opt.icon} />
+            </svg>
+            {opt.label}
+          </button>
+        ))}
+      </nav>
+    </div>
+  );
+};

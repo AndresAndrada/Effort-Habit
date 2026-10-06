@@ -13,13 +13,15 @@ export default function SearchBar({
 
   return (
     <div className="relative w-full max-w-xs">
+      <label htmlFor="search-input" className="sr-only">Buscar</label>
       <input
+        id="search-input"
         type="search"
         placeholder={placeholder || 'Buscar...'}
         onChange={handleSearch}
-        className="border-2 border-letterPrimary w-full text-secondary pl-8 bg-white rounded-xl h-9 focus:ring-1 focus:ring-primary outline-none"
+        className="border-2 w-full text-primary dark:text-secondary pl-9 pr-3 bg-white dark:bg-base-100 rounded-xl h-10 text-body-sm outline-none transition-colors duration-200 border-base-300 dark:border-base-600 focus:border-effort-500 focus:ring-2 focus:ring-effort-500/20 placeholder:text-base-400"
       />
-      <MagnifyingGlassIcon className="h-5 text-secondary absolute left-2 top-1/2 -translate-y-1/2" />
+      <MagnifyingGlassIcon className="h-4 w-4 text-base-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
     </div>
   )
 }

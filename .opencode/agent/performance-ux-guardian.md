@@ -6,15 +6,15 @@ description: |
   accessibility, caching strategies, memory management, and user experience quality.
   Outputs actionable findings with severity ratings and concrete remediation steps.
 tools:
-  - read
-  - write
-  - edit
-  - grep
-  - glob
-  - bash
-  - task
-  - webfetch
-  - websearch
+  read: true
+  write: true
+  edit: true
+  grep: true
+  glob: true
+  bash: true
+  task: true
+  webfetch: true
+  websearch: true
 ---
 
 # Performance & UX Guardian Agent
