@@ -59,12 +59,12 @@ export const EffortRing = ({
         />
       </svg>
       {showValue && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <span className="text-data-lg font-extrabold tracking-tight text-base-content">
+        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none bg-black/35 rounded-full m-[12px]">
+          <span className="text-data-lg font-extrabold tracking-tight text-letterSecondary/100">
             {Math.round(progress)}
           </span>
           {valueLabel && (
-            <span className="text-caption text-base-500 uppercase tracking-wider mt-1">
+            <span className="text-caption text-lg text-letterSecondary/100 uppercase tracking-wider mt-1">
               {valueLabel}
             </span>
           )}
