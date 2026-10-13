@@ -43,7 +43,7 @@ export default function Home() {
 
               <h1
                 id="hero-title"
-                className={`text-display-sm sm:text-display-md lg:text-display-lg font-extrabold tracking-tight mb-6 ${DarkMode ? "text-primary" : "text-secondary"} text-balance`}
+                className={`text-display-sm sm:text-display-md lg:text-display-lg font-extrabold tracking-tight mb-6 ${DarkMode ? "text-primary" : "text-white/85"} text-balance`}
               >
                 El esfuerzo{" "}
                 <span className="gradient-text-dark">se mide</span>
@@ -52,7 +52,7 @@ export default function Home() {
                 <span className="gradient-text-dark">se ve</span>
               </h1>
 
-              <p className={`text-body-lg max-w-xl mx-auto lg:mx-0 mb-8 ${DarkMode ? "text-primary/70" : "text-secondary/70"} leading-relaxed`}>
+              <p className={`text-body-lg max-w-xl mx-auto lg:mx-0 mb-8 ${DarkMode ? "text-primary/70" : "text-white"} leading-relaxed`}>
                 Plataforma de gestión de entrenamiento para profesores de Educación Física.
                 Diseñada para planificar sesiones, rastrear el progreso de tus alumnos
                 y fomentar un estilo de vida saludable.
@@ -70,11 +70,7 @@ export default function Home() {
                 </a>
                 <a
                   href="#servicios"
-                  className={`btn btn-lg rounded-xl border-2 font-semibold transition-all duration-200 active:scale-[0.98] ${
-                    DarkMode
-                      ? "border-primary/30 text-primary hover:border-primary/60 hover:bg-primary/5"
-                      : "border-secondary/30 text-secondary hover:border-secondary/60 hover:bg-secondary/5"
-                  }`}
+                  className={`btn btn-lg rounded-xl border-2 font-semibold transition-all duration-200 active:scale-[0.98] "border-primary/30 text-primary hover:border-primary/60 hover:bg-primary/5"`}
                 >
                   Ver servicios
                 </a>
@@ -130,12 +126,14 @@ export default function Home() {
 
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-pulse-soft">
-          <span className={`text-caption uppercase tracking-wider ${DarkMode ? "text-primary/40" : "text-secondary/40"}`}>
-            Desliza
-          </span>
-          <svg className={`w-5 h-5 ${DarkMode ? "text-primary/40" : "text-secondary/40"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
+        <a href="#servicios" className="flex flex-col items-center gap-2">
+            <span className={`text-caption uppercase tracking-wider ${DarkMode ? "text-primary/40" : "text-primary/70"}`}>
+              Desliza
+            </span>
+            <svg className={`w-5 h-5 ${DarkMode ? "text-primary/40" : "text-primary/70"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </a>
         </div>
       </section>
 
