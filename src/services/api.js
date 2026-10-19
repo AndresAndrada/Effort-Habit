@@ -2,12 +2,33 @@ import axios from 'axios';
 import { API_ENDPOINTS } from '../types/api.js';
 
 /**
+ * Base URL de la API.
+ *
+ * - Se toma de la variable de entorno `VITE_API_BASE_URL` (configurarla en
+ *   Vercel → Settings → Environment Variables, o en `.env.local`).
+ * - En desarrollo, si no está definida, se usa el backend local.
+ * - En producción, si no está definida, se usa el mismo origen (`''`).
+ *   Esto evita que un deploy intenté conectarse a `localhost`, lo que
+ *   provoca `ERR_CONNECTION_REFUSED` / mixed-content en el navegador.
+ */
+const ENV_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const isDev = import.meta.env.DEV;
+
+const baseURL = (ENV_BASE_URL ?? (isDev ? 'http://localhost:3001/api' : '')).replace(/\/+$/, '');
+
+if (!isDev && !ENV_BASE_URL) {
+  console.warn(
+    '[api] VITE_API_BASE_URL no está definida. Las peticiones usarán la misma origen. ' +
+      'Si aún no hay backend, mantené VITE_USE_MOCK_API en `true` (default).'
+  );
+}
+
+/**
  * Cliente HTTP configurado con interceptores para autenticación
  * @type {import('axios').AxiosInstance}
  */
 const api = axios.create({
-  // baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001/api',
-  baseURL: 'http://localhost:3001/api',
+  baseURL,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -48,39 +69,41 @@ const processQueue = (error, token = null) => {
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    const originalRequest = error.config;
+    const originalRequest = error?.config;
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      if (isRefreshing) {
-        return new Promise((resolve, reject) => {
-          failedQueue.push({ resolve, reject });
-        })
-          .then((token) => {
-            originalRequest.headers.Authorization = `Bearer ${token}`;
-            return api(originalRequest);
-          })
-          .catch((err) => Promise.reject(err));
-      }
-
-      originalRequest._retry = true;
-      isRefreshing = true;
-
-      try {
-        const newToken = await refreshAccessToken();
-        processQueue(null, newToken);
-        originalRequest.headers.Authorization = `Bearer ${newToken}`;
-        return api(originalRequest);
-      } catch (refreshError) {
-        processQueue(refreshError, null);
-        clearAuthStorage();
-        window.location.href = '/sign-in';
-        return Promise.reject(refreshError);
-      } finally {
-        isRefreshing = false;
-      }
+    // Sin request original (error de red / cancelación) no hay nada que reintentar
+    if (!originalRequest || error.response?.status !== 401 || originalRequest._retry) {
+      return Promise.reject(error);
     }
 
-    return Promise.reject(error);
+    // Ya hay un refresh en curso: encolamos la petición pendiente
+    if (isRefreshing) {
+      return new Promise((resolve, reject) => {
+        failedQueue.push({ resolve, reject });
+      })
+        .then((token) => {
+          originalRequest.headers.Authorization = `Bearer ${token}`;
+          return api(originalRequest);
+        })
+        .catch((err) => Promise.reject(err));
+    }
+
+    originalRequest._retry = true;
+    isRefreshing = true;
+
+    try {
+      const newToken = await refreshAccessToken();
+      processQueue(null, newToken);
+      originalRequest.headers.Authorization = `Bearer ${newToken}`;
+      return api(originalRequest);
+    } catch (refreshError) {
+      processQueue(refreshError, null);
+      clearAuthStorage();
+      window.location.href = '/sign-in';
+      return Promise.reject(refreshError);
+    } finally {
+      isRefreshing = false;
+    }
   }
 );
 
@@ -121,9 +144,11 @@ async function refreshAccessToken() {
   const tokens = getStoredTokens();
   if (!tokens?.refreshToken) throw new Error('No refresh token');
 
+  // Ruta relativa: se resuelve contra `baseURL` (o el mismo origen si está vacío)
   const response = await axios.post(
-    `${api.defaults.baseURL}${API_ENDPOINTS.AUTH_REFRESH}`,
-    { refreshToken: tokens.refreshToken }
+    API_ENDPOINTS.AUTH_REFRESH,
+    { refreshToken: tokens.refreshToken },
+    { baseURL: api.defaults.baseURL, timeout: api.defaults.timeout }
   );
 
   const newTokens = {
